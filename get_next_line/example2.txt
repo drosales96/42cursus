@@ -1,0 +1,3 @@
+Hola este texto es otro fd 
+para probar la lectura de todos
+los fd que pueda recibir mi funcion.

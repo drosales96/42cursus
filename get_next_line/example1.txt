@@ -1,0 +1,4 @@
+Hola que tal, este
+es mi proyecto GNL.
+
+buffer=Hola que tal, este\nes mi proyecto GNL.
