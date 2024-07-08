@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42malaga.com>   #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024-04-15 12:17:44 by drosales          #+#    #+#             */
-/*   Updated: 2024/04/25 08:02:38 by drosales         ###   ########.fr       */
+/*   Updated: 2024/06/24 10:31:20 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-char	*ft_strnstr(const char *str1, const char *tofind , size_t len);
+char	*ft_strnstr(const char *str1, const char *tofind, size_t len);
 size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
 
 /*FUNCIONES CON MALLOC*/
@@ -66,12 +66,6 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-/*Los miembros de la estructura t_list son:
-• content: la información contenida por el nodo.
-void *: permite guardar cualquier tipo de información.
-• next: la dirección del siguiente nodo, o NULL si el 
-siguiente nodo es el último.*/
-
 /*BONUS*/
 
 t_list	*ft_lstnew(void *content);
@@ -84,4 +78,4 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-# endif
+#endif
