@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:29:18 by drosales          #+#    #+#             */
-/*   Updated: 2024/07/22 09:44:15 by drosales         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:10:41 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,17 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
-typedef struct stack_node
+typedef struct s_list
 {
-    int                 num;
-    int                 index;
-    int                 push_cost;
-    struct stack_node   *target_node;
-    struct stack_node   *next;
-    struct stack_node   *prev;
-}   t_stack_node;
+  int               nb;
+  int               index;
+  int               value;
+  struct s_list     *stack;
+  struct s_list     *next;
+  struct s_list     *prev;
+}t_list;
 
 
 #endif
