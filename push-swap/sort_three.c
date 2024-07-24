@@ -6,13 +6,13 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 09:31:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/07/23 11:20:32 by drosales         ###   ########.fr       */
+/*   Updated: 2024/07/24 08:12:30 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int case_checker(t_list *stack)
+int case_checker(t_stack *stack)
 {
     if ((stack->nb < stack->next->nb) && (stack->next->nb < stack->prev->nb))/*1 < 2 < 3*/
         return (1);
@@ -43,14 +43,16 @@ CASUÍSTICA = 3 x 2 x 1 = 6
 
 */
 
-/*void    sort_three(t_list *stack)
+void    sort_three(t_stack **stack)
 {
-    int cases = case_checker(stack);
+    int cases = case_checker(*stack);
 
-    if (cases == 1)
-        X
+    if (size_stack(*stack) == 1 || size_stack(*stack) == 1)
+        ft_printf("ERROR");
+    else if (cases == 1)
+        return;
     else if (cases == 2)
-        X
+        sa(stack, 1);
     else if (cases == 3)
         X
     else if (cases == 4)
@@ -60,4 +62,4 @@ CASUÍSTICA = 3 x 2 x 1 = 6
     else
         X //case 6
     
-}*/
+}
