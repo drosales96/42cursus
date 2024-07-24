@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push.c                                          :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 08:12:39 by drosales          #+#    #+#             */
-/*   Updated: 2024/07/24 11:27:41 by drosales         ###   ########.fr       */
+/*   Created: 2024/07/24 11:26:32 by drosales          #+#    #+#             */
+/*   Updated: 2024/07/24 11:43:00 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void    ft_push(t_stack **dst, t_stack **src)
+int check_sort(t_stack **stack)
 {
-    t_stack *tmp;
-
-    if (*src == NULL)
-        return;
-    tmp = (*src)->next;
-    (*src)->next = (*dst);
-    *dst = *src;
-    *src = tmp;
-}
-
-void    pa(t_stack **stack_a, t_stack **stack_b)
-{
-    ft_push(*stack_a, *stack_b);
-    write(1, "pa\n", 3);
-}
-
-void    pb(t_stack **stack_a, t_stack **stack_b)
-{
-    ft_push(*stack_b, *stack_a);
-    write(1, "pb\n", 3);
+    if ((*stack) == NULL || (*stack)->next == NULL)
+        return (NULL);
+    while ((*stack)->next != NULL)
+    {
+        if (((*stack)->index) > ((*stack)->next->index))
+            return (1); /*TRUE*/
+        else
+            break;
+    }
+    return (0);
 }
