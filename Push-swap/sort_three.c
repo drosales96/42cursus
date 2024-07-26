@@ -6,60 +6,60 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 09:31:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/07/24 08:12:30 by drosales         ###   ########.fr       */
+/*   Updated: 2024/07/26 10:38:58 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int case_checker(t_stack *stack)
+static int find_biggest(t_stack **stack)
 {
-    if ((stack->nb < stack->next->nb) && (stack->next->nb < stack->prev->nb))/*1 < 2 < 3*/
-        return (1);
-    else if ((stack->nb > stack->next->nb) && (stack->next->nb < stack->prev->nb) && (stack->prev->nb > stack->nb))/*3 > 1 > 2*/
-        return (2);
-    else if ((stack->nb > stack->next->nb) && (stack->next->nb > stack->prev->nb) && (stack->prev->nb < stack->nb))/*3 > 2 > 1*/
-        return (3);
-    else if ((stack->nb > stack->next->nb) && (stack->next->nb < stack->prev->nb) && (stack->prev->nb < stack->nb)) /*2 < 1 < 3*/
-        return (4);
-    else if ((stack->nb < stack->next->nb) && (stack->next->nb > stack->prev->nb) && (stack->prev->nb > stack->nb))/*1 < 3 < 2*/
-        return (5);
-    else
-        return (6);/*2 < 3 < 1*/
+    t_stack *current;
+    int     res;
+
+    if (!(*stack))
+        return (0);
+
+    current = (*stack);
+    res = current->index;
+    while (current != NULL)
+    {
+        if (current->index > res)
+            res = current->index;
+        current = current->next;
+    }
+    return (res);
 }
 
-/*TABLA CASUÍSTICA
-
-1 2 3
-1 3 2
-2 3 1
-2 1 3
-3 2 1
-3 1 2
-
-NUM = 3
-
-CASUÍSTICA = 3 x 2 x 1 = 6
-
-*/
-
-void    sort_three(t_stack **stack)
+void    sort_three(t_stack  **stack)
 {
-    int cases = case_checker(*stack);
+    int biggest;
+    int first_p;
+    int second_p;
+    int third_p:
 
-    if (size_stack(*stack) == 1 || size_stack(*stack) == 1)
-        ft_printf("ERROR");
-    else if (cases == 1)
-        return;
-    else if (cases == 2)
-        sa(stack, 1);
-    else if (cases == 3)
-        X
-    else if (cases == 4)
-        X
-    else if (cases == 5)
-        X
-    else
-        X //case 6
+    biggest = find_biggest((*stack));
+    first_p = (*stack)->index;
+    second_p = (*stack)->next->index;
+    third_p = (*stack)->next->next->index;
     
+    if (check_sort((*stack)))
+        return;
+    if (biggest == first_p)
+    {
+        if (second_p > third_p)
+            do_sa(stack);
+    }
+    else if (biggest == second_p)
+    {
+        do_ra(stack);
+        if (first_p > third_p)
+            do_sa(stack);
+    }
+    else if (biggest == third_p)
+    {
+        do_rra(stack);
+        if (first_p > second_p)
+            do_sa(stack);
+    }
 }

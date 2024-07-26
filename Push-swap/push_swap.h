@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:29:18 by drosales          #+#    #+#             */
-/*   Updated: 2024/07/24 12:00:54 by drosales         ###   ########.fr       */
+/*   Updated: 2024/07/26 10:03:52 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int     size_stack(t_stack *stack);
 t_stack *get_final_element(t_stack *stack);
 t_stack *get_previous_last_element(t_stack *stack);
 int     check_sort(t_stack **stack);
+int     find_biggest(t_stack **stack);
 
 #endif
