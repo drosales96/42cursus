@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:49:59 by drosales          #+#    #+#             */
-/*   Updated: 2024/07/26 10:58:00 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/06 07:17:39 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,26 @@ void    move_cost(t_stack **stack_a, t_stack **stack_b)
         tmp_b = tmp_b->next;
     }
 }
+
+void    cheapest_move(t_stack **stack_a, t_stack **stack_b)
+{
+    t_stack *tmp;
+    int     cheapest;
+    int     cost_a;
+    int     cost_b;
+
+    tmp = *stack_b;
+    cheapest = INT_MAX;
+    while (tmp)
+    {
+        if(neg_to_pos(tmp->cost_a) + neg_to_pos(tmp->cost_b) < cheapest)
+        {
+            cheapest = neg_to_pos(tmp->cost_a) + neg_to_pos(tmp->cost_b);
+            cost_a = tmp->cost_a;
+            cost_b = tmp->cost_b;
+        }
+        tmp = tmp->next;
+    }
+    ft_moves(stack_a, stack_b, cost_a, cost_b);
+}
+

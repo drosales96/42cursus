@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:58:26 by drosales          #+#    #+#             */
-/*   Updated: 2024/07/24 11:19:05 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:07:14 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ static void ft_rrotate(t_stack **stack)
     t_stack *tail;
     t_stack *prev_tail;
 
-    tail = get_final_element(stack);
-    prev_tail = get_previous_last_element(stack);
-
+    tail = get_final_element(*stack);
+    prev_tail = get_previous_last_element(*stack);
     tmp = *stack;
     *stack = tail;
     (*stack)->next = tmp;
@@ -42,6 +41,6 @@ void    rrb(t_stack **stack_b)
 void    rrr(t_stack **stack_a, t_stack  **stack_b)
 {
     ft_rrotate(stack_a);
-    ft_rrotate(stack_a);
+    ft_rrotate(stack_b);
     write(1, "rrr\n", 4);
 }

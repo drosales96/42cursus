@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drosales <drosales@student.42malaga.com>   #+#  +:+       +#+        */
+/*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-04-30 15:30:12 by drosales          #+#    #+#             */
-/*   Updated: 2024/05/02 08:17:00 by drosales         ###   ########.fr       */
+/*   Created: 2024/04/30 15:30:12 by drosales          #+#    #+#             */
+/*   Updated: 2024/06/07 18:16:16 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdint.h>
 
 int		ft_putcharf(char c);
 int		ft_putnbrf(int nb);

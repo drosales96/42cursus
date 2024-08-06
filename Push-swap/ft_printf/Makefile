@@ -11,28 +11,26 @@ FILES	=	ft_printf.c \
 OBJ = $(FILES:.c=.o)
 
 CC = gcc
-RM = @rm -f
+RM = rm -f
 FLAGS = -Wall -Werror -Wextra
 AR = ar crs
 
 all: $(NAME)
-$(NAME):  $(OBJ)
+
+$(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
-$(OBJ): $(FILES)
-	@echo "Compiling files, please wait...\n"
-	$(CC) $(FLAGS) -c $^ 
+$(OBJ): %.o : %.c
+	@echo "Compiling $<..."
+	@$(CC) $(FLAGS) -c $< -o $@
+	@echo
 
 clean:
-
-	${RM} $(OBJ)
+	@$(RM) $(OBJ)
 
 fclean: clean
-	${RM} $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
-
-test: $(all)
-	@gcc  main.c $(NAME)
 
 .PHONY: all re clean fclean
