@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 07:50:34 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/06 09:21:46 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:52:12 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int size_stack(t_stack *stack)
     int i;
 
     i = 0;
-    if(stack == NULL || stack->next == NULL)
+    if(!stack)
         return(0);
-    while (stack->next != NULL)
+    while (stack)
     {
         stack = stack->next;
         i++;
@@ -61,9 +61,7 @@ int size_stack(t_stack *stack)
 
 t_stack *get_final_element(t_stack *stack)
 {
-    if (stack == NULL || stack->next == NULL)
-        return(0);
-    while (stack->next != NULL)
+    while (stack && stack->next != NULL)
     {
         stack = stack->next;
     }
@@ -72,8 +70,6 @@ t_stack *get_final_element(t_stack *stack)
 
 t_stack *get_previous_last_element(t_stack *stack)
 {
-    if (stack == NULL || stack->next == NULL)
-        return(0);
     while (stack && stack->next->next != NULL)
         stack = stack->next;
     return (stack);

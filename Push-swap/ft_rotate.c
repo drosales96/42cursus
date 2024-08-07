@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:09:45 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/06 09:07:58 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:36:33 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 static void ft_rotate(t_stack **stack)
 {
-    if ((*stack == NULL) || (*stack)->next == NULL)
-        return;
-        
     t_stack *tmp;
     t_stack *tail;
 
-    tmp = (*stack);
-    (*stack) = (*stack)->next;
+    tmp = *stack;
+    *stack = (*stack)->next;
     tail = get_final_element(*stack);
     tmp->next = NULL;
     tail->next = tmp;

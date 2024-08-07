@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:29:18 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/06 08:08:24 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/07 12:39:14 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include <limits.h>
 # include <stdint.h>
 
-/*ESTRUCTURA LISTA ENLAZADA SENCILLA*/
 
 typedef struct s_stack
 {

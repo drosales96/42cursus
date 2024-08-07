@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 19:43:39 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/06 09:15:09 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/07 08:11:26 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int   get_target(t_stack **stack_a, int index_b, int target_i, int target
         }
         tmp = tmp->next;
     }
-    if (target != INT_MAX)
+    if (target_i != INT_MAX)
         return (target);
     tmp = *stack_a;
     while (tmp)
@@ -92,34 +92,5 @@ void    get_target_position(t_stack **stack_a, t_stack **stack_b)
         target = get_target(stack_a, tmp->index, INT_MAX, target);
         tmp->target = target;
         tmp = tmp->next;
-    }
-}
-
-void ft_get_index(t_stack *stack_a, int stack_len_max)
-{
-    t_stack *ptr;
-    t_stack *bigger;
-    int     value;
-
-    while (--stack_len_max > 0)
-    {
-        ptr = stack_a;
-        bigger = NULL;
-        value = INT_MIN;
-        while (ptr)
-        {
-            if (ptr->value == value && ptr->index == 0)
-                ptr->index = 1;
-            if (ptr->value > value && ptr->index == 0)
-            {
-                value = ptr->index;
-                bigger = ptr;
-                ptr = ptr->next;
-            }
-            else
-                ptr = ptr->next;
-        }
-        if (bigger != NULL)
-            bigger->index = stack_len_max;
     }
 }

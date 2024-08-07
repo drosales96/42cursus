@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:56:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/06 07:44:04 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:48:55 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void nb_partition(t_stack **stack_a, t_stack **stack_b)
     stack_size = size_stack(*stack_a);
     pushes = 0;
     i = 0;
-
     while (stack_size > 6 && i < stack_size && pushes < stack_size / 2)
     {
         if ((*stack_a)->index <= stack_size / 2)

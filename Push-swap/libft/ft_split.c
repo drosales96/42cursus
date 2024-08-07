@@ -3,94 +3,139 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drosales <drosales@student.42malaga.com>   #+#  +:+       +#+        */
+/*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-04-18 07:20:38 by drosales          #+#    #+#             */
-/*   Updated: 2024/04/18 19:19:06 by drosales         ###   ########.fr       */
+/*   Created: 2024/04/18 07:20:38 by drosales          #+#    #+#             */
+/*   Updated: 2024/08/07 08:47:22 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	word(char const *s, char c)
+/*static char    *ft_strncpy(char *dst, char *src, int len)
 {
-	int	i;
-	int	count;
+    int i = 0;
 
-	i = 0;
+    while (i < len && src[i])
+    {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\0';
+    return(dst);
+}
+
+static int ft_isspace(int c)
+{
+    if (c == 32 || c == 9 || c == 10)
+        return (1);
+    return (0);
+}
+
+char    **ft_split(char *str)
+{
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int wordlen = 0;
+
+    while (str[i])
+    {
+        while (str[i] && ft_isspace(str[i]))
+            i++;
+        if (str[i])
+            wordlen++;
+        while (str[i] && !ft_isspace(str[i]))
+            i++;
+    }
+    char    **res = (char **)malloc(sizeof(char *) * wordlen + 1);
+    i = 0;
+    if (!res)
+        return(NULL);
+    while (str[i])
+    {
+        while (str[i] && ft_isspace(str[i]))
+            i++;
+        j = i;
+        while (str[i] && !ft_isspace(str[i]))
+            i++;
+        if (i > j)
+        {
+            res[k] = (char *)malloc(sizeof(char) * (i - j) + 1);
+            if (!res)
+                return (NULL);
+            ft_strncpy(res[k++], &str[j] , i - j);
+        }
+    }
+    res[k] = NULL;
+    return (res);
+}*/
+
+static unsigned int	countwords(const char *s, char c)
+{
+	unsigned int	count;
+
 	count = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
+	while (*s)
+	{	
+		while (*s && c == *s)
+			s++;
+		if (*s)
 			count++;
-			while (s[i] && s[i] != c)
-				i++;
-		}
-		else
-			i++;
+		while (*s && *s != c)
+			s++;
 	}
 	return (count);
 }
 
-static int	wordlen(char const *s, char c, int i)
+static char	*word_dup(const char *str, int start, int finish)
 {
-	int	len;
+	char	*word;
+	int		i;
 
-	len = 0;
-	while (s[i] && s[i] != c)
-	{
-		i++;
-		len++;
-	}
-	return (len);
+	i = 0;
+	word = malloc((finish - start + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
+	while (start < finish)
+		word[i++] = str[start++];
+	word[i] = '\0';
+	return (word);
 }
 
-static void	free_array(char **buffer, int is)
+static char	*ft_cpy(size_t i, char const *s, char c, char **split)
 {
-	while (is > 0)
+	int		index;
+	size_t	j;
+
+	index = -1;
+	j = 0;
+	while (i <= ft_strlen(s))
 	{
-		is--;
-		free(buffer[is]);
+		if (s[i] != c && index < 0)
+			index = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		{
+			split[j++] = word_dup(s, index, i);
+			index = -1;
+		}
+		i++;
 	}
-	free (buffer);
+	split[j] = 0;
+	return (split[j]);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**buffer;
-	int		i;
-	int		is;
+	size_t	i;
+	char	**split;
 
-	i = 0;
-	is = -1;
-	buffer = malloc(sizeof(char *) * (word(s, c) + 1));
-	if (!buffer)
+	if (!s)
 		return (NULL);
-	while (++is < word(s, c))
-	{
-		while (s[i] == c)
-			i++;
-		buffer[is] = ft_substr(s, i, wordlen(s, c, i));
-		if (!(buffer[is]))
-		{
-			free_array(buffer, is);
-			return (0);
-		}
-		i += wordlen(s, c, i);
-	}
-	buffer[is] = NULL;
-	return (buffer);
+	split = malloc((countwords(s, c) + 1) * sizeof(char *));
+	if (!split)
+		return (NULL);
+	i = 0;
+	ft_cpy(i, s, c, split);
+	return (split);
 }
-/*#include <stdio.h>
-
-int main()
-{
-    char    c;
-    char    *s;
-
-    s = "hola|muy|buenas";
-    c = '|';
-    printf("%s", ft_split(s, c));
-    return (0);
-}*/
