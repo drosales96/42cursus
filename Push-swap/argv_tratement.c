@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:52:30 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/07 11:58:19 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/08 09:34:42 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@ long    ft_correct_input(char *str)
     return (1);
 }
 
-int ft_duplicate(t_stack *stack) 
+int ft_duplicate(t_stack *stack)
 {
-    t_stack *first;
-    t_stack *second;
-
-    first = stack;
-    while (first)
+    t_stack *current;
+    t_stack *next_nb;
+    
+    current = stack;
+    while (current)
     {
-        second = first->next;
-        while (second)
+        next_nb = current->next;
+        while (next_nb)
         {
-            if (first->value == second->value)
+            if (current->value == next_nb->value)
                 return (1);
-            second = second->next;
+            next_nb = next_nb->next;
         }
-        first = first->next;
+        current = current->next;
     }
     return (0);
 }

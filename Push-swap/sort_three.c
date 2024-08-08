@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 09:31:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/07 12:24:51 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:01:07 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	sort_three(t_stack **stack)
 {
 	int	biggest;
 
-	if (ft_is_sorted(*stack))
-		return ;
 	biggest = find_biggest(*stack);
 	if ((*stack)->index == biggest)
 		ra(stack);
