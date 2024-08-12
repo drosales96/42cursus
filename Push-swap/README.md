@@ -128,8 +128,89 @@ que es básicamente cambiar el primer número por l segundo. EJEMPLO: ARG= "3  2
 El siguiente caso será cuando el stack tiene un tamaño de 3 números, que si se da el caso, llamaremos a la
 función sort_three, que recibe como parámetro el stack_a (donde están los tres números).
 
-<h3>SORT_THREE</h3>
+### SORT_TWO
 
-En esta función vamos a crear una variable de tipo entero que se llame 'biggest' que nos
-va a servir para almacenar el mayor 'index' de los tres números que recibe.
+Este apartado en sí no exite como función puesto que si os fijáis en la función
+push_swap que aparece en mi main, compruebo si el tamaño del stack es de dos y
+que si es así y además NO está ordenado ese stack simplemente haremos un movi-
+miento 'sa'. Así que graficamente sería así:
 
+stack_a : 5 -1 (!sorted)
+
+'sa'
+
+stack_a : -1 5 (AHORA SI ESTÁ ORDENADO)
+
+### SORT_THREE
+
+En este apartado del proyecto vamos a ordenar tres números diferentes en orden
+aleatorio. (Obviamente en el código hemos implementado la condición de que si
+tenemos 3 números pero están ordenados, tendremos un 'return' como una casa)
+
+En primer lugar tenemos una función llamada 'find_biggest' que literalmente se
+va a encargar de encontrar el número mayor de los tres.
+
+Imaginemos que tenemos los siguientes números: 5 -20 65
+
+EL código funcionaría de la siguiente manera, almacenamos en 'res' el primer ele-
+mento de la lista (5), y con el bucle while empezaremos comparandolo con el sigui-
+ente número (-20). ¿Es -20 > que 5? La respuesta es NO, por lo que no se cumple,
+ahora pasamos a comparar 65 con 'res'. ¿Es 65 > que 5? La respuesta es SI, por lo
+que ahora 'res' se actualiza con 65 como el número más grande, y como no hay más
+que comparar retornamos 65 como el mayor.
+
+En la función principal de ordenamiento de 3 números (sort_three), usando la fun-
+ción anterior ya sabemos que 65 es el número mayor. Así que toca buscar de nuevo
+en la lista para poder ordenar. Ahora iremos verificando número a número para po-
+der ejecutar movimientos (sa, sb, ra, rb...).
+
+En la variable 'biggest' ya tenemos almacenado el 65 (en este caso claro), asi que
+buscamos si el primer número es el mayor (5 -20 65), cosa que no es, por lo que no
+se cumple y pasaríamos a la siguiente condición. Es ahora el segundo número de la
+lista el famoso 'biggest', pues NO así que no vamos a la última condición, donde
+el último número si es el 'biggest' así que se ejecuta un 'sa' en stack y la cosa
+quedaría de la siguiente manera: -20 5 65
+
+¡YA TENEMOS LA PILA ORDENADA!
+
+### SORTING (+3 números)
+
+Ahora si viene la acción, porque empezamos con el algoritmo que es la parte princ-
+ipal de este proyecto TAN complejo que te quitará al menos 1 mes de vida.
+
+Lo que primeramente hará el programa push_swap en la función push_swap, es veri-
+ficar que el tamaño del stack_a (el que recibe los numeros desordenados o NO) sea 
+de más de 3 números y que además estén desordenados. Siendo este el caso, vamos
+a llamar a la función 'nb_partition' que es la que se va a encargar de gestionar
+los números de los dos stacks.
+
+Vamos a ponernos en situación, imaginemos que tenemos 5 números desordenados y sin repeticiones, por ejemplo: 
+
+(100, 25, -15, 45, 2)
+
+La función en cuestión cuenta con la variable 'pushes' que cont-
+abiliza las veces que mandamos números de stack_a a stack_b.
+
+Luego tenemos 'stack_size' para saber el tamaño de la pila que
+en este caso es de '5', y por último tenemos 'i' que va a iterar
+por los números de los stacks.
+
+En este caso de 5 números el primer bucle while no se cumple por
+que directamente el stack_size no es mayor de '6' por lo que pa-
+saremos al siguiente condicional en el que restaremos al stack_
+size las veces que se hagan 'pushes'.
+
+Así que en la primera iteración graficamente sería (5 - 0 > 3)
+, la respuesta es SÍ, asi que el primer numero pasa al stack_b
+y sumamos 1 a 'pushes'. En la segunda iteración tenemos lo si-
+guiente (5 - 1 > 3), y también sería un SÍ por lo que pasamos
+el numero al stack_b y sumamos 1 a 'pushes'. Siguiente itera-
+ción (5 - 2 > 3), en este caso es un NO y graficamente tenemos:
+
+stack_a                    stack_b
+-15                         100
+45                          25
+2
+
+Como ya no se cumple ningún bucle de la función actual, nos sal-
+imos de ella y toca llamar a la función que ya conocéis, que es 'sort_three'.

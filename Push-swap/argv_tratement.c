@@ -6,19 +6,18 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 17:52:30 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/08 09:34:42 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:38:18 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long    ft_correct_input(char *str)
+long int    ft_correct_input(char *str)
 {
     int i;
 
     i = 0;
-
-    if ((str[i] == '-' || ((str[i] == '+') && (ft_strlen(str) > 1))))
+    if ((str[i] == '-' || str[i] == '+') && (ft_strlen(str) > 1))
         i++;
     while (str[i] != '\0')
     {
@@ -49,11 +48,11 @@ int ft_duplicate(t_stack *stack)
     return (0);
 }
 
-long int    ft_atol(char *str)
+long int    ft_atol(const char *str)
 {
-    long int    i;
-    int         res;
-    int         sign;
+    int             i;
+    long int        res;
+    int             sign;
 
     i = 0;
     res = 0;

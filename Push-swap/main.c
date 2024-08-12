@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:40:13 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/08 11:49:10 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:54:11 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ void    numbers(char *av, t_stack **stack_a)
         {
             nbr = ft_atol(arguments[i]);
             if (nbr > INT_MAX || nbr < INT_MIN)
-				errors(stack_a, NULL);
+            {
+                errors(stack_a, NULL);
+            }
             add_new_stack(stack_a, new_stack(nbr));
         }
         else

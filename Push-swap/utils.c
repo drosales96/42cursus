@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:38:31 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/07 12:06:18 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:52:04 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void errors(t_stack **stack_a, t_stack **stack_b)
 int neg_to_pos(int nb)
 {
     if (nb < 0)
-        return (nb * (-1));
+        return (nb * -1);
     return (nb);
 }
 
