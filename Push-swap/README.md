@@ -497,8 +497,8 @@ coste ya que ambos para 25 son de 0. Solo se hará el pa para pasarlo a stack_a
 
 stack_a                      stack_b
 
-25
-100                            NULL
+25                            NULL
+100                            
 -15                            
 2                               
 45
@@ -507,4 +507,86 @@ Una vez tenemos todos los elementos pasados al stack_a habiéndo encontrado el t
 get de cada número y habiendo calculado los costes y habiendo hecho todos los mo-
 vimientos que costaban menos ahora toca pasar a ordenar todos los números de la 
 pila stack_a.
+
+#### SORTING_STACK
+
+Ahora llegó el momento de la verdad, y una vez teniendo todos los números en el
+stack_a, y ya habiendo pusheado los numeros según el target y según los costes de
+los movimientos, vamos a llamar a la función 'sorting_stack', que recibe como pa-
+rámetro directamente el stack_a.
+
+Dentro de la función vamos a tener dos variables de tipo 'int' que van a ser:
+
+- lower_pos <br>
+- stack_size
+
+La variable stack_size alamcena el resultado de la función que ya se ha usado en
+más de una ocasión para saber el tamaño del stack.
+
+La variable lower_pos va a contener el resultado de una función que aún no hemos 
+visto y que se llama 'lowest_position_index'. La función actúa de la siguiente
+manera:
+
+Primeramente almacena en la variable tmp el stack que vamos a recorrer, que en es-
+te caso será el stack_a. La variable lowet_i de tipo 'int' va a almacenar en la
+primera iteración el valor de INT_MAX y esto es por que así nos aseguramos de que
+funcione el primer movimiento en el loop ya que el primer número que usemos será
+por lo general siempre más pequeño que el INT_MAX.
+
+Después lo que vamos a hacer antes de nada, es usar la función 'get_position' que
+nos va a servir para proporcionar en orden descendente de la pila, un número que
+se referencie a su posición. Ejemplo:
+
+stack_a <br>
+<br>
+25 (pos 0) (index 2)<br>
+100 (pos 1) (index 4)<br>
+-15 (pos 2) (index 0)<br>
+2 (pos 3) (index 1)<br>
+45 (pos 4) (index 3)<br>
+
+Ahora en la variable lowest_pos de tipo 'int' vamos a almacenar 'tmp->pos', para
+que se vaya señalando al puntero que almacena la posición en el/los nodo/s.
+
+Tras esto entraremos en un bucle en el que lo que vamos a hacer es ir comparando
+el número que agarramos con lo que haya dentro de lowest_i, y si el número actual
+es menor que lo que haya en lowest_i, se actualizan los datos ya que hemos encon-
+trado un número más pequeño, y así sucesivamente hasta que se hayamos encontrado
+el número más pequeño. Una vez encontrado se retorna dicho número.
+
+Ejemplo:
+
+1: 25 < INT_MAX (SÍ) <br>
+<br>
+lowest_i = 2<br>
+lowest_pos = 0<br>
+<br>
+2: 100 < 25 (NO)<br>
+3: -15 < 25 (SÍ)<br>
+<br>
+lowest_i = 0<br>
+lowest_pos = 2<br>
+<br>
+4: 2 < -15 (NO)<br>
+5: 45 < -15 (NO)<br>
+<br>
+FIN DEL LOOP
+
+lowest_position_index = -15 (index = 0 || pos = 2)
+
+Ahora volviendo a la función de 'sorting_stack' continuamos teniendo ya los datos
+que necesitábamos tener. Entramos en condicionales y en primer lugar, si
+lower_pos (2) es mayor que stack_size (5 / 2) (que no se cumple en este caso)
+lo que irá haciendo el algoritmo es hacer movimientos rotate a hasta tener el
+número menor en la cima de la pila.
+
+Ejemplo:
+
+1: [25, 100, -15, 2, 45] <br>
+ra <br>
+2: [100, -15, 2, 45, 25] <br>
+ra <br>
+3: [-15, 2, 45, 25, 100] <br>
+<br>
+Ya tenemos el número más pequeño arriba del todo en la pila.
 
