@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 12:11:04 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/19 12:48:22 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:37:50 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 #ifndef CHECKER_BONUS_H
 # define CHECKER_BONUS_H
 
+# define BUFFER_SIZE 32
+
+# include <unistd.h>
+# include <stdlib.h>
 # include <fcntl.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-    
-
-char	*get_next_line(int fd);
+char *get_next_line(int fd);
 
 #endif

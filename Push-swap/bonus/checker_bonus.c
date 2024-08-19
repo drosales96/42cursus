@@ -6,21 +6,20 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 08:51:48 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/19 12:45:33 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:39:54 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "./checker_bonus.h"
 
-static int	ft_strcmp(char *str_1, char *str_2)
+static int    ft_strcmp(char *s1, char *s2)
 {
-	while (*str_1 == *str_2 && *str_1)
-	{
-		++str_1;
-		++str_2;
-	}
-	return (*str_1 - *str_2);
+    int i = 0;
+
+    while (s1[i] && s2[i] && (s1[i] == s2[i]))
+        i++;
+    return (s1[i] - s2[i]);
 }
 
 static void checking_commands(t_stack **stack_a, t_stack **stack_b, char *command)
@@ -55,7 +54,7 @@ int main(int ac, char **av)
 {
     t_stack *stack_a;
     t_stack *stack_b;
-    int     stack_size;
+    int     stack_len;
     int     i;
     char    *next_line;
 
@@ -69,14 +68,14 @@ int main(int ac, char **av)
     }
     if (ft_duplicate(stack_a))
         errors(&stack_a, NULL);
-    stack_size = size_stack(stack_a);
+    stack_len = size_stack(stack_a);
     next_line = get_next_line(STDIN_FILENO);
     while (1)
     {
         checking_commands(&stack_a, &stack_b, next_line);
         next_line = get_next_line(STDIN_FILENO);
     }
-    if (ft_is_sorted(stack_a))
+    if (ft_is_sorted(stack_a) && stack_len == size_stack(stack_a))
         write(1, "OK\n", 3);
     else
         write(1, "KO\n", 3);

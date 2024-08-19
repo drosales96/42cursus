@@ -1,11 +1,23 @@
-NAME = push_swap
+# ______NAMES______ #
 
-DEF_COLOR = \033[0;39m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-BLUE = \033[0;94m
-ORANGE = \033[38;5;209m
-RED = \033[1;91m
+NAME = push_swap
+BONUS_NAME = checker_bonus_executable  # Asegúrate de que este nombre sea único y no coincida con un directorio
+
+# ______LIBRARIES______ #
+
+LIBFT_PATH = libft
+LIBFT_ARCHIVE = $(LIBFT_PATH)/libft.a
+FT_PRINTF_PATH = ft_printf
+FT_PRINTF_ARCHIVE = $(FT_PRINTF_PATH)/libftprintf.a
+
+# ______FLAGS______ #
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+LIBS = $(LIBFT_ARCHIVE) $(FT_PRINTF_ARCHIVE)
+RM = rm -f
+
+# ______SOURCES______ #
 
 SRCS = main.c \
        argv_tratement.c \
@@ -21,44 +33,25 @@ SRCS = main.c \
        stack_utils.c \
        utils.c
 
-CHECKER_PATH = checker_bonus
-CHECKER_EXEC = $(CHECKER_PATH)/checker_bonus
-CHECKER_SRCS = $(CHECKER_PATH)/checker_bonus.c
-LIBFT_PATH = libft
-LIBFT_ARCHIVE = $(LIBFT_PATH)/libft.a
-FT_PRINTF_PATH = ft_printf
-FT_PRINTF_ARCHIVE = $(FT_PRINTF_PATH)/libftprintf.a
-GET_NEXT_LINE_PATH = get_next_line
-GET_NEXT_LINE_SRCS = $(GET_NEXT_LINE_PATH)/get_next_line.c \
-                     $(GET_NEXT_LINE_PATH)/get_next_line_utils.c
-GET_NEXT_LINE_OBJS = $(GET_NEXT_LINE_SRCS:.c=.o)
-
-CC = gcc
-RM = rm -f
-FLAGS = -Wall -Werror -Wextra
+BONUS_SRCS = bonus/checker_bonus.c \
+             bonus/get_next_line.c 
+ 
+# ______ FROM .C TO .O______ #
 
 OBJS = $(SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-%.o: %.c
-	@echo "${BLUE} x $(YELLOW)Compiling   ${RED}→   $(GREEN)$< $(DEF_COLOR)"
-	@$(CC) $(FLAGS) -c $< -o $@
+# ______COLORS______ #
 
+BLUE = \033[0;34m
+DEF_COLOR = \033[0m
 
-$(GET_NEXT_LINE_PATH)/%.o: $(GET_NEXT_LINE_PATH)/%.c
-	@echo "${BLUE} x $(YELLOW)Compiling   ${RED}→   $(GREEN)$< $(DEF_COLOR)"
-	@$(CC) $(FLAGS) -c $< -o $@
+# ______RULES______ #
 
-all: $(NAME) $(CHECKER_EXEC)
+all: $(LIBFT_ARCHIVE) $(FT_PRINTF_ARCHIVE) $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT_ARCHIVE) $(FT_PRINTF_ARCHIVE)
-	@echo "${BLUE}Linking objects and creating executable..."
-	@$(CC) $(OBJS) -o $(NAME) -L$(LIBFT_PATH) -lft -L$(FT_PRINTF_PATH) -lftprintf
-	@echo "${GREEN}Compiled $(NAME)!"
-
-$(CHECKER_EXEC): $(CHECKER_SRCS) $(GET_NEXT_LINE_OBJS) $(LIBFT_ARCHIVE) $(FT_PRINTF_ARCHIVE)
-	@echo "${BLUE}Building checker executable..."
-	@$(CC) $(CHECKER_SRCS) $(GET_NEXT_LINE_OBJS) -o $(CHECKER_EXEC) -L$(LIBFT_PATH) -lft -L$(FT_PRINTF_PATH) -lftprintf
-	@echo "${GREEN}Compiled $(CHECKER_EXEC)!"
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
 
 $(LIBFT_ARCHIVE):
 	@echo "${BLUE}Building libft...${DEF_COLOR}"
@@ -68,23 +61,23 @@ $(FT_PRINTF_ARCHIVE):
 	@echo "${BLUE}Building ft_printf...${DEF_COLOR}"
 	@$(MAKE) -C $(FT_PRINTF_PATH) all
 
+bonus: $(LIBFT_ARCHIVE) $(FT_PRINTF_ARCHIVE) $(BONUS_NAME) all
+
+$(BONUS_NAME): $(BONUS_OBJS)
+	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(LIBS)
+
+# ______CLEANING______ #
+
 clean:
-	@echo "${BLUE}Cleaning object files...${DEF_COLOR}"
-	@$(RM) $(OBJS) $(GET_NEXT_LINE_OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS)
 	@$(MAKE) -C $(LIBFT_PATH) clean
 	@$(MAKE) -C $(FT_PRINTF_PATH) clean
-	@$(MAKE) -C $(CHECKER_PATH) clean
-	@echo "${GREEN}All object files are clean!"
 
 fclean: clean
-	@echo "${BLUE}Cleaning executable and libraries...${DEF_COLOR}"
-	@$(RM) $(NAME)
-	@$(RM) $(CHECKER_EXEC)
+	$(RM) $(NAME) $(BONUS_NAME)  # Elimina el ejecutable principal y el del bonus
 	@$(MAKE) -C $(LIBFT_PATH) fclean
 	@$(MAKE) -C $(FT_PRINTF_PATH) fclean
-	@$(MAKE) -C $(CHECKER_PATH) fclean
-	@echo "${GREEN}All object files and executables are clean!"
 
-re: fclean all
+re: fclean all bonus
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

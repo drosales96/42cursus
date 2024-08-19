@@ -6,11 +6,12 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 05:50:06 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/19 12:28:05 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:38:53 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include "./checker_bonus.h"
 
 static char	*ft_joined(char *buffer, char *res)
 {

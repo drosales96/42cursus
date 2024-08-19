@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:29:18 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/12 19:51:26 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:33:32 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@
 /*C LIBRARIES*/
 
 # include <stddef.h>
-//# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
 # include <unistd.h>
-# include <stdbool.h>
 
 /*INCLUDES FOR MY OWN LIBRARIES*/
 
