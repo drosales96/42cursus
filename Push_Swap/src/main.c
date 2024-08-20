@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 11:40:13 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 09:54:08 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:52:26 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void    push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
 {
     if (stack_size == 2 && !ft_is_sorted(*stack_a))
-        sa(stack_a);
+        sa(stack_a, 1);
     if (stack_size == 3 && ft_is_sorted(*stack_a))
         return;
     else if (stack_size == 3 && !ft_is_sorted(*stack_a))
@@ -44,7 +44,6 @@ int main(int ac, char **av)
     stack_size = size_stack(stack_a);
     ft_get_index(stack_a, stack_size + 1);
     push_swap(&stack_a, &stack_b, stack_size);
-    free_stacks(&stack_a);
-    free_stacks(&stack_b);
+    free_2_stacks(&stack_a, &stack_b);
     return (0);
 }

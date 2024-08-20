@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 09:31:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 09:18:23 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:54:41 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	sort_three(t_stack **stack)
 
 	biggest = find_biggest(*stack);
 	if ((*stack)->index == biggest)
-		ra(stack);
+		ra(stack, 1);
 	else if ((*stack)->next->index == biggest)
-		rra(stack);
+		rra(stack, 1);
 	if ((*stack)->index > (*stack)->next->index)
-		sa(stack);
+		sa(stack, 1);
 }

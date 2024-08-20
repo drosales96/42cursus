@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:29:18 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 09:45:15 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:14:16 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,26 @@ typedef struct s_stack
 
 /*SWAP*/
 
-void        sa(t_stack **stack_a);
-void        sb(t_stack **stack_b);
-void        ss(t_stack **stack_a, t_stack **stack_b);
+void        sa(t_stack **stack_a, int move);
+void        sb(t_stack **stack_b, int move);
+void        ss(t_stack **stack_a, t_stack **stack_b, int move);
 
 /*PUSH*/
 
-void        pa(t_stack **stack_a, t_stack **stack_b);
-void        pb(t_stack **stack_a, t_stack **stack_b);
+void        pa(t_stack **stack_a, t_stack **stack_b, int move);
+void        pb(t_stack **stack_a, t_stack **stack_b, int move);
 
 /*ROTATE*/
 
-void        ra(t_stack **stack_a);
-void        rb(t_stack **stack_b);
-void        rr(t_stack **stack_a, t_stack **stack_b);
+void        ra(t_stack **stack_a, int move);
+void        rb(t_stack **stack_b, int move);
+void        rr(t_stack **stack_a, t_stack **stack_b, int move);
 
 /*REVERSE ROTATE*/
 
-void        rra(t_stack **stack_a);
-void        rrb(t_stack **stack_b);
-void        rrr(t_stack **stack_a, t_stack  **stack_b);
+void        rra(t_stack **stack_a, int move);
+void        rrb(t_stack **stack_b, int move);
+void        rrr(t_stack **stack_a, t_stack  **stack_b, int move);
 
 /*UTILS FUNCTIONS*/
 
@@ -79,8 +79,10 @@ t_stack     *new_stack(int value);
 long int    ft_atol(const char *str);
 void        errors(t_stack **stack_a, t_stack **stack_b);
 void        free_stacks(t_stack **stack);
+void        free_2_stacks(t_stack **stack_a, t_stack **stack_b);
 void        numbers(char *av, t_stack **stack_a);
-long        limits_errors(long int nb);
+int         ft_42lines(t_stack **stack_a);
+void        init_stacks(t_stack **stack_a, t_stack **stack_b);
 
 /*FOR COSTS*/
 

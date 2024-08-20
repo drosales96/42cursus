@@ -159,6 +159,7 @@ clean:
 	@cd ${LIBFT_DIR} ${MK_} clean
 	@cd ${PRINTFT_DIR} ${MK_} clean
 	@$(RM) ${OBJ_DIR}/*.o
+	@$(RM) ${SRC_BONUS_DIR}/*.o
 	@echo "$(RED)Object files removed $(DEF_COLOR)"
 fclean: clean
 	@echo "$(YELLOW)Removing binaries ...$(DEF_COLOR)"
@@ -167,4 +168,5 @@ fclean: clean
 	@${RM} ${NAME} ${NAME_BONUS}
 	@echo "$(RED)Binaries removed $(DEF_COLOR)"
 re: fclean all
+
 .PHONY : all ftlibft ftprintf clean fclean bonus re

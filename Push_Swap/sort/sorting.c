@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:56:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 09:18:27 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:54:29 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ static void nb_partition(t_stack **stack_a, t_stack **stack_b)
     {
         if ((*stack_a)->index <= stack_size / 2)
         {
-            pb(stack_a, stack_b);
+            pb(stack_a, stack_b, 1);
             pushes++;
         }
         else
-            ra(stack_a);
+            ra(stack_a, 1);
         i++;
     }
     while (stack_size - pushes > 3)
     {
-        pb(stack_a, stack_b);
+        pb(stack_a, stack_b, 1);
         pushes++;
     }
 }
@@ -50,7 +50,7 @@ static void sorting_stack(t_stack **stack_a)
     {
         while (lower_pos < stack_size)
         {
-            rra(stack_a);
+            rra(stack_a, 1);
             lower_pos++;
         }
     }
@@ -58,7 +58,7 @@ static void sorting_stack(t_stack **stack_a)
     {
         while (lower_pos > 0)
         {
-            ra(stack_a);
+            ra(stack_a, 1);
             lower_pos--;
         }
     }

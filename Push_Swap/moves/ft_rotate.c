@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:09:45 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 09:18:10 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:08:47 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,25 @@ static void ft_rotate(t_stack **stack)
     tail->next = tmp;
 }
 
-void ra(t_stack **stack_a)
+void ra(t_stack **stack_a, int move)
 {
     ft_rotate(stack_a);
-    write(1, "ra\n", 3);
+    if (move == 1)
+        write(1, "ra\n", 3);
 }
 
-void rb(t_stack **stack_b)
+void rb(t_stack **stack_b, int move)
 {
     ft_rotate(stack_b);
-    write(1, "rb\n", 3);
+    if (move == 1)
+        write(1, "rb\n", 3);
 }
 
-void rr(t_stack **stack_a, t_stack **stack_b)
+void rr(t_stack **stack_a, t_stack **stack_b, int move)
 {
     ft_rotate(stack_a);
     ft_rotate(stack_b);
-    write(1, "rr\n", 3);
+    if (move == 1)
+        write(1, "rr\n", 3);
 }
 
