@@ -6,11 +6,11 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 09:31:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/08 12:01:07 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:18:23 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 static int find_biggest(t_stack *stack)
 {

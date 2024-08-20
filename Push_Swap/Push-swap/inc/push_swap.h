@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:29:18 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/19 18:33:32 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:45:15 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@
 # include <unistd.h>
 # include <limits.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 /*INCLUDES FOR MY OWN LIBRARIES*/
 
-# include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 
 typedef struct s_stack
 {

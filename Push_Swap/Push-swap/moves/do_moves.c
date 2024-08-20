@@ -6,11 +6,11 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:19:17 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/07 08:02:13 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:18:00 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 static void rotate_ab(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 {

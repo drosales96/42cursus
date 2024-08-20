@@ -6,11 +6,11 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:02:25 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/06 09:08:33 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:18:14 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 static void    ft_swap(t_stack **stack)
 {

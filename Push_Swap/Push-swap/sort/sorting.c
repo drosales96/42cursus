@@ -6,11 +6,11 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:56:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/07 11:48:55 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:18:27 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 static void nb_partition(t_stack **stack_a, t_stack **stack_b)
 {

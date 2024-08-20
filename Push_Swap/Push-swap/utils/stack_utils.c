@@ -6,11 +6,11 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 07:50:34 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/07 11:52:12 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:18:41 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 t_stack *new_stack(int value)
 {

@@ -6,12 +6,11 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 08:51:48 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/19 18:39:54 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 10:44:42 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-#include "./checker_bonus.h"
+#include "checker_bonus.h"
 
 static int    ft_strcmp(char *s1, char *s2)
 {
@@ -70,7 +69,7 @@ int main(int ac, char **av)
         errors(&stack_a, NULL);
     stack_len = size_stack(stack_a);
     next_line = get_next_line(STDIN_FILENO);
-    while (1)
+    while (next_line)
     {
         checking_commands(&stack_a, &stack_b, next_line);
         next_line = get_next_line(STDIN_FILENO);
