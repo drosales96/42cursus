@@ -92,7 +92,7 @@ SRT                 = ${SORT_DIR}/sorting.c \
                         ${SORT_DIR}/sort_three.c 
 UTL                 = ${UTILS_DIR}/stack_utils.c \
                         ${UTILS_DIR}/utils.c \
-						 ${UTILS_DIR}/utils2.c
+                        ${UTILS_DIR}/utils2.c
 
 OBJ_SRC             = $(patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC})
 OBJ_INT             = $(patsubst ${INIT_DIR}/%.c, ${OBJ_DIR}/%.o, ${INT})
@@ -117,10 +117,11 @@ OBJ_GNL_BONUS       = $(patsubst ${GNL_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, \
 all: ${NAME}
 ${NAME}: ftlibft ftprintf ${OBJ_SRC} ${OBJ_INT} \
                             ${OBJ_MOV} ${OBJ_SRT} ${OBJ_UTL}
-	@echo "$(YELLOW)Compiling root ...$(DEF_COLOR)"
+	@echo "$(BLUE)x Compiling root -> $(DEF_COLOR)"
 	@${CC} ${CFLAGS} ${IFLAGS} -o ${NAME} ${OBJ_SRC} ${OBJ_INT} \
                                 	${OBJ_MOV} ${OBJ_SRT} ${OBJ_UTL} ${LFLAGS}
 	@echo "$(GREEN) $(NAME) all created ✓$(DEF_COLOR)"
+
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 	@${MKD} $(dir $@)
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
@@ -136,37 +137,48 @@ ${OBJ_DIR}/%.o: ${SORT_DIR}/%.c
 ${OBJ_DIR}/%.o: ${UTILS_DIR}/%.c
 	@${MKD} $(dir $@)
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
+
 ftlibft:
-	@cd ${LIBFT_DIR} ${MK_} all
+	@echo "$(BLUE)x Compiling Libft -> $(DEF_COLOR)"
+	@cd ${LIBFT_DIR} && $(MAKE) all > /dev/null 2>&1
+	@echo "$(GREEN) Libft created ✓$(DEF_COLOR)"
+
 ftprintf:
-	@cd ${PRINTFT_DIR} ${MK_} all
+	@echo "$(BLUE)x Compiling Ftprintf -> $(DEF_COLOR)"
+	@cd ${PRINTFT_DIR} && $(MAKE) all > /dev/null 2>&1
+	@echo "$(GREEN) Ftprintf created ✓$(DEF_COLOR)"
+
 bonus: ${NAME_BONUS}
 ${NAME_BONUS}: ftlibft ftprintf ${OBJ_INT} ${OBJ_MOV} ${OBJ_SRT} ${OBJ_UTL} \
                                     ${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS}
-	@echo "$(YELLOW)Compiling root ...$(DEF_COLOR)"
+	@echo "$(BLUE)x Compiling Bonus -> $(DEF_COLOR)"
 	@${CC} ${CFLAGS} ${IFLAGS} ${IFLAGS_BONUS} -o ${NAME_BONUS} \
             ${OBJ_INT} ${OBJ_MOV} ${OBJ_SRT} ${OBJ_UTL} ${OBJ_SRC_BONUS} \
             ${OBJ_GNL_BONUS} ${LFLAGS} ${IFLAGS_BONUS}
-	@echo "$(GREEN) $(NAME) all created ✓$(DEF_COLOR)"
+	@echo "$(GREEN) $(NAME_BONUS) all created ✓$(DEF_COLOR)"
+
 ${OBJ_DIR}/%.o: ${SRC_BONUS_DIR}/%.c
 	@${MKD} $(dir $@)
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
 ${OBJ_DIR}/%.o: ${GNL_BONUS_DIR}/%.c
 	@${MKD} $(dir $@)
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
+
 clean:
-	@echo "$(YELLOW)Removing object files ...$(DEF_COLOR)"
-	@cd ${LIBFT_DIR} ${MK_} clean
-	@cd ${PRINTFT_DIR} ${MK_} clean
+	@echo "$(ORANGE)x Removing object files -> Loading...$(DEF_COLOR)"
+	@cd ${LIBFT_DIR} && $(MAKE) clean > /dev/null 2>&1
+	@cd ${PRINTFT_DIR} && $(MAKE) clean > /dev/null 2>&1
 	@$(RM) ${OBJ_DIR}/*.o
 	@$(RM) ${SRC_BONUS_DIR}/*.o
-	@echo "$(RED)Object files removed $(DEF_COLOR)"
+	@echo "$(GREEN)Object files removed $(DEF_COLOR)"
+
 fclean: clean
-	@echo "$(YELLOW)Removing binaries ...$(DEF_COLOR)"
-	@cd ${LIBFT_DIR} ${MK_} fclean
-	@cd ${PRINTFT_DIR} ${MK_} fclean
+	@echo "$(ORANGE)x Removing files *.a -> Loading...$(DEF_COLOR)"
+	@cd ${LIBFT_DIR} && $(MAKE) fclean > /dev/null 2>&1
+	@cd ${PRINTFT_DIR} && $(MAKE) fclean > /dev/null 2>&1
 	@${RM} ${NAME} ${NAME_BONUS}
-	@echo "$(RED)Binaries removed $(DEF_COLOR)"
+	@echo "$(GREEN)files *.a removed $(DEF_COLOR)"
+
 re: fclean all
 
-.PHONY : all ftlibft ftprintf clean fclean bonus re
+.PHONY: all ftlibft ftprintf clean fclean bonus re

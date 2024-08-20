@@ -6,13 +6,13 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 09:09:45 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 12:08:47 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 19:08:48 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static void ft_rotate(t_stack **stack)
+/*static void ft_rotate(t_stack **stack)
 {
     t_stack *tmp;
     t_stack *tail;
@@ -22,6 +22,20 @@ static void ft_rotate(t_stack **stack)
     tail = get_final_element(*stack);
     tmp->next = NULL;
     tail->next = tmp;
+}*/
+
+static void ft_rotate(t_stack **stack)
+{
+    t_stack *first;
+    t_stack *last;
+    
+    if (*stack == NULL || (*stack)->next == NULL)
+        return;
+    first = *stack;
+    last= get_final_element(*stack);
+    *stack = first->next;
+    last->next = first;
+    first->next = NULL;
 }
 
 void ra(t_stack **stack_a, int move)

@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:38:31 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 09:18:46 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 19:30:35 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void errors(t_stack **stack_a, t_stack **stack_b)
         free_stacks(stack_a);
     if (stack_b == NULL || stack_b != NULL)
         free_stacks(stack_b);
-    write(2, "ERROR\n", 6);
+    write(2, "Error\n", 6);
     exit(1);
 }
 

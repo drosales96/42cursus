@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 09:53:31 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 12:14:00 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:24:19 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,9 @@ void free_2_stacks(t_stack **stack_a, t_stack **stack_b)
 
 int ft_42lines(t_stack **stack_a)
 {
-    int stack_len;
-
     if (ft_duplicate(*stack_a))
         errors(stack_a, NULL);
     else
-        stack_len = size_stack(*stack_a);
+        size_stack(*stack_a);
     return (0);
-}
-
-void    init_stacks(t_stack **stack_a, t_stack **stack_b)
-{
-    stack_a = NULL;
-    stack_b = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:29:18 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 12:14:16 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 18:58:03 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void        free_stacks(t_stack **stack);
 void        free_2_stacks(t_stack **stack_a, t_stack **stack_b);
 void        numbers(char *av, t_stack **stack_a);
 int         ft_42lines(t_stack **stack_a);
-void        init_stacks(t_stack **stack_a, t_stack **stack_b);
 
 /*FOR COSTS*/
 
