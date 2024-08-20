@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 08:51:48 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 12:21:57 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:00:49 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int    ft_strcmp(char *s1, char *s2)
     return (s1[i] - s2[i]);
 }
 
-static void checking_commands(t_stack **stack_a, t_stack **stack_b, char *command)
+static int checking_commands(t_stack **stack_a, t_stack **stack_b, char *command)
 {
     if (!ft_strcmp(command, "pa\n"))
 		pa(stack_a, stack_b, 0);
@@ -47,6 +47,7 @@ static void checking_commands(t_stack **stack_a, t_stack **stack_b, char *comman
 		rrr(stack_a, stack_b, 0);
 	else
 		errors(stack_a, stack_b);
+	return(1);
 }
 
 int main(int ac, char **av)
@@ -64,7 +65,7 @@ int main(int ac, char **av)
 		numbers(av[i++], &stack_a);
 	stack_len = ft_42lines(&stack_a);
 	next_line = get_next_line(STDIN_FILENO);
-	while (next_line)
+	while (1)
 	{
 		checking_commands(&stack_a, &stack_b, next_line);
 		next_line = get_next_line(STDIN_FILENO);
