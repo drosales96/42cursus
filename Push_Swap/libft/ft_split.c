@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 07:20:38 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/07 08:47:22 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/21 09:14:44 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static unsigned int	countwords(const char *s, char c)
 
 	count = 0;
 	while (*s)
-	{	
+	{
 		while (*s && c == *s)
 			s++;
 		if (*s)

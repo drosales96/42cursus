@@ -6,28 +6,28 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 09:31:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 11:54:41 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/21 09:22:34 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static int find_biggest(t_stack *stack)
+static int	find_biggest(t_stack *stack)
 {
-    t_stack *current;
-    int     res;
+	t_stack	*current;
+	int		res;
 
-    if (!stack)
-        return (0);
-    current = stack;
-    res = current->index;
-    while (current != NULL)
-    {
-        if (current->index > res)
-            res = current->index;
-        current = current->next;
-    }
-    return (res);
+	if (!stack)
+		return (0);
+	current = stack;
+	res = current->index;
+	while (current != NULL)
+	{
+		if (current->index > res)
+			res = current->index;
+		current = current->next;
+	}
+	return (res);
 }
 
 void	sort_three(t_stack **stack)

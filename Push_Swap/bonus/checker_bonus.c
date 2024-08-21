@@ -6,24 +6,25 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 08:51:48 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/20 19:31:00 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/21 08:53:36 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-static int    ft_strcmp(char *s1, char *s2)
+static int	ft_strcmp(char *s1, char *s2)
 {
-    int i = 0;
+	int	i;
 
-    while (s1[i] && s2[i] && (s1[i] == s2[i]))
-        i++;
-    return (s1[i] - s2[i]);
+	i = 0;
+	while (s1[i] && s2[i] && (s1[i] == s2[i]))
+		i++;
+	return (s1[i] - s2[i]);
 }
 
-int checking_commands(t_stack **stack_a, t_stack **stack_b, char *command)
+int	checking_commands(t_stack **stack_a, t_stack **stack_b, char *command)
 {
-    if (!ft_strcmp(command, "pa\n"))
+	if (!ft_strcmp(command, "pa\n"))
 		pa(stack_a, stack_b, 0);
 	else if (!ft_strcmp(command, "pb\n"))
 		pb(stack_a, stack_b, 0);
@@ -47,15 +48,15 @@ int checking_commands(t_stack **stack_a, t_stack **stack_b, char *command)
 		rrr(stack_a, stack_b, 0);
 	else
 		write(1, "Error\n", 6);
-	return(1);
+	return (1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
-	int     i;
-	char    *next_line;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		i;
+	char	*next_line;
 
 	i = 1;
 	stack_a = NULL;
@@ -63,18 +64,17 @@ int main(int ac, char **av)
 	while (i < ac)
 		numbers(av[i++], &stack_a);
 	ft_42lines(&stack_a);
+	next_line = NULL;
 	while (1)
 	{
-		next_line = get_next_line(STDIN_FILENO);
 		if (!next_line)
-			break ;
+			return (1);
+		next_line = get_next_line(STDIN_FILENO);
 		if (checking_commands(&stack_a, &stack_b, next_line) == 0)
 			free_2_stacks(&stack_a, &stack_b);
 		free(next_line);
 	}
-	if ((stack_a) && (stack_b == NULL) && ft_is_sorted(stack_a))
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
-    free_2_stacks(&stack_a, &stack_b);
+	final_msg(&stack_a, &stack_b);
+	free_2_stacks(&stack_a, &stack_b);
+	return (0);
 }
