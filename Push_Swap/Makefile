@@ -117,7 +117,7 @@ OBJ_GNL_BONUS       = $(patsubst ${GNL_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, \
 all: ${NAME}
 ${NAME}: ftlibft ftprintf ${OBJ_SRC} ${OBJ_INT} \
                             ${OBJ_MOV} ${OBJ_SRT} ${OBJ_UTL}
-	@echo "$(BLUE)x Compiling root -> $(DEF_COLOR)"
+	@echo "$(BLUE)📌​ Compiling root... $(DEF_COLOR)"
 	@${CC} ${CFLAGS} ${IFLAGS} -o ${NAME} ${OBJ_SRC} ${OBJ_INT} \
                                 	${OBJ_MOV} ${OBJ_SRT} ${OBJ_UTL} ${LFLAGS}
 	@echo "$(GREEN) $(NAME) all created ✓$(DEF_COLOR)"
@@ -139,23 +139,23 @@ ${OBJ_DIR}/%.o: ${UTILS_DIR}/%.c
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
 
 ftlibft:
-	@echo "$(BLUE)x Compiling Libft -> $(DEF_COLOR)"
+	@echo "$(BLUE)📌​ Compiling Libft... $(DEF_COLOR)"
 	@cd ${LIBFT_DIR} && $(MAKE) all > /dev/null 2>&1
 	@echo "$(GREEN) Libft created ✓$(DEF_COLOR)"
 
 ftprintf:
-	@echo "$(BLUE)x Compiling Ftprintf -> $(DEF_COLOR)"
+	@echo "$(BLUE)📌​ Compiling Ftprintf... $(DEF_COLOR)"
 	@cd ${PRINTFT_DIR} && $(MAKE) all > /dev/null 2>&1
 	@echo "$(GREEN) Ftprintf created ✓$(DEF_COLOR)"
 
 bonus: ${NAME_BONUS}
 ${NAME_BONUS}: ftlibft ftprintf ${OBJ_INT} ${OBJ_MOV} ${OBJ_SRT} ${OBJ_UTL} \
                                     ${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS}
-	@echo "$(BLUE)x Compiling Bonus -> $(DEF_COLOR)"
+	@echo "$(BLUE)📌​ Compiling Bonus 🠲 $(DEF_COLOR)"
 	@${CC} ${CFLAGS} ${IFLAGS} ${IFLAGS_BONUS} -o ${NAME_BONUS} \
             ${OBJ_INT} ${OBJ_MOV} ${OBJ_SRT} ${OBJ_UTL} ${OBJ_SRC_BONUS} \
             ${OBJ_GNL_BONUS} ${LFLAGS} ${IFLAGS_BONUS}
-	@echo "$(GREEN) $(NAME_BONUS) all created ✓$(DEF_COLOR)"
+	@echo "$(GREEN) $(NAME_BONUS) has been created ✓$(DEF_COLOR)"
 
 ${OBJ_DIR}/%.o: ${SRC_BONUS_DIR}/%.c
 	@${MKD} $(dir $@)
@@ -165,7 +165,7 @@ ${OBJ_DIR}/%.o: ${GNL_BONUS_DIR}/%.c
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
 
 clean:
-	@echo "$(ORANGE)x Removing object files -> Loading...$(DEF_COLOR)"
+	@echo "$(ORANGE)🗑️​  Removing object files...$(DEF_COLOR)"
 	@cd ${LIBFT_DIR} && $(MAKE) clean > /dev/null 2>&1
 	@cd ${PRINTFT_DIR} && $(MAKE) clean > /dev/null 2>&1
 	@$(RM) ${OBJ_DIR}/*.o
@@ -173,11 +173,11 @@ clean:
 	@echo "$(GREEN)Object files removed $(DEF_COLOR)"
 
 fclean: clean
-	@echo "$(ORANGE)x Removing files *.a -> Loading...$(DEF_COLOR)"
+	@echo "$(ORANGE)🗑️​  Removing files *.a...$(DEF_COLOR)"
 	@cd ${LIBFT_DIR} && $(MAKE) fclean > /dev/null 2>&1
 	@cd ${PRINTFT_DIR} && $(MAKE) fclean > /dev/null 2>&1
 	@${RM} ${NAME} ${NAME_BONUS}
-	@echo "$(GREEN)files *.a removed $(DEF_COLOR)"
+	@echo "$(GREEN)Files *.a removed $(DEF_COLOR)"
 
 re: fclean all
 
