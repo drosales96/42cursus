@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:29:18 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/21 09:01:51 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:26:15 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void		numbers(char *av, t_stack **stack_a);
 /*CHECKER EXTRA FUNCTIONS*/
 
 int			ft_42lines(t_stack **stack_a);
-void		final_msg(t_stack **stack_a, t_stack **stack_b);
 
 /*FOR COSTS*/
 

@@ -6,11 +6,26 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 08:51:48 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/21 08:53:36 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:17:52 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
+
+static void	final_msg(t_stack **stack_a, t_stack **stack_b, int len)
+{
+	if (ft_is_sorted(*stack_a) && size_stack(*stack_a) == len
+		&& size_stack(*stack_a) > 0)
+		write(1, "OK\n", 3);
+	else if (!ft_is_sorted(*stack_a))
+		write(1, "KO\n", 3);
+	else
+	{
+		free_2_stacks(stack_a, stack_b);
+		exit(1);
+	}
+	free_2_stacks(stack_a, stack_b);
+}
 
 static int	ft_strcmp(char *s1, char *s2)
 {
@@ -56,6 +71,7 @@ int	main(int ac, char **av)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	int		i;
+	int		len;
 	char	*next_line;
 
 	i = 1;
@@ -64,17 +80,17 @@ int	main(int ac, char **av)
 	while (i < ac)
 		numbers(av[i++], &stack_a);
 	ft_42lines(&stack_a);
+	len = size_stack(stack_a);
 	next_line = NULL;
 	while (1)
 	{
-		if (!next_line)
-			return (1);
 		next_line = get_next_line(STDIN_FILENO);
+		if (!next_line)
+			break ;
 		if (checking_commands(&stack_a, &stack_b, next_line) == 0)
 			free_2_stacks(&stack_a, &stack_b);
 		free(next_line);
 	}
-	final_msg(&stack_a, &stack_b);
-	free_2_stacks(&stack_a, &stack_b);
+	final_msg(&stack_a, &stack_b, len);
 	return (0);
 }
