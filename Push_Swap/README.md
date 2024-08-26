@@ -590,3 +590,45 @@ ra <br>
 <br>
 Ya tenemos el número más pequeño arriba del todo en la pila.
 
+Ahora volviendo a la función de 'sorting_stack' continuamos teniendo ya los datos que necesitábamos tener. Entramos en condicionales y en primer lugar, si lower_pos (2) es mayor que stack_size (5 / 2) (que no se cumple en este caso) lo que irá haciendo el algoritmo es hacer movimientos rotate a hasta tener el número menor en la cima de la pila.
+
+Ejemplo:
+
+1: [25, 100, -15, 2, 45]
+ra
+2: [100, -15, 2, 45, 25]
+ra
+3: [-15, 2, 45, 25, 100]
+
+Ya tenemos el número más pequeño arriba del todo en la pila.
+
+Una vez salgamos de la función "sorting_stack", iremos continuadamente, gracias al bucle while que tenemos, buscando la información y actualizándola para ir ordenando los números, por lo que después de analizar todos los datos, y realizar un movimiento, volveremos arriba y realizaremos de nuevo operaciones para gestionar los números.
+
+De esta manera siempre haremos los movimientos con menor coste y gestionando que se vayan ordenando lso números en la pila stack_a.
+
+### FINAL
+
+Espero que si lees esta explicación, te haya servido de ayuda para entender como funciona un proyecto tan importante y enriquecedor como es Push_swap, aunque en ocasiones acabe con tu paciencia aprender muchísimos conceptos nuevos que te vendrán muy muy bien para futuros proyectos.
+
+Te dejo un ejemplo de ordenación para que se vea el funcionamiento del código:
+
+INPUT: ./push_swap 51 -10 5 2 -2 60
+
+RESULT:
+
+pb <br>
+pb <br>
+pb <br>
+sa <br>
+rra <br>
+pa <br>
+ra <br>
+ra <br>
+pa <br>
+rra <br>
+pa <br>
+ra <br>
+ra <br>
+
+Para mejorar la capacidad de entender como funciona, ¿Por qué no pruebas a hacer a mano los movimientos que da como respuesta el programa?, yo creo que si te haces dibujos de las pilas y de su comportamiento puedes sacar conclusiones clave.
+
