@@ -2,7 +2,7 @@
 #    -----                                                                     #
 
 NAME                = so_long
-## NAME_BONUS          = checker
+NAME_BONUS          = so_long_bonus
 
 # ══ Colors ══════════════════════════════════════════════════════════════════ #
 #    ------                                                                    #
@@ -43,10 +43,8 @@ MK_                 = && make
 #    -----------                                                               #
 
 SRC_DIR             = ./src
-##INIT_DIR          = ./init
-##MOVES_DIR         = ./moves
+GNL_DIR             = ./gnl
 ASSETS_DIR          = ./assets
-MAPS_DIR            = ./maps
 OBJ_DIR             = ./obj
 LIBFT_DIR           = ./libft
 PRINTFT_DIR         = ./ft_printf
@@ -57,8 +55,8 @@ MLX42_INCLUDE       = ./MLX42/include
 # ══ Bonus Directories ═══════════════════════════════════════════════════════ #
 #    -----------------      #
 
-##SRC_BONUS_DIR       = ./bonus
-##INCLUDES_BONUS_DIR  = ./bonus
+SRC_BONUS_DIR       = ./bonus
+INCLUDES_BONUS_DIR  = ./bonus
 
 # ══ Library Archives ════════════════════════════════════════════════════════ #
 #    ----------------                                                          #
@@ -72,62 +70,49 @@ LIBMLX42_A          = ${MLX42_LIB}/libmlx42.a
 
 CFLAGS              = -Wall -Werror -Wextra
 IFLAGS              = -I${INCLUDES_DIR} -I${MLX42_INCLUDE}
-LFLAGS              = -L${LIBFT_DIR} -lft -L${PRINTFT_DIR} -lftprintf \
-						-L$(MLX42_LIB) -lmlx42 -lglfw -ldl -lm -lpthread
-
+LFLAGS              = -L${LIBFT_DIR} -lft \
+						-L${PRINTFT_DIR} -lftprintf \
+						-L${MLX42_LIB} -lmlx42 -lglfw -ldl -lm -lpthread
 
 # ══ Flags Bonus══════════════════════════════════════════════════════════════ #
 #    -----------                                                               #
 
-##IFLAGS_BONUS        = -I${INCLUDES_BONUS_DIR}
+IFLAGS_BONUS        = -I${INCLUDES_BONUS_DIR}
 
 # ══ Sources ═════════════════════════════════════════════════════════════════ #
 #    -------                                                                   #
 
-SRC                 = ${SRC_DIR}/get_next_line.c \
-						${SRC_DIR}/map_test.c \
-##INT                 = ${INIT_DIR} \
-                        ##${INIT_DIR}/mo_costs.c \
-                        ##${INIT_DIR}/pos_target.c
-##MOV                 = ${MOVES_DIR}/do_moves.c \
-                        ${MOVES_DIR}/ft_push.c \
-                        ${MOVES_DIR}/ft_reverse_rotate.c \
-                        ${MOVES_DIR}/ft_rotate.c \
-                        ${MOVES_DIR}/ft_swap.c
-##SRT                 = ${SORT_DIR} \
-                        ${SORT_DIR} 
-##UTL                 = ${UTILS_DIR} \
-                        ${UTILS_DIR} \
-                        ${UTILS_DIR}
+SRC                 = ${SRC_DIR}/
+GNL					= ${GNL_DIR}/get_next_line.c \
+						${GNL_DIR}/get_next_line_utils.c
+ASS                 = ${ASSETS_DIR}/
 
-OBJ_SRC               = $(patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC})
-OBJ_ASSETS            = $(patsubst ${ASSETS_DIR}/%.c, ${OBJ_DIR}/%.o, ${INT})
-##OBJ_MOV             = $(patsubst ${MAPS_DIR}/%.c, ${OBJ_DIR}/%.o, ${MOV})
-##OBJ_SRT             = $(patsubst ${SORT_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRT})
-##OBJ_UTL             = $(patsubst ${UTILS_DIR}/%.c, ${OBJ_DIR}/%.o, ${UTL})
+OBJ_SRC             = $(patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC})
+OBJ_GNL             = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
+OBJ_ASS             = $(patsubst ${ASSETS_DIR}/%.c, ${OBJ_DIR}/%.o, ${ASS})
 
 # ══ Sources Bonus ═══════════════════════════════════════════════════════════ #
 #    -------------                                                             #
 
-##SRC_BONUS           = ${SRC_BONUS_DIR}/checker_bonus.c
-##GNL_BONUS           = ${GNL_BONUS_DIR}/get_next_line.c \
-
-##OBJ_SRC_BONUS       = $(patsubst ${SRC_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, \
+SRC_BONUS           = ${SRC_BONUS_DIR}/
+OBJ_SRC_BONUS       = $(patsubst ${SRC_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, \
                         ${SRC_BONUS})
-##OBJ_GNL_BONUS       = $(patsubst ${GNL_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, \
-                        ${GNL_BONUS})
 
 # ═══ Rules ══════════════════════════════════════════════════════════════════ #
 #     -----                                                                    #
 
 all: ${NAME}
-${NAME}: ftlibft ftprintf ${OBJ_SRC} ${OBJ_ASSETS} \
+${NAME}: ftlibft ftprintf ${OBJ_SRC} ${OBJ_GNL} \
+                            ${OBJ_ASS}
 	@echo "$(BLUE)📌​ Compiling root... $(DEF_COLOR)"
-	@${CC} ${CFLAGS} ${IFLAGS} -o ${NAME} ${OBJ_SRC} ${OBJ_ASSETS} \
-                                	 ${LFLAGS}
+	@${CC} ${CFLAGS} ${IFLAGS} -o ${NAME} ${OBJ_SRC} ${OBJ_GNL} \
+                                	${OBJ_ASS} ${LFLAGS}
 	@echo "$(GREEN) $(NAME) all created ✓$(DEF_COLOR)"
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
+	@${MKD} $(dir $@)
+	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
+${OBJ_DIR}/%.o: ${GNL_DIR}/%.c
 	@${MKD} $(dir $@)
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
 ${OBJ_DIR}/%.o: ${ASSETS_DIR}/%.c
@@ -144,11 +129,28 @@ ftprintf:
 	@cd ${PRINTFT_DIR} && $(MAKE) all > /dev/null 2>&1
 	@echo "$(GREEN) Ftprintf created ✓$(DEF_COLOR)"
 
+bonus: ${NAME_BONUS}
+${NAME_BONUS}: ftlibft ftprintf ${OBJ_ASS} ${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS}
+	
+	@echo "$(BLUE)📌​ Compiling Bonus 🠲 $(DEF_COLOR)"
+	@${CC} ${CFLAGS} ${IFLAGS} ${IFLAGS_BONUS} -o ${NAME_BONUS} \
+            ${OBJ_ASS} ${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS} \
+			${LFLAGS} ${IFLAGS_BONUS}
+	@echo "$(GREEN) $(NAME_BONUS) has been created ✓$(DEF_COLOR)"
+
+${OBJ_DIR}/%.o: ${SRC_BONUS_DIR}/%.c
+	@${MKD} $(dir $@)
+	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
+${OBJ_DIR}/%.o: ${GNL_BONUS_DIR}/%.c
+	@${MKD} $(dir $@)
+	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
+
 clean:
 	@echo "$(ORANGE)🗑️​  Removing object files...$(DEF_COLOR)"
 	@cd ${LIBFT_DIR} && $(MAKE) clean > /dev/null 2>&1
 	@cd ${PRINTFT_DIR} && $(MAKE) clean > /dev/null 2>&1
 	@$(RM) ${OBJ_DIR}/*.o
+	@$(RM) ${SRC_BONUS_DIR}/*.o
 	@echo "$(GREEN)Object files removed $(DEF_COLOR)"
 
 fclean: clean

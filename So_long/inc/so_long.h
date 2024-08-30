@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:35:01 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/29 20:26:39 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/30 20:18:50 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@
 
 /* TILES DIMESIONS */
 
-#define TILE_SIZE 32
+# define TILE_SIZE 32
 
 /* BUFFER SIZE NEEDED FOR GNL */
 
-#define BUFFER_SIZE 1042
+# define BUFFER_SIZE 1042
 
 /* ERROR MESSAGES */
 
@@ -134,6 +134,7 @@ typedef struct s_buttons
 typedef struct s_init
 {
     mlx_t               *mlx; // CONECTION WITH MLX LIB
+    t_elements          cell;
     t_textures          text; // TEXTURES
     t_images            img; // IMAGES OF THE GAME
     t_map               *map; //MAP OF THE GAME
@@ -147,8 +148,11 @@ typedef struct s_init
     int                 result; // MSG WIN, LOSE OR GAME
     char                course; // DIRECTION OF THE PLAYER
     bool                walking; // FOR WALKING OR NOT
+    char                *path;
 }                       t_init;
 
 char	                *get_next_line(int fd);
+int                     ft_check_file_name(char *file);
+t_init                  **ft_check_elements(t_init **game, char element);
 
 #endif
