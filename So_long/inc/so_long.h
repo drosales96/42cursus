@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:35:01 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/30 20:18:50 by drosales         ###   ########.fr       */
+/*   Updated: 2024/08/31 19:50:27 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,13 @@
 /* ERROR MESSAGES */
 
 # define FILE_ERROR "⛔ The file has incorrect format. It should be *.ber\n"
-# define MATRIX_ERROR "⛔ The map contain an incorrect character\n"
-# define LINE_ERROR "⛔ There is an empty line in the matrix\n"
+# define MATRIX_CHAR_ERROR "⛔ The map contain an incorrect character\n"
+# define MATRIX_LINE_ERROR "⛔ There is an error in the matrix lines lenght\n"
+# define LINE_ERROR "⛔ There is an error about lines\n"
+# define WALL_ERROR "⛔ There are no limits, FATAL ERROR"
+# define ELEMENTS_ERROR "⛔ There is/are wrong/s element/s inside the matrix\n"
+# define ARG_ERROR "⛔ Incorrect quantity of arguments\n"
+# define ALLOC_ERROR "⛔ No memmory allocs the game"
 
 /* DEFINING MOVEMENT BUTTONS WITH ASCII */
 
@@ -62,97 +67,52 @@
 
 # define ESC    65907 // "ESC"
 
-/* Structure for de coordinates (array 2D) */
-
-typedef struct s_matrix
-{
-    int                 x;
-    int                 y;
-}                       t_matrix;
-
-/* Structure with a pointer to the map *.ber */
-
-typedef struct s_map
-{
-    char                *map;
-    struct s_map        *next;
-}                       t_map;
-
-/* Structure with the textures for all elements */
-
-typedef struct s_textures
-{
-    mlx_texture_t       *grass;
-    mlx_texture_t       *wall;
-    mlx_texture_t       *character;
-    mlx_texture_t       *character_u;
-    mlx_texture_t       *character_d;
-    mlx_texture_t       *character_l;
-    mlx_texture_t       *character_r;
-    mlx_texture_t       *enemy;
-    mlx_texture_t       *collect;
-    mlx_texture_t       *exit;
-}                       t_textures;
-
-/* Structure with a pointer to the images of the library */
-
-typedef struct s_images
-{
-    mlx_image_t         *grass;
-    mlx_image_t         *wall;
-    mlx_image_t         *character;
-    mlx_image_t         *character_u;
-    mlx_image_t         *character_d;
-    mlx_image_t         *character_l;
-    mlx_image_t         *character_r;
-    mlx_image_t         *enemy;
-    mlx_image_t         *collect;
-    mlx_image_t         *exit;
-}                       t_images;
-
-/* Structure to de elements/cells of the Array */
+/* ALL ELEMENTS THAT ARE INVOLVED (STRUCT) */
 
 typedef struct s_elements
 {
-    int                 grass;
-    int                 wall;
-    int                 character;
-    int                 enemy;
-    int                 collect;
-    int                 exit;
-}                       t_elements;
+    void    *mlx;
+    void    *mlx_window;
+    void    *player;
+    void    *player_P;
+    void    *pl_move;
+    void    *pl_left;
+    void    *pl_left_mv;
+    void    *pl_right;
+    void    *pl_right_move;
+    void    *pl_back;
+    void    *pl_back_mv;
+    void    *background;
+    void    *limit_element;
+    void    *exit;
+    void    *npc;
+    int     error;
+    int     x;
+    int     y;
+    int     key_arrows;
+    int     player_control;
+    int     lines_control;
+    int     collect;
+    int     wall;
+    int     enemy;
+    int     ex;
+    int     pl;
+    int     backgr;
+    int     width_len;
+    int     height_len;
+    char    *map;
 
-/* Structure for the arrow keys */
+}           t_elements;
 
-typedef struct s_buttons
-{
-    int                 buttons;
-}                       t_buttons;
+/* GNL FUNCTIONS */
 
-/* Structure of the game */
+char	*get_next_line(int fd);
 
-typedef struct s_init
-{
-    mlx_t               *mlx; // CONECTION WITH MLX LIB
-    t_elements          cell;
-    t_textures          text; // TEXTURES
-    t_images            img; // IMAGES OF THE GAME
-    t_map               *map; //MAP OF THE GAME
-    t_matrix            character; // MAIN CHARACTER
-    t_matrix            enemy; // ENEMY
-    t_matrix            size; // SIZE OF THE WINDOW
-    int                 moves; // NUMBER OF MOVES
-    int                 c_counter; // COLLECT. COUNTER
-    int                 collect; // COLLECT.
-    int                 collect_done; // THE COLLECT. THAT ARE ALREADY CATCH
-    int                 result; // MSG WIN, LOSE OR GAME
-    char                course; // DIRECTION OF THE PLAYER
-    bool                walking; // FOR WALKING OR NOT
-    char                *path;
-}                       t_init;
 
-char	                *get_next_line(int fd);
-int                     ft_check_file_name(char *file);
-t_init                  **ft_check_elements(t_init **game, char element);
+/* FUNCTIONS NEEDED*/
+
+int     ft_file_checker(char *map, t_elements *data);
+void    ft_free(t_elements *data);
+void    ft_reading_map(char *file , t_elements *data);
 
 #endif
