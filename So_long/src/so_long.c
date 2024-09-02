@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:33:27 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/31 19:53:34 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/02 08:45:57 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void    ft_init_game(t_elements *data, char *map)
     data->pl_move = 0;
     ft_file_checker(map, data);
     ft_reading_map(map, data);
+    ft_img_init();
     /*LO SIGUIENTE SERÍA CARGAR LAS IMAGENES DEL JUEGO*/
     /*DESPUÉS CREAREMOS LA VENTANA*/
     /*POR ULTIMO TOCARÍA PRINTAR EL MAPA COMPLETO*/

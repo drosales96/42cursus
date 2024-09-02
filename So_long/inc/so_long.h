@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:35:01 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/31 19:50:27 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/02 11:33:05 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 /* GRAPHICS LIBRARY PATH*/
 
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "../mlx/mlx.h"
 
 /* MY OWN UTILS LIBRARIES */
 
@@ -57,6 +57,7 @@
 # define ELEMENTS_ERROR "⛔ There is/are wrong/s element/s inside the matrix\n"
 # define ARG_ERROR "⛔ Incorrect quantity of arguments\n"
 # define ALLOC_ERROR "⛔ No memmory allocs the game"
+# define ESC_PUSH "⛔ YOU HAVE PRESSED ESC BUTTON ⛔"
 
 /* DEFINING MOVEMENT BUTTONS WITH ASCII */
 
@@ -73,7 +74,12 @@ typedef struct s_elements
 {
     void    *mlx;
     void    *mlx_window;
-    void    *player;
+    void    *player;        // JUGADOR (P)
+    void    *background;    // SUELO (0)
+    void    *limit_element; // ELEMNTOS LÍMITE (1)
+    void    *exit;          // SALIDA (E)
+    void    *npc;           // ENEMIGO (X)
+    void    *collec;        // COLECCIONABLE (C)
     void    *player_P;
     void    *pl_move;
     void    *pl_left;
@@ -82,10 +88,6 @@ typedef struct s_elements
     void    *pl_right_move;
     void    *pl_back;
     void    *pl_back_mv;
-    void    *background;
-    void    *limit_element;
-    void    *exit;
-    void    *npc;
     int     error;
     int     x;
     int     y;
@@ -101,7 +103,6 @@ typedef struct s_elements
     int     width_len;
     int     height_len;
     char    *map;
-
 }           t_elements;
 
 /* GNL FUNCTIONS */
@@ -114,5 +115,6 @@ char	*get_next_line(int fd);
 int     ft_file_checker(char *map, t_elements *data);
 void    ft_free(t_elements *data);
 void    ft_reading_map(char *file , t_elements *data);
+int     ft_final_msg(t_elements *data, char c);
 
 #endif
