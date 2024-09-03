@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:35:01 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/02 11:33:05 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/03 09:05:56 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@
 /* WINDOW EXE NAME*/
 
 # define TITRE "So long"
-
-/* WIDTH & HEIGHT */
-
-# define WIDTH 1092
-# define HEIGHT 1080
 
 /* TILES DIMESIONS */
 
@@ -80,7 +75,7 @@ typedef struct s_elements
     void    *exit;          // SALIDA (E)
     void    *npc;           // ENEMIGO (X)
     void    *collec;        // COLECCIONABLE (C)
-    void    *player_P;
+    void    *player_P;      // SALIDA PERSONAJE (P)
     void    *pl_move;
     void    *pl_left;
     void    *pl_left_mv;
