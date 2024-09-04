@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:35:01 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/03 09:05:56 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/04 09:51:34 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 /* GRAPHICS LIBRARY PATH*/
 
-# include "../mlx/mlx.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 /* MY OWN UTILS LIBRARIES */
 
@@ -83,6 +83,7 @@ typedef struct s_elements
     void    *pl_right_move;
     void    *pl_back;
     void    *pl_back_mv;
+    int     moves;
     int     error;
     int     x;
     int     y;
@@ -110,6 +111,9 @@ char	*get_next_line(int fd);
 int     ft_file_checker(char *map, t_elements *data);
 void    ft_free(t_elements *data);
 void    ft_reading_map(char *file , t_elements *data);
-int     ft_final_msg(t_elements *data, char c);
+int     ft_final_msg_check(t_elements *data, char c);
+void    ft_png_to_text(t_elements *data);
+void    ft_init_text(t_elements *data);
+int     key_arrows(int key, t_elements *data);
 
 #endif

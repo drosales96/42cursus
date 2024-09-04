@@ -6,15 +6,134 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:30:56 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/03 09:35:03 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:16:07 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void    right(t_elements *data)
+static void ft_data_check(t_elements *data)
 {
-    
+    if (!data)
+    {
+        ft_printf("Error");
+        exit(EXIT_FAILURE);
+    }
+}
+
+static void    ft_move_right(t_elements *data)
+{
+    int i;
+
+    i = 0;
+    ft_data_check(data);
+    while (data->map[i] != 'P')
+        i++;
+    if (data->map[i] != '1' && !ft_final_msg_check(data, data->map[i + data->width_len]))
+    {
+        data->moves++;
+        if (data->map[i - data->width_len] == 'C')
+            data->collect--;
+        data->map[i] = '0';
+        data->map[i - data->width_len] = 'P';
+        if (data->player_control == 0)
+        {
+            data->player_P = data->pl_back;
+            data->player_control = 1;
+        }
+        else
+        {
+            data->player_P = data->pl_move;
+            data->player_control = 0;
+        }
+    }
+    ft_print_matrix();
+}
+static void    ft_move_down(t_elements *data)
+{
+    int i;
+
+    i = 0;
+    ft_data_check(data);
+    while (data->map[i] != 'P')
+    i++;
+    if (data->map[i] != '1' && !ft_final_msg_check(data, data->map[i + data->width_len]))
+    {
+        data->moves++;
+        if (data->map[i - data->width_len] == 'C')
+            data->collect--;
+        data->map[i] = '0';
+        data->map[i - data->width_len] = 'P';
+        if (data->player_control == 0)
+        {
+            data->player_P = data->pl_back;
+            data->player_control = 1;
+        }
+        else
+        {
+            data->player_P = data->pl_move;
+            data->player_control = 0;
+        }
+    }
+    ft_print_matrix();
+}
+
+static void    ft_move_up(t_elements *data)
+{
+    int i;
+
+    i = 0;
+    ft_data_check(data);
+    while (data->map[i] != 'P')
+    i++;
+    if (data->map[i] != '1' && !ft_final_msg_check(data, data->map[i - data->width_len]))
+    {
+        data->moves++;
+        if (data->map[i - data->width_len] == 'C')
+            data->collect--;
+        data->map[i] = '0';
+        data->map[i - data->width_len] = 'P';
+        if (data->player_control == 0)
+        {
+            data->player_P = data->pl_back;
+            data->player_control = 1;
+        }
+        else
+        {
+            data->player_P = data->pl_move;
+            data->player_control = 0;
+        }
+    }
+    ft_print_matrix();
+}
+
+static void ft_move_left(t_elements *data)
+{
+    int i;
+
+    i = 0;
+    ft_data_check(data);
+    while (data->map[i] != 'P')
+    i++;
+    if (data->map[i] != '1' && !ft_final_msg_check(data, data->map[i - data->width_len]))
+    {
+        data->moves++;
+        if (data->map[i - data->width_len] == 'C')
+            data->collect--;
+        data->map[i] = '0';
+        data->map[i - data->width_len] = 'P';
+        if (data->player_control == 0)
+        {
+            data->player_P = data->pl_back;
+            data->player_control = 1;
+        }
+        else
+        {
+            data->player_P = data->pl_move;
+            data->player_control = 0;
+        }
+    }
+    ft_print_matrix();
 }
 
 int key_arrows(int key, t_elements *data)
