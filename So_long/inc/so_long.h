@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:35:01 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/04 09:51:34 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:44:21 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,14 @@
 # include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
 
+/* WINDOW SIZING */
+
+# define WIDTH_W 800
+# define HEIGHT_W 600
+
 /* WINDOW EXE NAME*/
 
-# define TITRE "So long"
+# define TITLE "So long"
 
 /* TILES DIMESIONS */
 
@@ -115,5 +120,6 @@ int     ft_final_msg_check(t_elements *data, char c);
 void    ft_png_to_text(t_elements *data);
 void    ft_init_text(t_elements *data);
 int     key_arrows(int key, t_elements *data);
+void    ft_print_matrix(t_elements *data)
 
 #endif
