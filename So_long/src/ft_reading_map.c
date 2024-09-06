@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 18:27:50 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/02 08:45:10 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/06 10:50:58 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,92 +14,101 @@
 
 static void ft_check_lines(t_elements *data)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (data->map[i] != NULL)
-    {
-        if (data->map[i] != '1' || data->map[i] != 'P' || data->map[i] != 'C'
-            || data->map[i] != 'E' || data->map[i] != '0')
-            exit(ELEMENTS_ERROR);
-        else if (data->map[i] == '1')
-            data->wall++;
-        else if (data->map[i] == '0')
-            data->backgr++;
-        else if (data->map[i] == 'C')
-            data->collect++;
-        else if (data->map[i] == 'E')
-            data->ex++;
-        else if (data->map[i] == 'P')
-            data->pl++;
-        i++;
-    }
+	i = 0;
+	while (data->map[i])
+	{
+		if (data->map[i] != '1' || data->map[i] != 'P' || data->map[i] != 'C'
+			|| data->map[i] != 'E' || data->map[i] != '0')
+		{
+			ft_printf("%s", stderr, ELEMENTS_ERROR);
+			exit (1);
+		}
+		else if (data->map[i] == '1')
+			data->wall++;
+		else if (data->map[i] == '0')
+			data->backgr++;
+		else if (data->map[i] == 'C')
+			data->collect++;
+		else if (data->map[i] == 'E')
+			data->ex++;
+		else if (data->map[i] == 'P')
+			data->pl++;
+		i++;
+	}
 }
 
 static void ft_check_limits_lines(t_elements *data)
 {
-    int i;
-    int last;
+	int i;
+	int last;
 
-    i = 0;
-    last = ft_strlen(data->map) - data->width_len;
-    while (i != data->width_len)
-    {
-        if (data->map[i] == '1' || data->map[i] == '\n')
-            i++;
-        else
-            exit(WALL_ERROR);
-    }
-    while (last < data->width_len)
-    {
-        if (data->map[last] == '1' || data->map[last] == '\n')
-            last++;
-        else
-            exit(WALL_ERROR);
-    }
+	i = 0;
+	last = ft_strlen(data->map) - data->width_len;
+	while (i != data->width_len)
+	{
+		if (data->map[i] == '1' || data->map[i] == '\n')
+			i++;
+		else
+		{
+			ft_printf("%s", stderr, WALL_ERROR);
+			exit (1);
+		}
+	}
+	while (last < data->width_len)
+	{
+		if (data->map[last] == '1' || data->map[last] == '\n')
+			last++;
+		else
+		{
+			ft_printf("%s", stderr, WALL_ERROR);
+			exit (1);
+		}
+	}
 }
 
 static void ft_check_lines_final(t_elements *data, char *line)
 {
-    int i;
+	int i;
 
-    i = 0;
-    data->lines_control = 1;
-    while (line[i])
-    {
-        if (line[i] == '\n')
-            data->lines_control = 0;
-        i++;
-    }
+	i = 0;
+	data->lines_control = 1;
+	while (line[i])
+	{
+		if (line[i] == '\n')
+			data->lines_control = 0;
+		i++;
+	}
 }
 
 void    ft_reading_map(char *file , t_elements *data)
 {
-    int     fd;
-    char    *line;
+	int     fd;
+	char    *line;
 
-    fd = open(file, O_RDONLY);
-    if (fd < 0)
-        ft_free(data);
-    data->lines_control = 2;
-    while (data->lines_control != 1)
-    {
-        data->height_len++;
-        line = get_next_line(fd);
-        if (!line)
-            exit(LINE_ERROR);
-        if (data->lines_control == 2)
-            data->width_len = ft_strlen(line);
-        ft_check_lines_final(data, line);
-        if (ft_strlen(line) + data->lines_control != data->width_len)
-            exit (MATRIX_LINE_ERROR);
-        data->map = ft_strjoin(data->map, line);
-        if (line)
-            free(line);
-    }
-    close(fd);
-    ft_check_limits_lines(data);
-    ft_check_lines(data);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		ft_free(data);
+	data->lines_control = 2;
+	while (data->lines_control != 1)
+	{
+		data->height_len++;
+		line = get_next_line(fd);
+		if (!line)
+			exit(1);
+		if (data->lines_control == 2)
+			data->width_len = ft_strlen(line);
+		ft_check_lines_final(data, line);
+		if ((int)ft_strlen(line) + data->lines_control != data->width_len)
+			exit (1);
+		data->map = ft_strjoin(data->map, line);
+		if (line)
+			free(line);
+	}
+	close(fd);
+	ft_check_limits_lines(data);
+	ft_check_lines(data);
 }
 
 /*

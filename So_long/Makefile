@@ -44,7 +44,7 @@ MK_                 = && make
 
 SRC_DIR             = ./src
 GNL_DIR             = ./gnl
-ASSETS_DIR          = ./assets
+ETS_DIR             = ./ets
 OBJ_DIR             = ./obj
 LIBFT_DIR           = ./libft
 PRINTFT_DIR         = ./ft_printf
@@ -68,7 +68,7 @@ LIBMLX42_A          = ${MLX42_LIB}/libmlx42.a
 # ══ Flags ═══════════════════════════════════════════════════════════════════ #
 #    -----                                                                     #
 
-CFLAGS              = -Wall -Werror -Wextra
+CFLAGS              = -Wall -Werror -Wextra -g
 IFLAGS              = -I${INCLUDES_DIR} -I${MLX42_INCLUDE}
 LFLAGS              = -L${LIBFT_DIR} -lft \
 						-L${PRINTFT_DIR} -lftprintf \
@@ -82,83 +82,83 @@ IFLAGS_BONUS        = -I${INCLUDES_BONUS_DIR}
 # ══ Sources ═════════════════════════════════════════════════════════════════ #
 #    -------                                                                   #
 
-SRC                 = ${SRC_DIR}/
+SRC                 = ${SRC_DIR}/ft_file_check.c \
+						${SRC_DIR}/ft_fill_the_gap.c \
+						${SRC_DIR}/ft_final_msg_check.c \
+						${SRC_DIR}/ft_free.c \
+						${SRC_DIR}/ft_img_init.c \
+						${SRC_DIR}/ft_key_moves.c \
+						${SRC_DIR}/ft_reading_map.c \
+						${SRC_DIR}/ft_errors.c \
+						${SRC_DIR}/so_long.c
 GNL					= ${GNL_DIR}/get_next_line.c \
 						${GNL_DIR}/get_next_line_utils.c
-ASS                 = ${ASSETS_DIR}/
 
 OBJ_SRC             = $(patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC})
 OBJ_GNL             = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
-OBJ_ASS             = $(patsubst ${ASSETS_DIR}/%.c, ${OBJ_DIR}/%.o, ${ASS})
 
 # ══ Sources Bonus ═══════════════════════════════════════════════════════════ #
 #    -------------                                                             #
 
-SRC_BONUS           = ${SRC_BONUS_DIR}/
-OBJ_SRC_BONUS       = $(patsubst ${SRC_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, \
-                        ${SRC_BONUS})
+SRC_BONUS           = ${SRC_BONUS_DIR}/bonus_file1.c \
+                      ${SRC_BONUS_DIR}/bonus_file2.c
+OBJ_SRC_BONUS       = $(patsubst ${SRC_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC_BONUS})
+OBJ_GNL_BONUS       = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
 
 # ═══ Rules ══════════════════════════════════════════════════════════════════ #
 #     -----                                                                    #
 
 all: ${NAME}
-${NAME}: ftlibft ftprintf ${OBJ_SRC} ${OBJ_GNL} \
-                            ${OBJ_ASS}
+
+${NAME}: ftlibft ftprintf ${OBJ_SRC} ${OBJ_GNL}
 	@echo "$(BLUE)📌​ Compiling root... $(DEF_COLOR)"
-	@${CC} ${CFLAGS} ${IFLAGS} -o ${NAME} ${OBJ_SRC} ${OBJ_GNL} \
-                                	${OBJ_ASS} ${LFLAGS}
+	@${CC} ${CFLAGS} ${IFLAGS} -o ${NAME} ${OBJ_SRC} ${OBJ_GNL} ${LFLAGS}
 	@echo "$(GREEN) $(NAME) all created ✓$(DEF_COLOR)"
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 	@${MKD} $(dir $@)
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
+
 ${OBJ_DIR}/%.o: ${GNL_DIR}/%.c
-	@${MKD} $(dir $@)
-	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
-${OBJ_DIR}/%.o: ${ASSETS_DIR}/%.c
 	@${MKD} $(dir $@)
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
 
 ftlibft:
 	@echo "$(BLUE)📌​ Compiling Libft... $(DEF_COLOR)"
-	@cd ${LIBFT_DIR} && $(MAKE) all > /dev/null 2>&1
+	@cd ${LIBFT_DIR} && $(MAKE) -s all > /dev/null 2>&1
 	@echo "$(GREEN) Libft created ✓$(DEF_COLOR)"
 
 ftprintf:
 	@echo "$(BLUE)📌​ Compiling Ftprintf... $(DEF_COLOR)"
-	@cd ${PRINTFT_DIR} && $(MAKE) all > /dev/null 2>&1
+	@cd ${PRINTFT_DIR} && $(MAKE) -s all > /dev/null 2>&1
 	@echo "$(GREEN) Ftprintf created ✓$(DEF_COLOR)"
 
 bonus: ${NAME_BONUS}
-${NAME_BONUS}: ftlibft ftprintf ${OBJ_ASS} ${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS}
-	
+
+${NAME_BONUS}: ftlibft ftprintf ${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS}
 	@echo "$(BLUE)📌​ Compiling Bonus 🠲 $(DEF_COLOR)"
 	@${CC} ${CFLAGS} ${IFLAGS} ${IFLAGS_BONUS} -o ${NAME_BONUS} \
-            ${OBJ_ASS} ${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS} \
-			${LFLAGS} ${IFLAGS_BONUS}
+        	${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS} ${LFLAGS}
 	@echo "$(GREEN) $(NAME_BONUS) has been created ✓$(DEF_COLOR)"
 
 ${OBJ_DIR}/%.o: ${SRC_BONUS_DIR}/%.c
 	@${MKD} $(dir $@)
-	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
-${OBJ_DIR}/%.o: ${GNL_BONUS_DIR}/%.c
-	@${MKD} $(dir $@)
-	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
+	@$(CC) ${CFLAGS} ${IFLAGS} ${IFLAGS_BONUS} -c $< -o $@
 
 clean:
 	@echo "$(ORANGE)🗑️​  Removing object files...$(DEF_COLOR)"
-	@cd ${LIBFT_DIR} && $(MAKE) clean > /dev/null 2>&1
-	@cd ${PRINTFT_DIR} && $(MAKE) clean > /dev/null 2>&1
-	@$(RM) ${OBJ_DIR}/*.o
-	@$(RM) ${SRC_BONUS_DIR}/*.o
-	@echo "$(GREEN)Object files removed $(DEF_COLOR)"
+	@cd ${LIBFT_DIR} && $(MAKE) -s clean > /dev/null 2>&1
+	@cd ${PRINTFT_DIR} && $(MAKE) -s clean > /dev/null 2>&1
+	@$(RM) -r ${OBJ_DIR}
+	@echo "$(GREEN)Object files removed ✓$(DEF_COLOR)"
 
 fclean: clean
-	@echo "$(ORANGE)🗑️​  Removing files *.a...$(DEF_COLOR)"
-	@cd ${LIBFT_DIR} && $(MAKE) fclean > /dev/null 2>&1
-	@cd ${PRINTFT_DIR} && $(MAKE) fclean > /dev/null 2>&1
+	@echo "$(ORANGE)🗑️​  Removing files *.a and executables...$(DEF_COLOR)"
+	@cd ${LIBFT_DIR} && $(MAKE) -s fclean > /dev/null 2>&1
+	@cd ${PRINTFT_DIR} && $(MAKE) -s fclean > /dev/null 2>&1
 	@${RM} ${NAME} ${NAME_BONUS}
-	@echo "$(GREEN)Files *.a removed $(DEF_COLOR)"
+	@${RM} ${LIBFT_A} ${PRINTFT_A}
+	@echo "$(GREEN)Files *.a and executables removed ✓$(DEF_COLOR)"
 
 re: fclean all
 

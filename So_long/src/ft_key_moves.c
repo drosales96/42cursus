@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:30:56 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/05 20:01:48 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/06 11:09:23 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void    ft_move_right(t_elements *data)
             data->player_control = 0;
         }
     }
-    ft_print_matrix();
+    ft_print_matrix(data);
 }
 static void    ft_move_down(t_elements *data)
 {
@@ -75,7 +75,7 @@ static void    ft_move_down(t_elements *data)
             data->player_control = 0;
         }
     }
-    ft_print_matrix();
+    ft_print_matrix(data);
 }
 
 static void    ft_move_up(t_elements *data)
@@ -104,7 +104,7 @@ static void    ft_move_up(t_elements *data)
             data->player_control = 0;
         }
     }
-    ft_print_matrix();
+    ft_print_matrix(data);
 }
 
 static void ft_move_left(t_elements *data)
@@ -133,35 +133,32 @@ static void ft_move_left(t_elements *data)
             data->player_control = 0;
         }
     }
-    ft_print_matrix();
+    ft_print_matrix(data);
 }
 
-int key_arrows(int key, t_elements *data)
+void key_arrows(struct mlx_key_data keydata, void *param)
 {
-    char    *move_p;
-    int     msg;
+    t_elements  *data;
+    char        *move_p;
 
-    (void)data;
-    msg = ESC_PUSH;
-    if (key == ESC)
-    {
-        ft_free(data);
-        return (msg);
-    }
-    else if (key == LEFT)
+    data = (t_elements *)param;
+    if (keydata.key == LEFT)
         ft_move_left(data);
-    else if (key == RIGHT)
+    else if (keydata.key == RIGHT)
         ft_move_right(data);
-    else if (key == UP)
+    else if (keydata.key == UP)
         ft_move_up(data);
-    else if (key == DOWN)
+    else if (keydata.key == DOWN)
         ft_move_down(data);
-    move_p = ft_itoa(data->pl_move);
-    write(1, move_p, ft_strlen(move_p));
+    move_p = ft_itoa(data->moves);
     if (move_p)
+    {
+        write(1, move_p, ft_strlen(move_p));
         free(move_p);
-    ft_printf("\n");
-    return (0);
+        ft_printf("\n");
+    }
+    else
+        ft_printf("ERROR: Moves haven't been processed correctly!");
 }
 
 /* 

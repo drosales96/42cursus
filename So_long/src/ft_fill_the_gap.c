@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:02:22 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/05 20:33:32 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/06 09:59:38 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void    ft_fill_the_gap(char element, int index, t_elements *data)
     int rows;
     int cols;
 
-    rows = (index % data->width_len) * 50;
-    cols = (index / data->width_len) * 50;
+    rows = (index % data->width_len) * 64;
+    cols = (index / data->width_len) * 64;
     if (data->error == 0) // SI NO HAY ERRORES EN LA MATRIZ, NI EN NIGÚN CASO
     {
         if (element == 'P')

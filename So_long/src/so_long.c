@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:33:27 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/05 20:56:32 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:33:20 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 static int    ft_init_game(t_elements *data, char *map)
 {
-    if (!data || !data->map)
-        exit (EXIT_FAILURE);
     data->pl_move = 0;
-    ft_file_checker(map, data);
+    ft_file_checker(map);
     ft_reading_map(map, data);
     ft_png_to_text(data);
     ft_init_text(data);
@@ -33,15 +31,15 @@ int main(int ac, char **av)
 
     i = 0;
     if (ac != 2)
-        return (ARG_ERROR);
-    if (ac == 2)
+        ft_printf("ERROR");
+    game = ft_calloc(1, sizeof(t_elements));
+    if (!game)
     {
-        game = ft_calloc(1, sizeof(t_elements));
-        if (!game)
-            return (ALLOC_ERROR);
-        ft_init_game(game, av[i]);
-        mlx_key_hook(game->mlx_window, key_arrows, game);
-        mlx_loop(game->mlx);
-        mlx_terminate(game->mlx);
+        ft_printf("%s", stderr, ALLOC_ERROR);
+        exit(1);
     }
+    ft_init_game(game, av[i]);
+    mlx_key_hook(game->mlx_window, key_arrows, game);
+    mlx_loop(game->mlx);
+    mlx_terminate(game->mlx);
 }

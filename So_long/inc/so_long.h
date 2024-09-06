@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 19:35:01 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/05 20:44:21 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:33:45 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,18 @@ char	*get_next_line(int fd);
 
 /* FUNCTIONS NEEDED*/
 
-int     ft_file_checker(char *map, t_elements *data);
+void    ft_file_checker(char *file);
 void    ft_free(t_elements *data);
 void    ft_reading_map(char *file , t_elements *data);
 int     ft_final_msg_check(t_elements *data, char c);
 void    ft_png_to_text(t_elements *data);
 void    ft_init_text(t_elements *data);
-int     key_arrows(int key, t_elements *data);
-void    ft_print_matrix(t_elements *data)
+void    key_arrows(struct mlx_key_data keydata, void *param);
+void    ft_print_matrix(t_elements *data);
+
+/* ERRORS */
+
+void	ft_error2(t_elements *data, int num);
+void	ft_error(t_elements *data, int num);
 
 #endif
