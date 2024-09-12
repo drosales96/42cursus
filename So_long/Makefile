@@ -82,17 +82,19 @@ IFLAGS_BONUS        = -I${INCLUDES_BONUS_DIR}
 # ══ Sources ═════════════════════════════════════════════════════════════════ #
 #    -------                                                                   #
 
-SRC                 = ${SRC_DIR}/ft_file_check.c \
-						${SRC_DIR}/ft_fill_the_gap.c \
-						${SRC_DIR}/ft_final_msg_check.c \
+SRC                 = ${SRC_DIR}/ft_flood_fill.c \
+						${SRC_DIR}/ft_utils.c \
+						${SRC_DIR}/ft_print_character.c \
 						${SRC_DIR}/ft_free.c \
-						${SRC_DIR}/ft_img_init.c \
-						${SRC_DIR}/ft_key_moves.c \
-						${SRC_DIR}/ft_reading_map.c \
-						${SRC_DIR}/ft_errors.c \
+						${SRC_DIR}/ft_mapping.c \
+						${SRC_DIR}/ft_materials.c \
+						${SRC_DIR}/ft_mlx_init.c \
+						${SRC_DIR}/ft_moves.c \
+						${SRC_DIR}/ft_matrix.c \
+						${SRC_DIR}/ft_utils2.c \
+						${SRC_DIR}/ft_rendering.c \
 						${SRC_DIR}/so_long.c
 GNL					= ${GNL_DIR}/get_next_line.c \
-						${GNL_DIR}/get_next_line_utils.c
 
 OBJ_SRC             = $(patsubst ${SRC_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC})
 OBJ_GNL             = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
@@ -100,8 +102,18 @@ OBJ_GNL             = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
 # ══ Sources Bonus ═══════════════════════════════════════════════════════════ #
 #    -------------                                                             #
 
-SRC_BONUS           = ${SRC_BONUS_DIR}/bonus_file1.c \
-                      ${SRC_BONUS_DIR}/bonus_file2.c
+SRC_BONUS                 = ${SRC_BONUS_DIR}/ft_flood_fill.c \
+						${SRC_BONUS_DIR}/ft_utils.c \
+						${SRC_BONUS_DIR}/ft_print_character.c \
+						${SRC_BONUS_DIR}/ft_free.c \
+						${SRC_BONUS_DIR}/ft_mapping.c \
+						${SRC_BONUS_DIR}/ft_materials.c \
+						${SRC_BONUS_DIR}/ft_mlx_init.c \
+						${SRC_BONUS_DIR}/ft_moves.c \
+						${SRC_BONUS_DIR}/ft_matrix.c \
+						${SRC_BONUS_DIR}/ft_utils2.c \
+						${SRC_BONUS_DIR}/ft_rendering.c \
+						${SRC_BONUS_DIR}/so_long.c
 OBJ_SRC_BONUS       = $(patsubst ${SRC_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC_BONUS})
 OBJ_GNL_BONUS       = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
 
