@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:19:59 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/12 17:42:44 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 02:30:09 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_start_map(char *path)
 	game->path = path;
 	if (ft_map(&game) == 1)
 		return (FAILURE);
-	game = ft_find_ship(game);
+	game = ft_find_character(game);
 	game = ft_flood(game);
 	game->status_b = ft_free_status(game->status_b, game->size.y);
 	if (ft_check_all(game, ft_count_obj(game->map)) == FAILURE)

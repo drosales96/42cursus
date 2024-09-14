@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rendering.c                                     :+:      :+:    :+:   */
+/*   ft_rendering_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:30:52 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/12 18:13:32 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 02:45:29 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 t_init	*ft_initialize_game(t_init *init)
 {
@@ -19,8 +19,8 @@ t_init	*ft_initialize_game(t_init *init)
 	init->map = NULL;
 	init->status_a = NULL;
 	init->status_b = 0;
-	init->ship.x = 0;
-	init->ship.y = 0;
+	init->character.x = 0;
+	init->character.y = 0;
 	init->size.x = 0;
 	init->size.y = 0;
 	init->moves = 0;
@@ -34,19 +34,19 @@ t_init	*ft_initialize_game(t_init *init)
 void	ft_init_txts(t_init *game)
 {
 	game->txts.wall = mlx_load_png("./assets/arbol.png");
-	game->txts.ocean = mlx_load_png("./assets/floor.png");
-	game->txts.ship = mlx_load_png("./assets/a_pos.png");
-	game->txts.ship_u = mlx_load_png("./assets/as_up.png");
-	game->txts.ship_d = mlx_load_png("./assets/a_down.png");
-	game->txts.ship_l = mlx_load_png("./assets/a_left.png");
-	game->txts.ship_r = mlx_load_png("./assets/a_right.png");
-	game->txts.npc = mlx_load_png("./assets/a_right.png");
+	game->txts.floor = mlx_load_png("./assets/floor.png");
+	game->txts.character = mlx_load_png("./assets/a_pos.png");
+	game->txts.character_u = mlx_load_png("./assets/as_up.png");
+	game->txts.character_d = mlx_load_png("./assets/a_down.png");
+	game->txts.character_l = mlx_load_png("./assets/a_left.png");
+	game->txts.character_r = mlx_load_png("./assets/a_right.png");
+	game->txts.npc = mlx_load_png("./assets/enemy.png");
 	game->txts.collec = mlx_load_png("./assets/pokeball.png");
 	game->txts.exit_c = mlx_load_png("./assets/exit.png");
-	game->txts.exit_o = mlx_load_png("./assets/exit_o.png");
-	if (!game->txts.wall || !game->txts.ocean || !game->txts.ship
-		|| !game->txts.ship_u || !game->txts.ship_d
-		|| !game->txts.ship_l || !game->txts.ship_r
+	game->txts.exit_o = mlx_load_png("./assets/exit.png");
+	if (!game->txts.wall || !game->txts.floor || !game->txts.character
+		|| !game->txts.character_u || !game->txts.character_d
+		|| !game->txts.character_l || !game->txts.character_r
 		|| !game->txts.npc|| !game->txts.collec
 		|| !game->txts.exit_c || !game->txts.exit_o)
 	{
@@ -59,12 +59,12 @@ void	ft_init_txts(t_init *game)
 void	ft_init_imgs(t_init *game)
 {
 	game->imgs.wall = mlx_texture_to_image(game->mlx, game->txts.wall);
-	game->imgs.ocean = mlx_texture_to_image(game->mlx, game->txts.ocean);
-	game->imgs.ship = mlx_texture_to_image(game->mlx, game->txts.ship);
-	game->imgs.ship_d = mlx_texture_to_image(game->mlx, game->txts.ship_d);
-	game->imgs.ship_l = mlx_texture_to_image(game->mlx, game->txts.ship_l);
-	game->imgs.ship_r = mlx_texture_to_image(game->mlx, game->txts.ship_r);
-	game->imgs.ship_u = mlx_texture_to_image(game->mlx, game->txts.ship_u);
+	game->imgs.floor = mlx_texture_to_image(game->mlx, game->txts.floor);
+	game->imgs.character = mlx_texture_to_image(game->mlx, game->txts.character);
+	game->imgs.character_d = mlx_texture_to_image(game->mlx, game->txts.character_d);
+	game->imgs.character_l = mlx_texture_to_image(game->mlx, game->txts.character_l);
+	game->imgs.character_r = mlx_texture_to_image(game->mlx, game->txts.character_r);
+	game->imgs.character_u = mlx_texture_to_image(game->mlx, game->txts.character_u);
 	game->imgs.npc = mlx_texture_to_image(game->mlx, game->txts.npc);
 	game->imgs.collec = mlx_texture_to_image(game->mlx, game->txts.collec);
 	game->imgs.exit_c = mlx_texture_to_image(game->mlx, game->txts.exit_c);

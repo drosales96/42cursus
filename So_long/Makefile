@@ -55,8 +55,8 @@ MLX42_INCLUDE       = ./MLX42/include
 # ══ Bonus Directories ═══════════════════════════════════════════════════════ #
 #    -----------------      #
 
-SRC_BONUS_DIR       = ./bonus
-INCLUDES_BONUS_DIR  = ./bonus
+SRC_BONUS_DIR       = ./src_bonus
+INCLUDES_BONUS_DIR  = ./inc
 
 # ══ Library Archives ════════════════════════════════════════════════════════ #
 #    ----------------                                                          #
@@ -102,18 +102,18 @@ OBJ_GNL             = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
 # ══ Sources Bonus ═══════════════════════════════════════════════════════════ #
 #    -------------                                                             #
 
-SRC_BONUS                 = ${SRC_BONUS_DIR}/ft_flood_fill.c \
-						${SRC_BONUS_DIR}/ft_utils.c \
-						${SRC_BONUS_DIR}/ft_print_character.c \
-						${SRC_BONUS_DIR}/ft_free.c \
-						${SRC_BONUS_DIR}/ft_mapping.c \
-						${SRC_BONUS_DIR}/ft_materials.c \
-						${SRC_BONUS_DIR}/ft_mlx_init.c \
-						${SRC_BONUS_DIR}/ft_moves.c \
-						${SRC_BONUS_DIR}/ft_matrix.c \
-						${SRC_BONUS_DIR}/ft_utils2.c \
-						${SRC_BONUS_DIR}/ft_rendering.c \
-						${SRC_BONUS_DIR}/so_long.c
+SRC_BONUS                 = ${SRC_BONUS_DIR}/ft_cells_management_bonus.c \
+						${SRC_BONUS_DIR}/ft_utils_bonus.c \
+						${SRC_BONUS_DIR}/ft_print_character_bonus.c \
+						${SRC_BONUS_DIR}/ft_free_bonus.c \
+						${SRC_BONUS_DIR}/ft_mapping_bonus.c \
+						${SRC_BONUS_DIR}/ft_materials_bonus.c \
+						${SRC_BONUS_DIR}/ft_mlx_init_bonus.c \
+						${SRC_BONUS_DIR}/ft_moves_bonus.c \
+						${SRC_BONUS_DIR}/ft_matrix_bonus.c \
+						${SRC_BONUS_DIR}/ft_utils2_bonus.c \
+						${SRC_BONUS_DIR}/ft_rendering_bonus.c \
+						${SRC_BONUS_DIR}/so_long_bonus.c
 OBJ_SRC_BONUS       = $(patsubst ${SRC_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC_BONUS})
 OBJ_GNL_BONUS       = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cells.c                                         :+:      :+:    :+:   */
+/*   ft_flood_fill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 08:47:06 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/09 11:49:36 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 01:52:53 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ t_init	**ft_fill(char **stat, t_coord size, t_coord now, t_init **game)
 
 t_init	*ft_flood(t_init *game)
 {
-	game->cell.ship = 0;
+	game->cell.character = 0;
 	game->cell.collec = 0;
 	game->cell.exit = 0;
-	game = *ft_fill(game->status_b, game->size, game->ship, &game);
+	game = *ft_fill(game->status_b, game->size, game->character, &game);
 	return (game);
 }

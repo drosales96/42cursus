@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 09:34:29 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/11 19:52:35 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 02:20:39 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ void	ft_key_press(struct mlx_key_data key_data, void *date)
 	t_init	*game;
 
 	game = date;
-	game = ft_find_ship(game);
+	game = ft_find_character(game);
 	if (key_data.key == MLX_KEY_UP && ft_key_check(game) == 1)
-		ft_move_char_up(game, game->ship.y, game->ship.x);
+		ft_move_char_up(game, game->character.y, game->character.x);
 	if (key_data.key == MLX_KEY_DOWN && ft_key_check(game) == 2)
-		ft_move_char_down(game, game->ship.y, game->ship.x);
+		ft_move_char_down(game, game->character.y, game->character.x);
 	if (key_data.key == MLX_KEY_LEFT && ft_key_check(game) == 3)
-		ft_move_char_left(game, game->ship.y, game->ship.x);
+		ft_move_char_left(game, game->character.y, game->character.x);
 	if (key_data.key == MLX_KEY_RIGHT && ft_key_check(game) == 4)
-		ft_move_char_right(game, game->ship.y, game->ship.x);
+		ft_move_char_right(game, game->character.y, game->character.x);
 	if (key_data.key == MLX_KEY_ESCAPE && ft_key_check(game) == 5)
 	{
 		mlx_close_window(game->mlx);

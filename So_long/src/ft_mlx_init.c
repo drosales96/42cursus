@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 07:57:02 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/12 17:43:22 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 01:56:00 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_mlx_init(t_init *gm)
 {
-	gm = ft_find_ship(gm);
+	gm = ft_find_character(gm);
 	gm->mlx = mlx_init(gm->size.x * 64, gm->size.y * 64, "so_long", true);
 	if (!gm || !gm->mlx)
 	{
@@ -25,7 +25,7 @@ void	ft_mlx_init(t_init *gm)
 	ft_init_txts(gm);
 	ft_init_imgs(gm);
 	ft_print_matrix(gm);
-	gm->imgs.ship = NULL;
+	gm->imgs.character = NULL;
 	mlx_key_hook(gm->mlx, ft_key_press, gm);
 	mlx_loop(gm->mlx);
 }

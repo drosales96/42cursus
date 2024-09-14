@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_character.c                               :+:      :+:    :+:   */
+/*   ft_print_character_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 13:27:50 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/14 01:59:07 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 02:09:55 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 void	ft_char_to_up(t_init *game, t_coord p, int step)
 {

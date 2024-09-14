@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mapping.c                                       :+:      :+:    :+:   */
+/*   ft_mapping_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:19:59 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/12 17:42:44 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 02:21:56 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
 int	ft_start_map(char *path)
 {
@@ -23,7 +23,7 @@ int	ft_start_map(char *path)
 	game->path = path;
 	if (ft_map(&game) == 1)
 		return (FAILURE);
-	game = ft_find_ship(game);
+	game = ft_find_character(game);
 	game = ft_flood(game);
 	game->status_b = ft_free_status(game->status_b, game->size.y);
 	if (ft_check_all(game, ft_count_obj(game->map)) == FAILURE)
@@ -68,35 +68,43 @@ int	ft_checking_file(char *file)
 	return (SUCCESS);
 }
 
-int	ft_map_shape(t_init *game)
+int ft_map_shape(t_init *game)
 {
-	int	i;
-	int	j;
-	int	l_size;
+    int i;
+    int j;
+    int l_size;
 
-	l_size = 0;
-	while (game->status_a[0][l_size] != '\n' && game->status_a[0][l_size] != '\0')
-		l_size++;
+    j = 0;
+    l_size = 0;
 
-	j = 0;
-	while (j < game->size.y)
+    if (game->status_a[0] == NULL) 
 	{
-		i = 0;
-		while (game->status_a[j][i] != '\n' && game->status_a[j][i] != '\0')
+        printf("Error: La primera fila del mapa es NULL\n");
+        return FAILURE;
+    }
+    while (game->status_a[0][l_size] != '\n' && game->status_a[0][l_size] != '\0') 
+        l_size++;
+    while (j < game->size.y) 
+	{
+        i = 0;
+        if (game->status_a[j] == NULL) {
+            printf("Error: La fila %d del mapa es NULL\n", j);
+            return FAILURE;
+        }
+        while (game->status_a[j][i] != '\n' && game->status_a[j][i] != '\0') 
 		{
-			if (game->status_a[j][i] != '0' && game->status_a[j][i] != WALL
-				&& game->status_a[j][i] != 'P' && game->status_a[j][i] != 'C'
-				&& game->status_a[j][i] != EXIT)
-				return (FAILURE);
-			i++;
-		}
-		if (i != l_size)
-			return (FAILURE);
-		j++;
-	}
-	return (SUCCESS);
+            if (game->status_a[j][i] != ENEMY && game->status_a[j][i] != '0' && 
+                game->status_a[j][i] != WALL && game->status_a[j][i] != 'P' && 
+                game->status_a[j][i] != 'C' && game->status_a[j][i] != EXIT)
+                return (FAILURE);
+            i++;
+        }
+        if (l_size != i)
+            return (FAILURE);
+        j++;
+    }
+    return (SUCCESS);
 }
-
 
 int	ft_check_borders(t_init *game)
 {

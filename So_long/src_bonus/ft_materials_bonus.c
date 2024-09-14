@@ -1,46 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_materials.c                                     :+:      :+:    :+:   */
+/*   ft_materials_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 08:17:28 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/11 18:58:04 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 02:09:05 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../inc/so_long_bonus.h"
 
-t_init	*ft_find_ship(t_init *ship)
+t_init	*ft_find_character(t_init *character)
 {
 	int		i;
 	int		j;
 
 	j = 1;
-	ship->ship.x = 0;
-	ship->ship.y = 0;
-	while (j < ship->size.y)
+	character->character.x = 0;
+	character->character.y = 0;
+	while (j < character->size.y)
 	{
 		i = 1;
-		while (ship->status_a[j][i] != '\n')
+		while (character->status_a[j][i] != '\n')
 		{
-			if (ship->status_a[j][i] == PLAYER)
+			if (character->status_a[j][i] == PLAYER)
 			{
-				ship->ship.x = i;
-				ship->ship.y = j;
-				return (ship);
+				character->character.x = i;
+				character->character.y = j;
+				return (character);
 			}
 			i++;
 		}
 		j++;
 	}
-	return (ship);
+	return (character);
 }
 
 void	ft_objs_init(t_cell *obj)
 {
-	obj->ship = 0;
+	obj->character = 0;
 	obj->collec = 0;
 	obj->exit = 0;
 }
@@ -57,7 +57,7 @@ t_cell	ft_count_obj(t_map *map)
 		while (map->map[i])
 		{
 			if (map->map[i] == PLAYER)
-				obj.ship++;
+				obj.character++;
 			if (map->map[i] == COLLECT)
 				obj.collec++;
 			if (map->map[i] == EXIT)

@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 09:35:56 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/12 18:06:14 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 02:18:41 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,16 @@
 
 typedef struct s_txts
 {
-	mlx_texture_t	*ocean;
+	mlx_texture_t	*floor;
 	mlx_texture_t	*wall;
 	mlx_texture_t	*collec;
 	mlx_texture_t	*exit_c;
 	mlx_texture_t	*exit_o;
-	mlx_texture_t	*ship;
-	mlx_texture_t	*ship_u;
-	mlx_texture_t	*ship_d;
-	mlx_texture_t	*ship_l;
-	mlx_texture_t	*ship_r;
+	mlx_texture_t	*character;
+	mlx_texture_t	*character_u;
+	mlx_texture_t	*character_d;
+	mlx_texture_t	*character_l;
+	mlx_texture_t	*character_r;
 	mlx_texture_t	*npc;
 }	t_txts;
 
@@ -114,16 +114,16 @@ typedef struct s_txts
 
 typedef struct s_images
 {
-	mlx_image_t		*ocean;
+	mlx_image_t		*floor;
 	mlx_image_t		*wall;
 	mlx_image_t		*collec;
 	mlx_image_t		*exit_c;
 	mlx_image_t		*exit_o;
-	mlx_image_t		*ship;
-	mlx_image_t		*ship_u;
-	mlx_image_t		*ship_d;
-	mlx_image_t		*ship_l;
-	mlx_image_t		*ship_r;
+	mlx_image_t		*character;
+	mlx_image_t		*character_u;
+	mlx_image_t		*character_d;
+	mlx_image_t		*character_l;
+	mlx_image_t		*character_r;
 	mlx_image_t		*npc;
 }	t_images;
 
@@ -139,9 +139,9 @@ typedef struct s_map
 
 typedef struct s_cell
 {
-	int	ship;
+	int	character;
 	int	npc;
-	int	ocean;
+	int	floor;
 	int	wall;
 	int	collec;
 	int	exit;
@@ -170,7 +170,7 @@ typedef struct s_init
 	t_images		imgs;
 	t_cell			cell;
 	t_map			*map;
-	t_coord			ship;
+	t_coord			character;
 	t_coord			npc;
 	t_coord			size;
 	char			**status_a;
@@ -186,88 +186,50 @@ typedef struct s_init
 }	t_init;
 
 
-/* FLOOD FILL MODIFIED */
-
 t_init		**ft_fill(char **stat, t_coord size, t_coord now, t_init **game);
 t_init		*ft_flood(t_init *game);
-
-// *** ft_check_game.c ***
-
-int			ft_check_cells(t_cell checked, t_cell objects);
+int			ft_check_cells(t_cell checked, t_cell elements);
 int			ft_check_main_elements(t_cell objects);
 int			ft_map_shape(t_init *game);
 int			ft_check_borders(t_init *game);
-
-// *** ft_check_tools.c ***
-
 int			ft_check_all(t_init *game, t_cell objects);
 int			ft_checking_file(char *file);
 void		ft_check_empty_line(t_init *game, char *line);
 t_init		**ft_check_cell(t_init	**game, char check);
 int			ft_key_check(t_init *game);
-
-// *** ft_drawing_moves.c ***
-
 void		ft_char_to_up(t_init *game, t_coord p, int step);
 void		ft_char_to_down(t_init *game, t_coord p, int step);
 void		ft_char_to_right(t_init *game, t_coord p, int step);
 void		ft_char_to_left(t_init *game, t_coord p, int step);
-
-// *** ft_drawing_tools.c ***
-
 t_map		*ft_add_line(char *line);
 void		ft_last_line(t_init *game, t_map *new);
 void		ft_print_matrix(t_init *game);
 void		ft_drawing_imgs(t_init *game, char img, t_coord p);
 void		ft_drawing_char(t_init *game, t_coord p);
-
-// *** ft_free_tools.c ***
-
 void		ft_free(t_init *game, int error);
 void		ft_free_stack(t_map **stack);
 void		ft_free_textures(t_init **game);
 void		ft_free_images(t_init **game);
 char		**ft_free_status(char **status, int len);
-
-// *** ft_initialize.c ***
-
 t_init		*ft_initialize_game(t_init *init);
 int			ft_start_map(char *path);
 t_map		*ft_map_init(t_init *game);
 void		ft_init_txts(t_init *game);
 void		ft_init_imgs(t_init *game);
-
-// *** ft_materials.c ***
-
-t_init		*ft_find_ship(t_init *ship);
+t_init		*ft_find_character(t_init *ship);
 void		ft_objs_init(t_cell *obj);
 t_cell		ft_count_obj(t_map *map);
-
-// *** ft_mlx_init.c ***
-
 void		ft_mlx_init(t_init *gm);
-
-// *** ft_moves.c ***
-
 void		ft_move_char_right(t_init *game, int y, int x);
 void		ft_move_char_left(t_init *game, int y, int x);
 void		ft_move_char_up(t_init *game, int y, int x);
 void		ft_move_char_down(t_init *game, int y, int x);
-
-// *** ft_tools.c ***
-
 int			ft_map_x(t_map *width);
 int			ft_map_y(t_map *height);
-
-// *** so_long.c ***
-
 char		**ft_status_map(t_init *game);
 void		ft_key_press(struct mlx_key_data key_data, void *date);
 int			ft_map(t_init **game);
-
-/* GNL */
-
-char	*get_next_line(int fd);
+char		*get_next_line(int fd);
 
 /* TERMINAL COLORS */
 
