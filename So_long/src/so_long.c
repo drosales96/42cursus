@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 09:34:29 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/14 02:20:39 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 12:01:04 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,20 +96,20 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc != 2)
 	{
-		ft_printf("⛔ Needed two arguments [./so_long + map]... ⛔");
+		ft_printf("⛔ Needed two arguments... ⛔");
 		return (1);
 	}
 	if (argc == 2)
 	{
 		if (ft_checking_file(argv[1]) == FAILURE)
 		{
-			ft_printf("⛔ There is something wrong in the file... ⛔");
+			ft_printf("⛔ Are you sure thar file ends in '.ber'?... ⛔");
 			return (FAILURE);
 		}
 		i = ft_start_map(argv[1]);
 		if (i == 1)
 			return (FAILURE);
 	}
-	ft_printf("\nYOU HAVE WIN THE GAME ✅\n");
+	ft_printf("\nYOU HAVE WIN THE GAME ✅\n\n");
 	return (SUCCESS);
 }
