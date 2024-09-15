@@ -82,8 +82,7 @@ IFLAGS_BONUS        = -I${INCLUDES_BONUS_DIR}
 # ══ Sources ═════════════════════════════════════════════════════════════════ #
 #    -------                                                                   #
 
-SRC                 = ${SRC_DIR}/ft_flood_fill.c \
-						${SRC_DIR}/ft_utils.c \
+SRC                 = ${SRC_DIR}/ft_cells_management.c \
 						${SRC_DIR}/ft_print_character.c \
 						${SRC_DIR}/ft_free.c \
 						${SRC_DIR}/ft_mapping.c \
@@ -91,7 +90,9 @@ SRC                 = ${SRC_DIR}/ft_flood_fill.c \
 						${SRC_DIR}/ft_mlx_init.c \
 						${SRC_DIR}/ft_moves.c \
 						${SRC_DIR}/ft_matrix.c \
+						${SRC_DIR}/ft_utils.c \
 						${SRC_DIR}/ft_utils2.c \
+						${SRC_DIR}/ft_utils3.c \
 						${SRC_DIR}/ft_rendering.c \
 						${SRC_DIR}/so_long.c
 GNL					= ${GNL_DIR}/get_next_line.c \
@@ -103,7 +104,6 @@ OBJ_GNL             = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
 #    -------------                                                             #
 
 SRC_BONUS                 = ${SRC_BONUS_DIR}/ft_cells_management_bonus.c \
-						${SRC_BONUS_DIR}/ft_utils_bonus.c \
 						${SRC_BONUS_DIR}/ft_print_character_bonus.c \
 						${SRC_BONUS_DIR}/ft_free_bonus.c \
 						${SRC_BONUS_DIR}/ft_mapping_bonus.c \
@@ -111,7 +111,9 @@ SRC_BONUS                 = ${SRC_BONUS_DIR}/ft_cells_management_bonus.c \
 						${SRC_BONUS_DIR}/ft_mlx_init_bonus.c \
 						${SRC_BONUS_DIR}/ft_moves_bonus.c \
 						${SRC_BONUS_DIR}/ft_matrix_bonus.c \
+						${SRC_BONUS_DIR}/ft_utils_bonus.c \
 						${SRC_BONUS_DIR}/ft_utils2_bonus.c \
+						${SRC_BONUS_DIR}/ft_utils3_bonus.c \
 						${SRC_BONUS_DIR}/ft_rendering_bonus.c \
 						${SRC_BONUS_DIR}/so_long_bonus.c
 OBJ_SRC_BONUS       = $(patsubst ${SRC_BONUS_DIR}/%.c, ${OBJ_DIR}/%.o, ${SRC_BONUS})

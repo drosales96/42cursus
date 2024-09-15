@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:19:21 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/14 02:10:32 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/14 19:49:00 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,20 @@ int	ft_map_y(t_map *height)
 int	ft_check_main_elements(t_cell objects)
 {
 	if (objects.character != 1)
+	{
 		ft_printf("⛔ There is no player in the map! ⛔");
+		return (1);
+	}
 	if (objects.collec < 1)
+	{
 		ft_printf("⛔ You must put one or more collectibles in the map! ⛔");
+		return (FAILURE);
+	}
 	if (objects.exit != 1)
+	{
 		ft_printf("⛔ There is no EXIT in the game, ridiculous... ⛔");
+		return (FAILURE);
+	}
 	return (SUCCESS);
 }
 

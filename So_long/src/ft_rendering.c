@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:30:52 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/14 02:48:55 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 00:19:21 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_init_txts(t_init *game)
 	game->txts.npc = mlx_load_png("./assets/enemy.png");
 	game->txts.collec = mlx_load_png("./assets/pokeball.png");
 	game->txts.exit_c = mlx_load_png("./assets/exit.png");
-	game->txts.exit_o = mlx_load_png("./assets/exit_o.png");
+	game->txts.exit_o = mlx_load_png("./assets/exit.png");
 	if (!game->txts.wall || !game->txts.floor || !game->txts.character
 		|| !game->txts.character_u || !game->txts.character_d
 		|| !game->txts.character_l || !game->txts.character_r

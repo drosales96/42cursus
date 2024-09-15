@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:19:59 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/14 02:30:09 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 00:14:08 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ int	ft_checking_file(char *file)
 	len = ft_strlen(file);
 	if ((file[len - 4] != '.' || file[len - 3] != 'b'
 			|| file[len -2] != 'e' || file[len -1] != 'r'))
+	{
+		ft_printf("⛔ Are you sure that the file ends in '.ber'?...\n");
 		return (FAILURE);
+	}
 	return (SUCCESS);
 }
 

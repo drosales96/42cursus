@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 09:15:22 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/14 11:55:32 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 00:09:32 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_move_char_right(t_init *game, int y, int x)
 	if (game->status_a[y][x + 1] == 'C')
 		game->c++;
 	if (game->status_a[y][x + 1] == 'E')
-		ft_printf("\nYOU HAVE WIN THE GAME ✅\n\n");
+		ft_printf("YOU HAVE WIN THE GAME ✅\n");
 	else if (game->status_a[y][x + 1] == 'X')
-		ft_printf("\nTHE ENEMY KILLS YOU 🥊\n\n");
+		ft_printf("THE ENEMY KILLS YOU 🥊\n");
 	if (game->status_a[y][x + 1] == 'E' || game->status_a[y][x + 1] == 'X')
 		mlx_close_window(game->mlx);
 	game->moves++;
@@ -63,8 +63,8 @@ void	ft_move_char_left(t_init *game, int y, int x)
 		game->c++;
 	if (game->status_a[y][x - 1] == 'E' && game->c == game->collec)
 		ft_printf("YOU HAVE WIN THE GAME ✅\n");
-	else if (game->status_a[y][x - 1] == 'X')
-		ft_printf("\nTHE ENEMY KILLS YOU 🥊\n");
+	if (game->status_a[y][x - 1] == 'X')
+		ft_printf("THE ENEMY KILLS YOU 🥊\n");
 	if (game->status_a[y][x - 1] == 'E' || game->status_a[y][x - 1] == 'X')
 		mlx_close_window(game->mlx);
 	game->moves++;
@@ -93,7 +93,7 @@ void	ft_move_char_up(t_init *game, int y, int x)
 	if (game->status_a[y - 1][x] == 'E' && game->c == game->collec)
 		ft_printf("YOU HAVE WIN THE GAME ✅\n");
 	else if (game->status_a[y - 1][x] == 'X')
-		ft_printf("\nTHE ENEMY KILLS YOU 🥊\n");
+		ft_printf("THE ENEMY KILLS YOU 🥊\n");
 	if (game->status_a[y - 1][x] == 'E' || game->status_a[y - 1][x] == 'X')
 		mlx_close_window(game->mlx);
 	game->moves++;
@@ -120,9 +120,9 @@ void	ft_move_char_down(t_init *game, int y, int x)
 	if (game->status_a[y + 1][x] == 'C')
 		game->c++;
 	if (game->status_a[y + 1][x] == 'E' && game->c == game->collec)
-		ft_printf("\nYOU HAVE WIN THE GAME ✅\n");
+		ft_printf("YOU HAVE WIN THE GAME ✅\n");
 	else if (game->status_a[y + 1][x] == 'X')
-		ft_printf("\nTHE ENEMY KILLS YOU 🥊\n");
+		ft_printf("THE ENEMY KILLS YOU 🥊\n");
 	if (game->status_a[y + 1][x] == 'E' || game->status_a[y + 1][x] == 'X')
 		mlx_close_window(game->mlx);
 	game->moves++;
