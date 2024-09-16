@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 09:15:22 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/14 01:19:25 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:29:47 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_move_char_right(t_init *game, int y, int x)
 	else if (game->status_a[y][x + 1] == 'E' && game->c == game->collec)
 	{
 		mlx_close_window(game->mlx);
+		ft_printf("OK");
 		return ;
 	}
 	else if (game->status_a[y][x + 1] == 'E')
@@ -60,6 +61,7 @@ void	ft_move_char_left(t_init *game, int y, int x)
 	else if (game->status_a[y][x - 1] == 'E' && game->c == game->collec)
 	{
 		mlx_close_window(game->mlx);
+		ft_printf("OK");
 		return ;
 	}
 	else if (game->status_a[y][x - 1] == 'E')
@@ -88,6 +90,7 @@ void	ft_move_char_up(t_init *game, int y, int x)
 	else if (game->status_a[y - 1][x] == 'E' && game->c == game->collec)
 	{
 		mlx_close_window(game->mlx);
+		ft_printf("OK");
 		return ;
 	}
 	else if (game->status_a[y - 1][x] == 'E')
@@ -116,6 +119,7 @@ void	ft_move_char_down(t_init *game, int y, int x)
 	else if (game->status_a[y + 1][x] == 'E' && game->c == game->collec)
 	{
 		mlx_close_window(game->mlx);
+		ft_printf("OK");
 		return ;
 	}
 	else if (game->status_a[y + 1][x] == 'E')

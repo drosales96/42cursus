@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:19:21 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/14 02:00:06 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:48:30 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ t_map	*ft_add_line(char *line)
 	if (!new)
 		return (NULL);
 	new->map = ft_strdup(line);
+	if (!line)
+	{
+		free(line);
+		return (NULL);
+	}
 	if (!new->map)
 	{
 		free(new);

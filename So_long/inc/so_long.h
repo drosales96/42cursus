@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 09:35:56 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/14 02:18:41 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:29:50 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,6 @@ typedef struct s_init
 	char			course;
 	bool			walking;
 }	t_init;
-
 
 t_init		**ft_fill(char **stat, t_coord size, t_coord now, t_init **game);
 t_init		*ft_flood(t_init *game);

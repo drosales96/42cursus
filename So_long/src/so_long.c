@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 09:34:29 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 00:21:17 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 09:09:32 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ int	main(int argc, char **argv)
 		if (i == 1)
 			return (FAILURE);
 	}
-	ft_printf("YOU HAVE WIN THE GAME ✅\n");
 	return (SUCCESS);
 }
