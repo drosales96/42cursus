@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 11:48:54 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/14 02:10:21 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:02:07 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int	ft_check_all(t_init *game, t_cell elements)
 		msg = FAILURE;
 	if (msg == FAILURE)
 	{
-		ft_printf("ERROR POSIBILITIES: \n\n📛There is a fake char in the Matrix.\n📛There is a diferent object in a cell.\n📛The map is not rectangular (in this case).\n📛The walls are broken, check all '1' in the matrix.\n");
+		ft_printf("ERROR POSIBILITIES: \n\n📛There is a fake \
+		char in the Matrix.\n📛There is a diferent object \
+		in a cell.\n📛The map is not rectangular \
+		(in this case).\n📛The walls are broken, check all '1' \
+		in the matrix.\n");
 		return (FAILURE);
 	}
 	return (SUCCESS);

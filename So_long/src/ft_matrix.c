@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:44:49 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/14 02:19:43 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:38:28 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ void	ft_drawing_char(t_init *game, t_coord p)
 	else if (game->course == 'L' && game->counter > 0)
 		ft_char_to_left(game, p, game->counter);
 	else
-		mlx_image_to_window(game->mlx, game->imgs.character, p.x * 64, p.y * 64);
+		mlx_image_to_window(game->mlx, game->imgs.character, \
+		p.x * 64, p.y * 64);
 }
+
 void	ft_print_matrix(t_init *game)
 {
 	t_coord	coord;
@@ -65,4 +67,3 @@ void	ft_print_matrix(t_init *game)
 	}
 	ft_drawing_char(game, game->character);
 }
-

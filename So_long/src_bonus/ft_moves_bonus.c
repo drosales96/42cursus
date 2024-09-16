@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 09:15:22 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 11:30:41 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:07:55 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_move_char_right(t_init *game, int y, int x)
 	coord.y = y;
 	coord.x = x;
 	if (game->status_a[y][x + 1] == 'E' && game->c < game->collec)
-    	return; 
+		return ;
 	if (game->status_a[y][x + 1] == 'C')
 		game->c++;
 	if (game->status_a[y][x + 1] == 'E')
@@ -58,11 +58,11 @@ void	ft_move_char_left(t_init *game, int y, int x)
 	coord.y = y;
 	coord.x = x;
 	if (game->status_a[y][x - 1] == 'E' && game->c < game->collec)
-    	return; 
+		return ;
 	if (game->status_a[y][x - 1] == 'C')
 		game->c++;
 	if (game->status_a[y][x - 1] == 'E' && game->c == game->collec)
-		ft_printf("YOU HAVE WIN THE GAME ✅\n");
+		ft_printf("YOU HAVE WON THE GAME ✅\n");
 	if (game->status_a[y][x - 1] == 'X')
 		ft_printf("THE ENEMY KILLS YOU 🥊\n");
 	if (game->status_a[y][x - 1] == 'E' || game->status_a[y][x - 1] == 'X')
@@ -87,7 +87,7 @@ void	ft_move_char_up(t_init *game, int y, int x)
 	coord.y = y;
 	coord.x = x;
 	if (game->status_a[y - 1][x] == 'E' && game->c < game->collec)
-    	return;
+		return ;
 	if (game->status_a[y - 1][x] == 'C')
 		game->c++;
 	if (game->status_a[y - 1][x] == 'E' && game->c == game->collec)
@@ -116,7 +116,7 @@ void	ft_move_char_down(t_init *game, int y, int x)
 	coord.y = y;
 	coord.x = x;
 	if (game->status_a[y + 1][x] == 'E' && game->c < game->collec)
-    	return; 
+		return ;
 	if (game->status_a[y + 1][x] == 'C')
 		game->c++;
 	if (game->status_a[y + 1][x] == 'E' && game->c == game->collec)

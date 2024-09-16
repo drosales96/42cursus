@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:19:59 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 10:58:21 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:08:53 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	ft_start_map(char *path)
 
 	game = ft_calloc(sizeof(t_init), 1);
 	if (!game)
+	{
+		free (game);
 		return (FAILURE);
+	}
 	game = ft_initialize_game(game);
 	game->path = path;
 	if (ft_map(&game) == 1)
@@ -70,6 +73,7 @@ int	ft_checking_file(char *file)
 	}
 	return (SUCCESS);
 }
+
 int	ft_map_shape(t_init *game)
 {
 	int	i;
@@ -77,9 +81,9 @@ int	ft_map_shape(t_init *game)
 	int	l_size;
 
 	l_size = 0;
-	while (game->status_a[0][l_size] != '\n' && game->status_a[0][l_size] != '\0')
+	while (game->status_a[0][l_size] != '\n' && \
+	game->status_a[0][l_size] != '\0')
 		l_size++;
-
 	j = 0;
 	while (j < game->size.y)
 	{
@@ -88,7 +92,7 @@ int	ft_map_shape(t_init *game)
 		{
 			if (game->status_a[j][i] != '0' && game->status_a[j][i] != WALL
 				&& game->status_a[j][i] != 'P' && game->status_a[j][i] != 'C'
-				&& game->status_a[j][i] != EXIT && game->status_a[j][i] != ENEMY)
+				&& game->status_a[j][i] != EXIT && game->status_a[j][i] != 'X')
 				return (FAILURE);
 			i++;
 		}
@@ -110,7 +114,8 @@ int	ft_check_borders(t_init *game)
 		i = 0;
 		while (game->status_a[j][i] != '\n' && game->status_a[j][i] != '\0')
 		{
-			if ((j == 0 || j == game->size.y - 1 || i == 0 || i == game->size.x - 1)
+			if ((j == 0 || j == game->size.y - 1 || i == 0 || \
+			i == game->size.x - 1)
 				&& game->status_a[j][i] != WALL)
 				return (FAILURE);
 			i++;

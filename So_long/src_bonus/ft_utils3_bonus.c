@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 00:17:14 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/16 11:24:46 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:47:15 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,17 @@ char	**ft_status_map(t_init *game)
 	status = malloc(sizeof(char *) * (game->size.y + 1));
 	if (!status)
 	{
-		free(status);
+		free (status);
 		return (NULL);
 	}
 	while (game->map)
 	{
 		status[i] = ft_strdup(game->map->map);
-		if (!status[i])
+		if (!status[i++])
 		{
 			ft_free_status(status, i);
 			return (NULL);
 		}
-		i++;
 		game->map = game->map->next;
 	}
 	game->map = tmp;

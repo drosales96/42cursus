@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:19:21 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 10:52:23 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:59:50 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	ft_map_y(t_map *height)
 	}
 	return (y);
 }
+
 int	ft_check_main_elements(t_cell objects)
 {
 	if (objects.character != 1)

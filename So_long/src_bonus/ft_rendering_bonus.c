@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 18:30:52 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/14 02:45:29 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:59:20 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_init_txts(t_init *game)
 	if (!game->txts.wall || !game->txts.floor || !game->txts.character
 		|| !game->txts.character_u || !game->txts.character_d
 		|| !game->txts.character_l || !game->txts.character_r
-		|| !game->txts.npc|| !game->txts.collec
+		|| !game->txts.npc || !game->txts.collec
 		|| !game->txts.exit_c || !game->txts.exit_o)
 	{
 		ft_printf("💀 We are not processing the textures 💀\n");
@@ -60,11 +60,16 @@ void	ft_init_imgs(t_init *game)
 {
 	game->imgs.wall = mlx_texture_to_image(game->mlx, game->txts.wall);
 	game->imgs.floor = mlx_texture_to_image(game->mlx, game->txts.floor);
-	game->imgs.character = mlx_texture_to_image(game->mlx, game->txts.character);
-	game->imgs.character_d = mlx_texture_to_image(game->mlx, game->txts.character_d);
-	game->imgs.character_l = mlx_texture_to_image(game->mlx, game->txts.character_l);
-	game->imgs.character_r = mlx_texture_to_image(game->mlx, game->txts.character_r);
-	game->imgs.character_u = mlx_texture_to_image(game->mlx, game->txts.character_u);
+	game->imgs.character = mlx_texture_to_image(game->mlx, \
+	game->txts.character);
+	game->imgs.character_d = mlx_texture_to_image(game->mlx, \
+	game->txts.character_d);
+	game->imgs.character_l = mlx_texture_to_image(game->mlx, \
+	game->txts.character_l);
+	game->imgs.character_r = mlx_texture_to_image(game->mlx, \
+	game->txts.character_r);
+	game->imgs.character_u = mlx_texture_to_image(game->mlx, \
+	game->txts.character_u);
 	game->imgs.npc = mlx_texture_to_image(game->mlx, game->txts.npc);
 	game->imgs.collec = mlx_texture_to_image(game->mlx, game->txts.collec);
 	game->imgs.exit_c = mlx_texture_to_image(game->mlx, game->txts.exit_c);

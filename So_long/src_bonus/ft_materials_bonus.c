@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 08:17:28 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/15 23:47:18 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:48:06 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_cell	ft_count_obj(t_map *map)
 	}
 	if (obj.character != 1 || obj.exit != 1)
 	{
-		ft_printf(" ⛔ There is more than one main character or more than one exit");
+		ft_printf(" ⛔ Too much exits or characters");
 		exit (EXIT_FAILURE);
 	}
 	return (obj);

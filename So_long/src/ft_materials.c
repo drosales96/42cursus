@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 08:17:28 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 09:13:56 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:37:36 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,3 @@ t_cell	ft_count_obj(t_map *map)
 	}
 	return (obj);
 }
-
-

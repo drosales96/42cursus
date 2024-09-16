@@ -68,7 +68,7 @@ LIBMLX42_A          = ${MLX42_LIB}/libmlx42.a
 # ══ Flags ═══════════════════════════════════════════════════════════════════ #
 #    -----                                                                     #
 
-CFLAGS              = -Wall -Werror -Wextra  -fsanitize=address -g 
+CFLAGS              = -Wall -Werror -Wextra -fsanitize=address -g
 IFLAGS              = -I${INCLUDES_DIR} -I${MLX42_INCLUDE}
 LFLAGS              = -L${LIBFT_DIR} -lft \
 						-L${PRINTFT_DIR} -lftprintf \

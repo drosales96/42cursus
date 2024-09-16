@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 09:15:22 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 11:29:47 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:58:10 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static void	ft_moves_counter(t_init *game)
 	counter = ft_itoa(game->moves);
 	mlx_put_string(game->mlx, "Moves: ", 20, 20);
 	mlx_put_string(game->mlx, counter, 85, 20);
+	free(counter);
 }
+
 void	ft_move_char_right(t_init *game, int y, int x)
 {
 	t_coord	coord;
@@ -32,7 +34,7 @@ void	ft_move_char_right(t_init *game, int y, int x)
 	else if (game->status_a[y][x + 1] == 'E' && game->c == game->collec)
 	{
 		mlx_close_window(game->mlx);
-		ft_printf("OK");
+		ft_printf("YOU HAVE WON THE GAME ✅");
 		return ;
 	}
 	else if (game->status_a[y][x + 1] == 'E')

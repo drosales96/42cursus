@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:19:59 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 11:08:57 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:04:08 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,17 @@
 int	ft_start_map(char *path)
 {
 	t_init	*game;
-	t_init *temp_game;
 
 	game = ft_calloc(sizeof(t_init), 1);
 	if (!game)
-		return (FAILURE);
-	temp_game = ft_initialize_game(game);
-	if (temp_game != game)
-		ft_free(game, 1);
-	game = temp_game;
-	game->path = path;
-	if (ft_map(&game) == 1)
 	{
 		ft_free(game, 1);
 		return (FAILURE);
 	}
+	game = ft_initialize_game(game);
+	game->path = path;
+	if (ft_map(&game) == 1)
+		return (FAILURE);
 	game = ft_find_character(game);
 	game = ft_flood(game);
 	game->status_b = ft_free_status(game->status_b, game->size.y);
@@ -85,9 +81,9 @@ int	ft_map_shape(t_init *game)
 	int	l_size;
 
 	l_size = 0;
-	while (game->status_a[0][l_size] != '\n' && game->status_a[0][l_size] != '\0')
+	while (game->status_a[0][l_size] != '\n' && game->status_a[0][l_size] \
+	!= '\0')
 		l_size++;
-
 	j = 0;
 	while (j < game->size.y)
 	{
@@ -107,7 +103,6 @@ int	ft_map_shape(t_init *game)
 	return (SUCCESS);
 }
 
-
 int	ft_check_borders(t_init *game)
 {
 	int	i;
@@ -119,7 +114,8 @@ int	ft_check_borders(t_init *game)
 		i = 0;
 		while (game->status_a[j][i] != '\n' && game->status_a[j][i] != '\0')
 		{
-			if ((j == 0 || j == game->size.y - 1 || i == 0 || i == game->size.x - 1)
+			if ((j == 0 || j == game->size.y - 1 || i == 0 \
+			|| i == game->size.x - 1)
 				&& game->status_a[j][i] != WALL)
 				return (FAILURE);
 			i++;
