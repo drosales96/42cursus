@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 09:15:22 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 13:58:10 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:48:29 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 static void	ft_moves_counter(t_init *game)
 {
 	char	*counter;
+	int		i;
 
+	i = 0;
 	mlx_image_to_window(game->mlx, game->imgs.wall, 64, 1);
 	counter = ft_itoa(game->moves);
+	ft_printf("MOVES: %d\n", game->moves);
 	mlx_put_string(game->mlx, "Moves: ", 20, 20);
 	mlx_put_string(game->mlx, counter, 85, 20);
-	free(counter);
+	free (counter);
 }
 
 void	ft_move_char_right(t_init *game, int y, int x)
@@ -29,16 +32,14 @@ void	ft_move_char_right(t_init *game, int y, int x)
 
 	coord.y = y;
 	coord.x = x;
+	if (game->status_a[y][x + 1] == 'E' && game->c < game->collec)
+		return ;
 	if (game->status_a[y][x + 1] == 'C')
 		game->c++;
-	else if (game->status_a[y][x + 1] == 'E' && game->c == game->collec)
-	{
+	if (game->status_a[y][x + 1] == 'E')
+		ft_printf("YOU HAVE WIN THE GAME ✅\n");
+	if (game->status_a[y][x + 1] == 'E')
 		mlx_close_window(game->mlx);
-		ft_printf("YOU HAVE WON THE GAME ✅");
-		return ;
-	}
-	else if (game->status_a[y][x + 1] == 'E')
-		return ;
 	game->moves++;
 	game->status_a[y][x] = '0';
 	game->status_a[y][x + 1] = 'P';
@@ -58,16 +59,14 @@ void	ft_move_char_left(t_init *game, int y, int x)
 
 	coord.y = y;
 	coord.x = x;
+	if (game->status_a[y][x - 1] == 'E' && game->c < game->collec)
+		return ;
 	if (game->status_a[y][x - 1] == 'C')
 		game->c++;
-	else if (game->status_a[y][x - 1] == 'E' && game->c == game->collec)
-	{
+	if (game->status_a[y][x - 1] == 'E' && game->c == game->collec)
+		ft_printf("YOU HAVE WON THE GAME ✅\n");
+	if (game->status_a[y][x - 1] == 'E')
 		mlx_close_window(game->mlx);
-		ft_printf("OK");
-		return ;
-	}
-	else if (game->status_a[y][x - 1] == 'E')
-		return ;
 	game->moves++;
 	game->status_a[y][x] = '0';
 	game->status_a[y][x - 1] = 'P';
@@ -87,16 +86,14 @@ void	ft_move_char_up(t_init *game, int y, int x)
 
 	coord.y = y;
 	coord.x = x;
+	if (game->status_a[y - 1][x] == 'E' && game->c < game->collec)
+		return ;
 	if (game->status_a[y - 1][x] == 'C')
 		game->c++;
-	else if (game->status_a[y - 1][x] == 'E' && game->c == game->collec)
-	{
+	if (game->status_a[y - 1][x] == 'E' && game->c == game->collec)
+		ft_printf("YOU HAVE WIN THE GAME ✅\n");
+	if (game->status_a[y - 1][x] == 'E')
 		mlx_close_window(game->mlx);
-		ft_printf("OK");
-		return ;
-	}
-	else if (game->status_a[y - 1][x] == 'E')
-		return ;
 	game->moves++;
 	game->status_a[y][x] = '0';
 	game->status_a[y - 1][x] = 'P';
@@ -116,16 +113,14 @@ void	ft_move_char_down(t_init *game, int y, int x)
 
 	coord.y = y;
 	coord.x = x;
+	if (game->status_a[y + 1][x] == 'E' && game->c < game->collec)
+		return ;
 	if (game->status_a[y + 1][x] == 'C')
 		game->c++;
-	else if (game->status_a[y + 1][x] == 'E' && game->c == game->collec)
-	{
+	if (game->status_a[y + 1][x] == 'E' && game->c == game->collec)
+		ft_printf("YOU HAVE WIN THE GAME ✅\n");
+	if (game->status_a[y + 1][x] == 'E')
 		mlx_close_window(game->mlx);
-		ft_printf("OK");
-		return ;
-	}
-	else if (game->status_a[y + 1][x] == 'E')
-		return ;
 	game->moves++;
 	game->status_a[y][x] = '0';
 	game->status_a[y + 1][x] = 'P';

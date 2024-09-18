@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 05:50:06 by drosales          #+#    #+#             */
-/*   Updated: 2024/08/30 18:22:18 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:18:55 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static char	*nextline(char *buffer)
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	if (!buffer[i])
-	{	
+	{
 		free(buffer);
 		return (NULL);
 	}

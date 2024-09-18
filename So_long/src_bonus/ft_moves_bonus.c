@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 09:15:22 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 13:07:55 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:12:18 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 static void	ft_moves_counter(t_init *game)
 {
 	char	*counter;
+	int		i;
 
+	i = 0;
 	mlx_image_to_window(game->mlx, game->imgs.wall, 64, 1);
 	counter = ft_itoa(game->moves);
+	ft_printf("MOVES: %d\n", game->moves);
 	mlx_put_string(game->mlx, "Moves: ", 20, 20);
 	mlx_put_string(game->mlx, counter, 85, 20);
 }

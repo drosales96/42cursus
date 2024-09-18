@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 00:17:14 by drosales          #+#    #+#             */
-/*   Updated: 2024/09/16 13:47:15 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:17:25 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ int	ft_map(t_init **game)
 	tmp->status_a = ft_status_map(tmp);
 	if (!tmp->status_a)
 	{
-		ft_free(tmp, 2);
+		free(tmp);
 		return (FAILURE);
 	}
 	tmp->status_b = ft_status_map(tmp);
 	if (!tmp->status_b)
 	{
-		ft_free(tmp, 1);
+		free(tmp);
 		return (FAILURE);
 	}
 	*game = tmp;

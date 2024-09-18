@@ -68,7 +68,7 @@ LIBMLX42_A          = ${MLX42_LIB}/libmlx42.a
 # ══ Flags ═══════════════════════════════════════════════════════════════════ #
 #    -----                                                                     #
 
-CFLAGS              = -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS              = -Wall -Werror -Wextra
 IFLAGS              = -I${INCLUDES_DIR} -I${MLX42_INCLUDE}
 LFLAGS              = -L${LIBFT_DIR} -lft \
 						-L${PRINTFT_DIR} -lftprintf \
@@ -124,39 +124,43 @@ OBJ_GNL_BONUS       = $(patsubst ${GNL_DIR}/%.c, ${OBJ_DIR}/%.o, ${GNL})
 
 all: ${NAME}
 
-${NAME}: ftlibft ftprintf ${OBJ_SRC} ${OBJ_GNL}
+${NAME}: ${OBJ_SRC} ${OBJ_GNL} ${LIBFT_A} ${PRINTFT_A}
 	@echo "$(BLUE)📌​ Compiling root... $(DEF_COLOR)"
 	@${CC} ${CFLAGS} ${IFLAGS} -o ${NAME} ${OBJ_SRC} ${OBJ_GNL} ${LFLAGS}
 	@echo "$(GREEN) $(NAME) all created ✓$(DEF_COLOR)"
 
-${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
-	@${MKD} $(dir $@)
+${OBJ_DIR}/%.o: ${SRC_DIR}/%.c | ${OBJ_DIR}
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
 
-${OBJ_DIR}/%.o: ${GNL_DIR}/%.c
-	@${MKD} $(dir $@)
+${OBJ_DIR}/%.o: ${GNL_DIR}/%.c | ${OBJ_DIR}
 	@$(CC) ${CFLAGS} ${IFLAGS} -c $< -o $@
 
-ftlibft:
+${OBJ_DIR}:
+	@${MKD} ${OBJ_DIR}
+
+ftlibft: ${LIBFT_A}
+
+${LIBFT_A}: 
 	@echo "$(BLUE)📌​ Compiling Libft... $(DEF_COLOR)"
 	@cd ${LIBFT_DIR} && $(MAKE) -s all > /dev/null 2>&1
 	@echo "$(GREEN) Libft created ✓$(DEF_COLOR)"
 
-ftprintf:
+ftprintf: ${PRINTFT_A}
+
+${PRINTFT_A}:
 	@echo "$(BLUE)📌​ Compiling Ftprintf... $(DEF_COLOR)"
 	@cd ${PRINTFT_DIR} && $(MAKE) -s all > /dev/null 2>&1
 	@echo "$(GREEN) Ftprintf created ✓$(DEF_COLOR)"
 
 bonus: ${NAME_BONUS}
 
-${NAME_BONUS}: ftlibft ftprintf ${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS}
+${NAME_BONUS}: ${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS} ${LIBFT_A} ${PRINTFT_A}
 	@echo "$(BLUE)📌​ Compiling Bonus 🠲 $(DEF_COLOR)"
 	@${CC} ${CFLAGS} ${IFLAGS} ${IFLAGS_BONUS} -o ${NAME_BONUS} \
         	${OBJ_SRC_BONUS} ${OBJ_GNL_BONUS} ${LFLAGS}
 	@echo "$(GREEN) $(NAME_BONUS) has been created ✓$(DEF_COLOR)"
 
-${OBJ_DIR}/%.o: ${SRC_BONUS_DIR}/%.c
-	@${MKD} $(dir $@)
+${OBJ_DIR}/%.o: ${SRC_BONUS_DIR}/%.c | ${OBJ_DIR}
 	@$(CC) ${CFLAGS} ${IFLAGS} ${IFLAGS_BONUS} -c $< -o $@
 
 clean:
@@ -175,5 +179,3 @@ fclean: clean
 	@echo "$(GREEN)Files *.a and executables removed ✓$(DEF_COLOR)"
 
 re: fclean all
-
-.PHONY: all ftlibft ftprintf clean fclean bonus re

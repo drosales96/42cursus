@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 09:34:29 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 14:05:38 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:16:19 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	main(int argc, char **argv)
 		if (ft_checking_file(argv[1]) == FAILURE)
 			return (FAILURE);
 		i = ft_start_map(argv[1]);
-		if (!ft_start_map(argv[i]))
-			return (FAILURE);
 		if (i == 1)
 			return (FAILURE);
 	}

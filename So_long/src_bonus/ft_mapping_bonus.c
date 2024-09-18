@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:19:59 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 13:08:53 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/17 09:16:24 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_start_map(char *path)
 	game = ft_calloc(sizeof(t_init), 1);
 	if (!game)
 	{
-		free (game);
+		ft_free (game, 1);
 		return (FAILURE);
 	}
 	game = ft_initialize_game(game);

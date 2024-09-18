@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 11:48:54 by sternero          #+#    #+#             */
-/*   Updated: 2024/09/16 13:57:35 by drosales         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:51:08 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	ft_check_all(t_init *game, t_cell elements)
 		msg = FAILURE;
 	if (msg == FAILURE)
 	{
-		ft_printf("ERROR POSIBILITIES: \n\n📛There is a fake char in \
-		the Matrix.\n📛There is a diferent object in a cell.\n📛The \
-		map is not rectangular (in this case).\n📛The walls are \
-		broken, check all '1' in the matrix.\n");
+		ft_printf("📛 Something wrong with the Matrix!...\n");
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -67,8 +64,6 @@ t_init	**ft_check_cell(t_init	**game, char check)
 
 int	ft_key_check(t_init *game)
 {
-	if (!game)
-		free (game);
 	if (game->status_a[game->character.y - 1][game->character.x] != '1'
 		&& mlx_is_key_down(game->mlx, MLX_KEY_UP))
 		return (1);
