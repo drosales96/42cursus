@@ -1,16 +1,23 @@
-#include "get_next_line.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
-char	*get_next_line(int fd)
+#define BUFFER_SIZE 5000
+
+char    *get_next_line(int fd)
 {
-	int	byte;
-	int	i = 0;
-	char	*buffer;
-	char	c;
+	int     i;
+	int     byte;
+	char    c;
+	char    *buffer;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = (char *)malloc(42000000);
+	i = 0;
 	byte = read(fd, &c, 1);
+	buffer = (char *)malloc(420000000);
+	if (!buffer)
+		return (NULL);
 	while (byte > 0)
 	{
 		buffer[i] = c;
@@ -19,10 +26,10 @@ char	*get_next_line(int fd)
 			break ;
 		byte = read(fd, &c, 1);
 	}
-	if (i == 0 || byte == 0)
+	if (i == 0 && byte <= 0)
 	{
-		free (buffer);
-		return (NULL);
+			free (buffer);
+			return (NULL);
 	}
 	buffer[i] = '\0';
 	return (buffer);

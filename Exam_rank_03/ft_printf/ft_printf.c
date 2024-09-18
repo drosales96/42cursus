@@ -1,50 +1,52 @@
 #include <unistd.h>
+#include <stdlib.h>
 #include <stdarg.h>
 
-static int ft_putstr(char *str, int i)
+void    ft_putstr(char *str, int *len)
 {
-	if (!str)
-		return (ft_putstr("(null)"));
-	if (!str[i])
-		return (i);	
-	while  (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (ft_putstr(str, i + 1));
+    if (!str)
+        str = "(null)";
+    while (*str)
+        *len += write(1, str++, 1);
 }
 
-static int ft_putnbr(long num, int base)
+void ft_putnum(long long nbr, int base,  int *len)
 {
-	char *b = "0123456789abcdef";
-	if (num < 0 && base == 10)
-		return (write(1, "-", 1) + ft_putnbr(num * -1, base));
-	if (num > 0 && base == 10)
-		return (ft_putnbr((unsigned int)num, base));
-	if (num/base == 0)
-		return (write(1, &b[num%base], 1));
-	return (ft_putnbr(num/base, base) + ft_putnbr(num%base. base));
+    char    *hex;
+
+    hex = "0123456789abcdef";
+    if (nbr < 0)
+    {
+        nbr *= -1;
+        *len += write(1, "-", 1);
+    }
+    if (nbr >= base)
+        ft_putnum((nbr/base), base, len);
+    *len += write(1, &hex[nbr % base], 1);
 }
 
-static int type(char *s, va_list args, int i, int n)
+int ft_printf(const char *format, ...)
 {
-	if (!s[i])
-		return (n);
-	if (s[i] == '%' && s[i + 1] == 's')
-		return (type(s, args, i + 2, n + ft_putstr(va_arg(args, char *), 0)));
-	else if (s[i] == '%' && s[i + 1] == 'd')
-		return (type(s, args, i + 2, n + ft_putnbr(va_arg(args, int), 10)));
-	else if (s[i] == '%' && s[i + 1] == 'i')
-		return (type(s, args, i + 2, n + ft_putnbr(va_arg(args, int), 10)));
-	else if (s[i] == '%' && s[i + 1] == 'x')
-		return (type(s, args, i + 2, n + ft_putnbr(va_arg(args, int), 16)));
-	write(1, &s[i], 1);
-	return (type(s, args, i + 1, n + 1));
-}
+    int     len;
+    va_list ptr;
 
-int	ft_printf(char *s, ...)
-{
-	va_list args;
-	return (va_start(args, s), va_end(args), type(s, args, 0, 0));
+    len = 0;
+    va_start(ptr, format);
+    while (*format)
+    {
+        if ((*format == '%') && *(format + 1))
+        {
+            format++;
+            if (*format == 's')
+                ft_putstr(va_arg(ptr, char *), &len);
+            else if (*format == 'd' || *format == 'i')
+                ft_putnum((long long int)va_arg(ptr, int), 10, &len);
+            else if (*format == 'x')
+                ft_putnum((long long int)va_arg(ptr, unsigned int), 16, &len);
+        }
+        else
+            len += write(1, format, 1);
+        format ++;
+    }
+    return (va_end(ptr), len);
 }
