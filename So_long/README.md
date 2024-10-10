@@ -13,11 +13,9 @@ Si deseas compilar el juego en tu propia terminal, sigue estos sencillos pasos:
 
 ```
 make
-```c
 
-```
 make bonus
-```c
+```
 
 ## 🎮 Ejecución del Juego
 
