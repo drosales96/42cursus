@@ -11,15 +11,11 @@ Si deseas compilar el juego en tu propia terminal, sigue estos sencillos pasos:
    git clone https://github.com/tu-usuario/so_long.git
    cd so_long
 
-```
-make
+| Comando        | Ejecución                               |
+|----------------|-----------------------------------------|
+| `make`         | `./so_long maps/maping2.ber`            |
+| `make bonus`   | `./so_long_bonus maps/map_bonus2.ber`   |
 
-make bonus
-
-./so_long_bonus maps/map_bonus2.ber
-               o
-./so_long maps/maping2.ber
-```
 
 ## 🎮 Ejecución del Juego
 
