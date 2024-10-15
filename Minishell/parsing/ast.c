@@ -6,63 +6,104 @@
 /*   By: marigome <marigome@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:07:07 by marigome          #+#    #+#             */
-/*   Updated: 2024/10/10 15:25:13 by marigome         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:14:22 by marigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-/*t_ast *ft_making_ast(Token *tokens)
+void ft_print_ast(t_ast *node)
 {
-    t_ast  *ast;
-    t_ast   *current_ast;
+    if (!node)
+        return;
 
-    current_ast = NULL;
-    ast = NULL;
-    if (!tokens)
-        ft_printf("There are no tokens for now!\n");
-    while (tokens != NULL)
+    if (node->type == TOKEN_COMMAND)
+        printf("Comando: %s\n", node->value);
+    else if (node->type == TOKEN_ARGUMENT)
+        printf("Argumento: %s\n", node->value);
+    else if (node->type == TOKEN_PIPE)
+        printf("Operador (Pipe): %s\n", node->value);
+    else if (node->type == TOKEN_REDIRECT_IN)
+        printf("Redirección In: %s\n", node->value);
+    else if (node->type == TOKEN_REDIRECT_OUT)
+        printf("Redirección Out: %s\n", node->value);
+    else if (node->type == TOKEN_REDIRECT_APPEND)
+        printf("Redirección Append: %s\n", node->value);
+    else if (node->type == TOKEN_REDIRECT_HEREDOC)
+        printf("Redirección Heredoc: %s\n", node->value);
+
+    if (node->left)
     {
+        printf("  └ Left: ");
+        ft_print_ast(node->left);
+    }
+    if (node->right)
+    {
+        printf("  └ Right: ");
+        ft_print_ast(node->right);
+    }
+}
+
+t_ast *ft_making_ast(Token *tokens)
+{
+    t_ast  *ast = NULL;
+    t_ast  *current_ast = NULL;
+
+    if (!tokens)
+    {
+        ft_printf("There are no tokens for now!\n");
+        return NULL;
+    }
+        while (tokens)
+    {
+        ft_printf("Processing token: %s (type: %d)\n", tokens->token_value, tokens->token_type);
         if (tokens->token_type == TOKEN_COMMAND)
         {    
             current_ast = ft_parsing_cmd(tokens);
+            ft_printf("Parsed command node: %p\n", current_ast);
+            tokens = tokens->next;
+
             if (!ast)
                 ast = current_ast;
             else
                 ast->right = current_ast;
+        }
+        else if (tokens->token_type == TOKEN_PIPE)
+        {    
+            ast = ft_parsing_pipe(tokens, ast);
+            ft_printf("Parsed pipe node: %p\n", ast);
             tokens = tokens->next;
         }
-        else if (tokens->token.token_type == TOKEN_ARGUMENT)
+        else if (tokens->token_type == TOKEN_REDIRECT_IN || 
+                 tokens->token_type == TOKEN_REDIRECT_OUT || 
+                 tokens->token_type == TOKEN_REDIRECT_APPEND || 
+                 tokens->token_type == TOKEN_REDIRECT_HEREDOC)
         {    
-            ast->right = ft_parsing_args(tokens);
-            tokens = tokens->next;
-        }
-        else if (tokens->token.token_type == TOKEN_OPERATOR)
-        {    
-            ast = ft_parsing_operator(tokens, ast);
-            tokens = tokens->next;
-        }
-        else if (tokens->token.token_type == TOKEN_PATH)
-        {    
-            ast->right = ft_parsing_path(tokens);
+            ast = ft_parsing_redirect(tokens, ast);
             tokens = tokens->next;
         }
         else
             tokens = tokens->next;
+        if (!tokens)
+        {
+            ft_printf("End of tokens reached.\n");
+            break;
+        }
     }
     return (ast);
 }
 
-/* 
 
-¿Qué siginifican las siglas 'AST'? :
+
+
+/*¿Qué siginifican las siglas 'AST'? :
 
  El Árbol de sintaxis abstracta es una estructura de datos usada extensamente en compiladores, debido a su propiedad de representar la estructura del código de un programa. Un AST es usualmente el resultado del analizador sintáctico en la fase de un compilador.
  
  */
 
 
-/*t_ast   *ft_ast_new_node(Token_type type, char *value)
+t_ast   *ft_ast_new_node(Token_type type, char *value)
 {
     t_ast   *node;
 

@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:52:09 by marigome          #+#    #+#             */
-/*   Updated: 2024/10/10 19:51:24 by drosales         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:30:26 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,14 @@ void ft_update_type_tokens(Token *token)
         token->token_type = TOKEN_REDIRECT_HEREDOC;
     else if (ft_strcmp(token->token_value, "|") == 0)
         token->token_type = TOKEN_PIPE;
-    else if (token->prev == NULL || 
-        token->prev->token_type == TOKEN_PIPE || 
-        token->prev->token_type == TOKEN_REDIRECT_IN ||
-        token->prev->token_type == TOKEN_REDIRECT_OUT ||
-        token->prev->token_type == TOKEN_REDIRECT_APPEND ||
-        token->prev->token_type == TOKEN_REDIRECT_HEREDOC)
-    token->token_type = TOKEN_COMMAND;
+    else if (token->prev != NULL && (
+        token->prev->token_type == TOKEN_REDIRECT_IN || 
+        token->prev->token_type == TOKEN_REDIRECT_OUT || 
+        token->prev->token_type == TOKEN_REDIRECT_APPEND || 
+        token->prev->token_type == TOKEN_REDIRECT_HEREDOC))
+        token->token_type = TOKEN_ARGUMENT;
+    else if (token->prev == NULL || token->prev->token_type == TOKEN_PIPE)
+        token->token_type = TOKEN_COMMAND;
     else if (token->prev->token_type == TOKEN_COMMAND)
         token->token_type = TOKEN_ARGUMENT;
     else
@@ -138,21 +139,34 @@ void print_tokens(Token *tokens)
     }
 }
 
-void    ft_parse(t_mini *minishell)
+t_ast *ft_parse(t_mini *minishell)
 {
+    t_ast *ast; // Debe ser un puntero a t_ast
 
-    sig_init();
+    sig_init(); 
     minishell->line = readline("minishell: ");
     if (!minishell->line)
     {
         minishell->exit = 1;
-        ft_putendl_fd("exit", STDERR);
-        return ;
+        ft_putendl_fd("exit", STDERR_FILENO);
+        return NULL; // Retorna NULL si hay un error
     }
     if (*minishell->line)
         add_history(minishell->line);
+
     if (ft_checker_quotes_unclosed(minishell))
-        return ;
+    {
+        free(minishell->line);
+        return NULL; // Retorna NULL si hay un error
+    }
+
     minishell->tokens = get_tokens(minishell->line);
     print_tokens(minishell->tokens);
+    ast = ft_making_ast(minishell->tokens);
+
+    if (ast)
+        ft_print_ast(ast);
+
+    free(minishell->line);
+    return ast; // Asegúrate de retornar un puntero a t_ast
 }

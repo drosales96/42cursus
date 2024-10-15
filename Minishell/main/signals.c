@@ -6,7 +6,7 @@
 /*   By: marigome <marigome@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 10:46:02 by marigome          #+#    #+#             */
-/*   Updated: 2024/10/10 15:55:23 by marigome         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:23:10 by marigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,31 @@ El número 128 actúa como un indicador de que el proceso fue terminado por una 
 static void sig_int(int status)
 {
     (void)status;
-    t_signal    *signals = NULL;
-
-    if (signals->pid == 0) // Si no hay proceso hijo //
+    
+    if (g_signals.pid == 0)  // Si no hay proceso hijo //
     {
         ft_putstr_fd("\n", STDERR);
         ft_putstr_fd("minishell:~$ ", STDERR);
-        signals->exit = 1;
+        g_signals.exit = 1;
     }
     else
     {
         ft_putstr_fd("\n", STDERR);
-        signals->exit = 130; // Salida común para SIGINT
+        g_signals.exit = 130;  // Salida común para SIGINT
     }
-    signals->sigint = 1; // Señalizamos que hemos recibido la señal
+    g_signals.sigint = 1;  // Señalizamos que hemos recibido la señal
 }
 
 /* CONTROL + \ -> SIGQUIT (Señal 3)*/
 
-static void    sig_quit(int status)
+static void sig_quit(int status)
 {
-    
-    t_signal    *signals = NULL;
     (void)status;
 
-    if (signals->pid != 0)
+    if (g_signals.pid != 0)
     {
         ft_putstr_fd("Quit: 3\n", STDERR);
-        signals->exit = 131;
+        g_signals.exit = 131;  // Salida común para SIGQUIT
     }
 }
 
@@ -79,3 +76,5 @@ void    sig_init(void)
     signal(SIGINT, &sig_int);
     signal(SIGQUIT, &sig_quit);
 }
+
+
