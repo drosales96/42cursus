@@ -15,6 +15,10 @@ Si deseas compilar el juego en tu propia terminal, sigue estos sencillos pasos:
 make
 
 make bonus
+
+./so_long_bonus maps/map_bonus2.ber
+               o
+./so_long maps/maping2.ber
 ```
 
 ## 🎮 Ejecución del Juego
@@ -26,3 +30,10 @@ Si prefieres probar el juego directamente, he incluido los archivos ejecutables 
 - Este juego es una excelente manera de practicar programación y disfrutar de un juego clásico con un toque divertido.
 - ¡No dudes en explorar y descubrir todos los secretos que **So_long** tiene para ofrecer!
 
+## IMG
+
+![EXAMPLE](assets/example.png)
+
+## IMG BONUS
+
+![EXAMPLE BONUS](assets/example_bonus.png)
