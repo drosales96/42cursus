@@ -6,7 +6,7 @@
 
 **Minishell** es un proyecto desarrollado como parte del common core de la escuela 42, cuyo objetivo es construir una réplica simplificada de un shell de Unix. Este proyecto permite comprender mejor cómo funciona un intérprete de comandos, incluyendo la interacción con el sistema operativo y la ejecución de procesos.
 
-El objetivo principal de **Minishell** es aprender sobre procesos, señales, tuberías, y otras características esenciales de los sistemas Unix.
+El objetivo principal de **Minishell** es aprender sobre procesos, señales, tuberías, y otras características esenciales de los sistemas Unix, además de trabajar en equipo codo con codo para poder implementar una shell bien elaborada dentro de los marcos del subject.
 
 ## Características
 
