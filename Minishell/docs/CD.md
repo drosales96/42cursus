@@ -59,3 +59,14 @@ Flujo:
 2. Ahora toca actualizar el PWD usando getcwd() para obtener el directorio actual y se establece PWD como variable de entorno usando setenv()
 
 3. NO TIENE RETORNO (VOID)
+
+## FUNCIONALIDADES DE NUESTRO CD
+
+Usos:
+
+1. marigome@drosales:~$ cd
+2. marigome@drosales:~$ cd ..
+3. marigome@drosales:~$ cd -
+4. marigome@drosales:~$ cd --
+5. marigome@drosales:~$ cd /home/drosales/Escritorio/Mini_hell [RUTA ABSOLUTA]
+6. marigome@drosales:~$ cd ../Escritorio                       [RUTA RELATIVA]
