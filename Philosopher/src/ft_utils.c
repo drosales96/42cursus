@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:26:16 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/12 20:41:03 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/14 12:27:39 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,13 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (result * sign);
+}
+
+size_t	ft_get_times(void)
+{
+	struct timeval	times;
+
+	if (gettimeofday(&times, NULL) == TIME_ERROR)
+		printf("Philosopher: gettimeofday() error\n");
+	return (times.tv_sec * 1000 + times.tv_usec / 1000);
 }

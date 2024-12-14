@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:58:09 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/12 21:08:35 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/14 10:15:29 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	ft_validating_args(char	*av)
 
 int	ft_checking_arguments(char **av)
 {
-	if (ft_atoi(av[1]) > 100 || ft_atoi(av[1]) < 0
+	if (ft_atoi(av[1]) > 250 || ft_atoi(av[1]) < 0
 		|| ft_validating_args(av[1]) == 1)
-		return (printf("Philosophers: invalid number os philos'\n"));
+		return (printf("Philosophers: invalid number os philos!\n"));
 	if (ft_atoi(av[2]) <= 0 || ft_validating_args(av[2]) == 1)
 		return (printf("Philosopher: invalid time to die \n"));
 	if (ft_atoi(av[3]) <= 0 || ft_validating_args(av[3]) == 1)

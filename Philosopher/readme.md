@@ -44,3 +44,101 @@ Ahora le toca el turno a la estructura de la "mesa", y la llamaré así porque r
 
 Los mutex tienen siempre una inicialización, un lock, un unlock y por último un destroy.
 
+# Argumentos
+
+Ahora que tenemos todo lo necesario en cuanto a estructura de datos del proyecto para una futura proyección, pasemos entonces al tratamiento de los argumentos que vamos a recibir. Ya sabemos por el subject que vamos a recibir el nombre del programa (./philo) + otros 5 argumentos que son:
+
+av[1] = Número de filósofos que van a participar en la simulación.
+av[2] = Tiempo en el que morirá el filósofo.
+av[3] = Tiempo de comer del filósofo.
+av[4] = Tiempo de dormir del filósofo.
+av[5] (OPCIONAL) = Las comidas que debe hacer cala filósofo.
+
+Si le das una vuelta a la carpeta src/ vas a encontrar un archivo llamado ft_arg_checker.c, donde vas a comprobar que lo que se hace es verificar en una de las funciones que el contenido de los argumentos no sea un caracter alfabético, sino que debe ser de tipo numérico. En la función principal, lo que haremos será ir argumento por argumento verificando posibles errores, por ejemplo en el primer argumento le indico que el número de filósofos máximo va a ser 250 (porque si son infinitos, con números grandes al final acabrán ocurriendo errores), además también se verifica que el numero que se introduzca no sea menor que 0 y por último que sea una cifra, y no un caracter alfabético.
+
+Desde el argumento 2 hasta el 4 las verificacione son las mismas, que el número no sea negativo y que sea un argumento válido (NUMÉRICO).
+
+En el argumento opcional, usaremos un condicional porque solo si se da su existencia, entonces se veririca lo mismo que los argumentos del 2 al 4 y se pondrá en funcionamiento.
+
+# Inicialización
+
+Toca el proceso de inicialización del programa y restos de elementos, en primer lugar empezaremos inicializando la "mesa" que es la base principal, dentro de la carpeta init/ en el archivo ft_init_table.c encontraremos la función a la que nos referimos que recoge como argumentos, t_table *table y t_philo *philo , que son los dos argumentos que vamos a necesitar.
+
+Dentro de la función vamos a ir inicializando elementos como por ejemplo la "flag" que la usaremos en caso de muerte, después "philo" que recogerá a los filósofos que entren por argumento en el programa. Por último llamamos a la función de inicialización de mutex para el manejo de los hilos (cosa principal en el proyecto), así que se inicializa los futuros "locks" de lo que se escriba por pantalla (write_lock), la muerte (dead_lock) y por último las comidas (meal_lock).
+
+En segundo lugar se van ainicializar los input que recibimos de la llamada al prgrama, básicamente asignando a cada argumento el papel que va a tener dentro de la estructura de datos, para el futuro manejo dentro de nuestro código, creo que visualmente es bastante fácil de comprender si vas a ft_init_arguments.c dentro de la carpeta de init/.
+
+En tercer lugar pasamos a inicializar la información de cada filósofo que participará en el programa. Primeramente mediante un bucle decreciente de los filósofos que entre por el STDOUT, iremos inicializando cada elemento del nodo filósofos.
+
+1. philos[i].id = i + 1; -> de esta manera el primer filósofo será el 1 y no el 0.
+2. philos[i].eat = 0;
+3. philos[i].meals_eaten = 0;
+4. ft_init_arguments(&philos[i], av) -> inicializa los argumentos
+5. philos[i].starting_time = get_current_time();
+6. philos[i].last_meal = get_current_time();
+
+Asignación de punteros a los mutex compartidos en el programa:
+
+7. philos[i].write_lock = &table->write_lock;
+8. philos[i].dead_lock = &table->dead_lock;
+9. philos[i].meal_lock = &table->meal_lock;
+10. philos[i].dead = &table->flag;
+
+Accesso a los tenedores:
+
+11. philos[i].l_fork = &forks[i];
+
+Condicional para el tenerdor de la derecha:
+
+12. if (i == 0)
+        philos[i].r_fork = &forks[philos[i].philos_no - 1];
+    else
+        philos[i].r_fork = &forks[i - 1];
+
+Te preguntarás por que se opera para conseguir la referencia del tenerdor derecho de cada filósofo, y es que en el subject ya te lo dice si le has prestado atención. En este caso lo hacemos de la siguiente manera, comprobamos si nos escontramos con que es el caso del primer filósofo (i == 0), y si es así entonces, restamos uno al numero de filósofos porque el primer filósofo será el último del array.
+
+En todos los demás caso simplemente se le resta 1 al indice del filósofo actual.
+
+En cuarto lugar inicializamos los forks, que mediante un bucle while recorremos uno a uno dándole su inicialización.
+
+# Rutina del filósofo
+
+Ahora toca comprender la rutina que debe seguir cada filósofo, y sería de la siguiente manera:
+
+1. Pensar: Espera antes de coger los tenedores.
+2. Toma los tenedores (2): Bloquea mutex y verifica si es seguro comer.
+3. Comer: Actualiza el tiempo de la última comida, se pone un temporizador para simular la comida y se incrementa el contador de comidas.
+4. Deja los tenedores: Desbloquea mutexes
+5. Duerme: Temporizador para simular el sueño.
+
+Ejemplo simple:
+
+```c
+void *philosopher_routine(void *arg) {
+    t_philo *philo = (t_philo *)arg;
+
+    while (1) {
+        // Pensar
+        printf("Philosopher %d is thinking\n", philo->id);
+
+        // Tomar tenedores
+        pthread_mutex_lock(philo->left_fork);
+        pthread_mutex_lock(philo->right_fork);
+
+        // Comer
+        philo->last_meal = ft_get_times();
+        printf("Philosopher %d is eating\n", philo->id);
+        ft_usleep(philo->time_to_eat);
+
+        // Dejar tenedores
+        pthread_mutex_unlock(philo->right_fork);
+        pthread_mutex_unlock(philo->left_fork);
+
+        // Dormir
+        printf("Philosopher %d is sleeping\n", philo->id);
+        ft_usleep(philo->time_to_sleep);
+    }
+
+    return NULL;
+}
+```
