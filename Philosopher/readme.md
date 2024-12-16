@@ -169,3 +169,8 @@ Esta función es muy muy parecida a la anterior, solo que en este caso recorre e
 
 Primero, gracias al bucle recorremos el array de los filósofos, y si la función ft_dead_philo_checker() retorna muerte como resultado de alguno de loa filósofos que estamos verificando, hacemos lock a dead_lock para poder modificarla sin que hayan errores por culpa de otros hilos (previamente se ha sacado por pantalla el filósofo muerto), y después de hacer unlock, se retorna muerte, saliendo de la simulación. En cualquier otro caso retorna ALIVE que es la vida (0).
 
+## ft_checking_routine()
+
+Esta función literalmente checkea la rutina del filósofo, usando la función que verifica si algún filósofo ha muerto (ft_checking_all_philos()), y si se cumple todo lo relacionado con las comidas y sus repercusiones (ft_eating_checker()), puesto que si algún filósofo muere por terminar su ciclo, o muere por otra razón se debe romper el bucle, y en el caso contrario seguir checkeando.
+
+

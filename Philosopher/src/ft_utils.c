@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:26:16 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/16 19:59:18 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:49:48 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ size_t	ft_get_times(void)
 	return (times.tv_sec * 1000 + times.tv_usec / 1000);
 }
 
-void	ft_checking_routine(void *ptr)
+void	*ft_checking_routine(void *ptr)
 {
 	t_philo	*philos;
 
@@ -64,6 +64,23 @@ void	ft_checking_routine(void *ptr)
 		if (ft_checking_all_philos(philos) == 1
 			|| ft_eating_checker(philos) == 1)
 			break ;
-		return (ptr);
+	}
+	return (ptr);
+}
+
+void	ft_destroy_threads(char *str, t_table *table, pthread_mutex_t *forks)
+{
+	int	i;
+
+	i = 0;
+	if (str)
+		printf("%s\n", str);
+	pthread_mutex_destroy(&table->dead_lock);
+	pthread_mutex_destroy(&table->meal_lock);
+	pthread_mutex_destroy(&table->write_lock);
+	while (i < table->philo[0].philos_no)
+	{
+		pthread_mutex_destroy(&forks[i]);
+		i++;
 	}
 }

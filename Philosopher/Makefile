@@ -28,13 +28,18 @@ INIT_DIR				= ./init
 
 # ══ Flags ═══════════════════════════════════════════════════════════════════ #
 
-CFLAGS                  = -Wall -Werror -Wextra
+CFLAGS                  = -Wall -Werror -Wextra -O3 -pthread
 INCLUDES                = -I$(INCLUDES_DIR)
 
 # ══ Sources ═════════════════════════════════════════════════════════════════ #
 
 SRC                     = ${SRC_DIR}/ft_utils.c \
-                          ${SRC_DIR}/ft_arg_checker.c
+							${SRC_DIR}/ft_thread_creation.c \
+							${SRC_DIR}/ft_routine_tools.c \
+							${SRC_DIR}/ft_print_status.c \
+							${SRC_DIR}/ft_eating_checker.c \
+							${SRC_DIR}/ft_dead_utils.c \
+                          	${SRC_DIR}/ft_arg_checker.c
 MAIN                    = ${MAIN_DIR}/main.c
 INIT					= ${INIT_DIR}/ft_init_table.c \
 							${INIT_DIR}/ft_init_philos.c \

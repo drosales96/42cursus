@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 20:21:29 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/16 19:59:46 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:42:47 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,15 @@ int		ft_dead_philo_checker(t_philo *philo, size_t dead_time);
 int		ft_checking_all_philos(t_philo *philos);
 int		ft_eating_checker(t_philo *philos);
 void	*ft_checking_routine(void *ptr);
+void	ft_destroy_threads(char *str, t_table *table,
+			pthread_mutex_t *forks);
+int		ft_usleep(size_t miliseconds);
+int		ft_dead(t_philo *philo);
+void	*ft_routine(void *buffer);
+void	ft_print_status(char *str, t_philo *philo, int id);
+void	ft_sleep(t_philo *philo);
+void	ft_think(t_philo *philo);
+void	ft_eat(t_philo *philo);
+int		ft_threads(t_table *table, pthread_mutex_t *forks);
 
 #endif
