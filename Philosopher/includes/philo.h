@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 20:21:29 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/14 12:22:10 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:59:46 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 // # ------ DEFINES ------ # //
 
 # define TIME_ERROR -1
+# define DEAD 1
+# define ALIVE 0
 
 // # ------ STRUCTURES ------ # //
 
@@ -69,13 +71,18 @@ int		ft_checking_arguments(char **av);
 
 // # ------ INIT ------ # //
 
-void    ft_init_table(t_table *table, t_philo *philo);
-void    ft_init_forks(pthread_mutex_t *forks, int philos);
-void    ft_init_philos(t_philo *philos, t_table *table, pthread_mutex_t *forks, char **av);
+void	ft_init_table(t_table *table, t_philo *philo);
+void	ft_init_forks(pthread_mutex_t *forks, int philos);
+void	ft_init_philos(t_philo *philos, t_table *table,
+			pthread_mutex_t *forks, char **av);
 void	ft_init_arguments(t_philo *philos, char **av);
 
 // # ------ UTILS ------ # //
 
 size_t	ft_get_times(void);
+int		ft_dead_philo_checker(t_philo *philo, size_t dead_time);
+int		ft_checking_all_philos(t_philo *philos);
+int		ft_eating_checker(t_philo *philos);
+void	*ft_checking_routine(void *ptr);
 
 #endif

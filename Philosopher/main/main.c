@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:40:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/14 12:25:28 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:14:33 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_table			table;
 	t_philo			*philosophers;
 	pthread_mutex_t	*forks;
-	
+
 	philosophers = NULL;
 	forks = NULL;
 	if (ac > 7)

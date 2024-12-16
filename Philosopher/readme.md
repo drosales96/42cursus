@@ -142,3 +142,30 @@ void *philosopher_routine(void *arg) {
     return NULL;
 }
 ```
+
+Esto anterior sería un ejemplo práctico que no tiene por que coincidir exactamente con el obejtivo del proyecto, solo sirve para ver como se usarían los locks y demás elementos que intervienen en los hilos.
+
+# Funciones "vitales"
+
+## ft_eating_checker()
+
+Primeramente me gustaría empezar por una función que va a checkear las comidas o comidas objetivo que tienen los filósofos que realizar.
+
+Si vamos a src/ en ft_eating_checker.c podemos ver que dentro está la función ft_eating_checker() que nos va a servir para checker lo relacionado a las comidas. La función solamente recibe a un t_philo *philos, porque necesitamos acceder a la info de los folósofos.
+
+Primeramente checkea si el argumento opcional existe y si es así continúa. Con un bucle while que recorre el array de los filósofos uno a uno, vamos a hacer lock a la variable o puntero relacionado con las comidas para que no pueda interferir otro hilo, pudiendo sobreescribir la variable. Después se comprueba si las comidas realizadas son iguales o más que las comidas que se han metido en el argumento opcional, siendo así se suma la variable eating_times, cada vez que se de el condicional, y por supuesto en cada iteración se hace lock, se modifica la variable, y se hace unlock para asegurarla.
+
+En segundo lugar se pasa al siguiente bloque donde comparamos el argumento opcional (cantidad) con la cantidad de filósofos del primer argmento que recibe philo. Si son iguales, se actualiza el puntero dead con el que se da fin a la simulación saliendo con 1 simulando que los filósofos han acabado de comer dandole muerte a la simulación.
+
+En todos los demás casos se continúa retornando 0, dando a entender que aun los filósofos deben seguir comiendo pues no se ha llegado al número máximo de filósofos y comidas.
+
+## ft_dead_philo_checker()
+
+Esta función es para verificar la vida o la muerte de solo un filósofo, básicamente a nivel individual, como se puede apreciar tiene que recibir la estructura de philo y el tiempo de muerte. Lo que se hará será primeramente hacer lock a la comida, y llamaremos a ft_get_times() para que nos de el tiempo actual que será restado al tiempo estimado para la muerte, y por supuesto siempre y cuando también no haya comido el filósofo, verificando así si aún le queda vida o no.
+
+## ft_checking_all_philos()
+
+Esta función es muy muy parecida a la anterior, solo que en este caso recorre el array de philo para poder mirar TODOS los philos, verificando así la vida o la muerte de alguno de ellos.
+
+Primero, gracias al bucle recorremos el array de los filósofos, y si la función ft_dead_philo_checker() retorna muerte como resultado de alguno de loa filósofos que estamos verificando, hacemos lock a dead_lock para poder modificarla sin que hayan errores por culpa de otros hilos (previamente se ha sacado por pantalla el filósofo muerto), y después de hacer unlock, se retorna muerte, saliendo de la simulación. En cualquier otro caso retorna ALIVE que es la vida (0).
+
