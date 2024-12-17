@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:40:54 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/16 23:44:19 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:46:50 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 int	main(int ac, char **av)
 {
 	t_table			table;
-	t_philo			*philosophers;
-	pthread_mutex_t	*forks;
+	t_philo			philosophers[PHILO_MAX];
+	pthread_mutex_t	forks[PHILO_MAX];
 
-	philosophers = NULL;
-	forks = NULL;
 	if (ac > 7)
 		return (printf("Philosophers: ilogic use of arguments!\n"));
 	if (ac != 5 && ac != 6)

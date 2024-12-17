@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:41:12 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/16 23:55:34 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:31:21 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_eating_checker(t_philo *philos)
 	if (eating_times == philos[0].philos_no)
 	{
 		pthread_mutex_lock(philos[0].dead_lock);
-		*(philos)->dead = 1;
+		*philos->dead = 1;
 		pthread_mutex_unlock(philos[0].dead_lock);
 		return (1);
 	}

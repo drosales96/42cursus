@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:58:09 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/14 10:15:29 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:46:20 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	ft_validating_args(char	*av)
 	int	i;
 
 	i = 0;
-	if (av == NULL)
-		return (1);
 	while (av[i])
 	{
 		if (!ft_is_digit(av[i]))
@@ -32,7 +30,7 @@ int	ft_validating_args(char	*av)
 
 int	ft_checking_arguments(char **av)
 {
-	if (ft_atoi(av[1]) > 250 || ft_atoi(av[1]) < 0
+	if (ft_atoi(av[1]) > PHILO_MAX || ft_atoi(av[1]) <= 0
 		|| ft_validating_args(av[1]) == 1)
 		return (printf("Philosophers: invalid number os philos!\n"));
 	if (ft_atoi(av[2]) <= 0 || ft_validating_args(av[2]) == 1)

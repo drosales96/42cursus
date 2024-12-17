@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 20:21:29 by drosales          #+#    #+#             */
-/*   Updated: 2024/12/16 23:42:47 by drosales         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:46:36 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define TIME_ERROR -1
 # define DEAD 1
 # define ALIVE 0
+# define PHILO_MAX 300
 
 // # ------ STRUCTURES ------ # //
 
