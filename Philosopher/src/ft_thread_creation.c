@@ -28,15 +28,12 @@ void	*ft_routine(void *buffer)
 
 	philo = (t_philo *)buffer;
 	if (philo->id % 2 == 0)
-		ft_usleep(1);
+		ft_usleep(50);
 	while (!ft_dead(philo))
 	{
 		ft_eat(philo);
-		ft_usleep(2);
 		ft_sleep(philo);
-		ft_usleep(2);
 		ft_think(philo);
-		ft_usleep(2);
 	}
 	return (buffer);
 }
