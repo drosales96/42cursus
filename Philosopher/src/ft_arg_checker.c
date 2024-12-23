@@ -26,22 +26,6 @@ int	ft_validating_args(char	*av)
 	return (0);
 }
 
-/*int	ft_checking_arguments(char **av)
-{
-	if (ft_atoi(av[1]) > PHILO_MAX || ft_atoi(av[1]) <= 0
-		|| ft_validating_args(av[1]) == 1)
-		return (printf("Philosophers: invalid number os philos!\n"));
-	if (ft_atoi(av[2]) <= 0 || ft_validating_args(av[2]) == 1)
-		return (printf("Philosopher: invalid time to die \n"));
-	if (ft_atoi(av[3]) <= 0 || ft_validating_args(av[3]) == 1)
-		return (printf("Philosophers: invalid time to eat \n"));
-	if (ft_atoi(av[4]) <= 0 || ft_validating_args(av[4]) == 1)
-		return (printf("Philosophers: invalid time to sleep \n"));
-	if (av[5] && (ft_atoi(av[5]) < 0 || ft_validating_args(av[5]) == 1))
-		return (printf("Philosophers: invalid argument about meals \n"));
-	return (0);
-}*/
-
 int ft_checking_arguments(char **av)
 {
     if (ft_validating_args(av[1]) || ft_atoi(av[1]) <= 0 || ft_atoi(av[1]) > PHILO_MAX)
