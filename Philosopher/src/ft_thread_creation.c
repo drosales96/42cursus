@@ -28,7 +28,7 @@ void	*ft_routine(void *buffer)
 
 	philo = (t_philo *)buffer;
 	if (philo->id % 2 == 0)
-		ft_usleep(50);
+		ft_usleep(1);
 	while (!ft_dead(philo))
 	{
 		ft_eat(philo);
@@ -57,7 +57,7 @@ int	ft_threads(t_table *table, pthread_mutex_t *forks)
 	i = 0;
 	if (pthread_join(monitoring, NULL) != 0)
 		ft_destroy_threads("Threads: join threads error!\n", table, forks);
-	while (i < table->philo[i].philos_no)
+	while (i < table->philo[0].philos_no)
 	{
 		if (pthread_join(table->philo[i].threads, NULL) != 0)
 			ft_destroy_threads("Threads: join threads error!\n", table, forks);

@@ -14,12 +14,12 @@
 
 int	ft_eating_checker(t_philo *philos)
 {
-	int	eating_times;
 	int	i;
+	int	eating_times;
 
 	i = 0;
 	eating_times = 0;
-	if (philos[0].eat_time_needed < 0)
+	if (philos[0].eat_time_needed == -1)
 		return (0);
 	while (i < philos[0].philos_no)
 	{

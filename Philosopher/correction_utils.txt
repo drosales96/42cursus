@@ -1,0 +1,26 @@
+Para enumerar las veces que los philos comen en una ejecución:
+
+1. Crear archivo "output.txt" con el resultado.
+2. usar el siguiente codigo:
+
+    grep "is eating" output.txt | cut -d' ' -f2 | sort | uniq -c
+
+
+Para comprobar los data races:
+
+1. Ir Makefile y añadir los siguiente a las flags:
+
+    -fsanitize=thread -g
+
+1. Compilar el programa.
+2. Ejecutar el programa correctamente.
+
+2. Usar las banderas -O3 -pthread. A continuación explico porque:
+
+-O3: Se usa para optimizar el proyecto y conseguir que el rendimiento
+sea lo más alto posible. Es ideal para proyectos que se ejecutan repetidamente
+como pueden ser los hilos.
+
+-pthread: Se usa para habilitar la biblioteca POSIX threads en compiladores
+como son gcc o clang, de esta manera en nuestro proyecto con hilos se asegura
+de que el compilador y el enlazador trabajen correctamente para manejar los hilos.

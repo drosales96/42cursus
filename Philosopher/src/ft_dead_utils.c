@@ -20,10 +20,7 @@ int	ft_dead_philo_checker(t_philo *philo, size_t dead_time)
 	current = ft_get_times();
 	if (current - philo->last_meal >= dead_time \
 		&& philo->eat == 0)
-	{
-		pthread_mutex_unlock(philo->meal_lock);
-		return (DEAD);
-	}
+		return (pthread_mutex_unlock(philo->meal_lock), DEAD);
 	pthread_mutex_unlock(philo->meal_lock);
 	return (ALIVE);
 }
@@ -37,7 +34,6 @@ int	ft_checking_all_philos(t_philo *philos)
 	{
 		if (ft_dead_philo_checker(&philos[i], philos[i].time_to_die))
 		{
-			pthread_mutex_unlock(philos[i].meal_lock);
 			ft_print_status("dead\n", &philos[i], philos[i].id);
 			pthread_mutex_lock(philos[0].dead_lock);
 			*philos->dead = 1;

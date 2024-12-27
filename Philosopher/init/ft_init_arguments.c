@@ -14,10 +14,10 @@
 
 void	ft_init_arguments(t_philo *philos, char **av)
 {
-	philos->philos_no = ft_atoi(av[1]);
 	philos->time_to_die = ft_atoi(av[2]);
 	philos->time_to_eat = ft_atoi(av[3]);
 	philos->time_to_sleep = ft_atoi(av[4]);
+	philos->philos_no = ft_atoi(av[1]);
 	if (av[5])
 		philos->eat_time_needed = ft_atoi(av[5]);
 	else

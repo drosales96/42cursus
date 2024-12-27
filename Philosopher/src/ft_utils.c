@@ -75,9 +75,9 @@ void	ft_destroy_threads(char *str, t_table *table, pthread_mutex_t *forks)
 	i = 0;
 	if (str)
 		printf("%s\n", str);
-	pthread_mutex_destroy(&table->dead_lock);
-	pthread_mutex_destroy(&table->meal_lock);
 	pthread_mutex_destroy(&table->write_lock);
+	pthread_mutex_destroy(&table->meal_lock);
+	pthread_mutex_destroy(&table->dead_lock);
 	while (i < table->philo[0].philos_no)
 	{
 		pthread_mutex_destroy(&forks[i]);

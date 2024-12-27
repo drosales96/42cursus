@@ -28,7 +28,7 @@ INIT_DIR				= ./init
 
 # ══ Flags ═══════════════════════════════════════════════════════════════════ #
 
-CFLAGS                  = -Wall -Werror -Wextra -O3 -pthread 
+CFLAGS                  = -Wall -Werror -Wextra -pthread
 INCLUDES                = -I$(INCLUDES_DIR)
 
 # ══ Sources ═════════════════════════════════════════════════════════════════ #
