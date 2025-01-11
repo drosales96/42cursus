@@ -8,12 +8,15 @@ Para enumerar las veces que los philos comen en una ejecución:
 
 Para comprobar los data races:
 
-1. Ir Makefile y añadir los siguiente a las flags:
+En mi caso usaremos la herramienta de Valgrind llamada Helgrind, que sirve para comprobar los data races en programas multihilos. El uso de Helgrind, hace que el acceso a la memoria de llos hilos se sobrecargue por lo que retrasa los usleep de los hilos, pudiendo parecer que hayan errores, sin embargo, si lanza el mensaje de que hay 0 error of 0 context, significa que no hay data races, asi que se debe probar el resultado en escenario real sin usar Helgrind.
 
-    -fsanitize=thread -g
+Un ejemplo de uso de Helgrind:
 
-1. Compilar el programa.
-2. Ejecutar el programa correctamente.
+valgrind --tool=helgrind ./philo 5 1000 200 200
+
+Banderas a usar para poder tener la herramienta en uso: 
+
+-Wall -Werror -Wextra -pthread -g -O0
 
 2. Usar las banderas -O3 -pthread. A continuación explico porque:
 
