@@ -29,7 +29,7 @@ El propósito del proyecto **Cubed** es desarrollar un motor de juego en 3D func
 - Asegurar que el sistema sea extensible para admitir diferentes configuraciones y diseños.
 
 ### Interacción con Texturas y Colores:
-- Implementar la carga y asignación de texturas en formato `.xpm` para paredes, suelo y cielo.
+- Implementar la carga y asignación de texturas en formato `.png` para paredes, suelo y cielo.
 - Crear un sistema para interpretar colores codificados, permitiendo la personalización de elementos visuales como el cielo y el suelo.
 - Garantizar que las texturas se muestren correctamente escaladas y alineadas con las paredes, independientemente de la perspectiva del jugador.
 
