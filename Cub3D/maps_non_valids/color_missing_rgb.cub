@@ -1,0 +1,21 @@
+NO ./img/onepiece_wall_chopper.png
+SO ./img/onepiece_wall_nami.png
+EA ./img/onepiece_wall_monkey.png
+WE ./img/onepiece_wall_nico.png
+
+F 20,20
+C 200,200,200
+
+11111
+10001
+10S01
+10001
+10001
+10001
+11001
+10001
+10001
+10001
+10001
+10001
+11111

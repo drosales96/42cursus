@@ -1,0 +1,16 @@
+N ./img/onepiece_wall_chopper.png
+S ./img/onepiece_wall_nami.png
+E ./img/onepiece_wall_monkey.png
+W ./img/onepiece_wall_nico.png
+
+F 18,53,25
+C 153,204,255
+
+111111111111
+1         11
+1          1
+111111111111
+10S000000001
+111111111111
+11         1
+111111111111
