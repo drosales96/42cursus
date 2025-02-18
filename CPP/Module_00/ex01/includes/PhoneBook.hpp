@@ -16,6 +16,7 @@
 // Colors
 
 #include "Colors.hpp"
+#include "Macros.hpp"
 
 // Libraries
 
