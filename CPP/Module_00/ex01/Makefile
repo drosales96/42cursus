@@ -1,6 +1,6 @@
 # ══ Names ═══════════════════════════════════════════════════════════════════ #
 #    -----                                                                     #
-NAME 				= megaphone
+NAME 				= PhoneBook
 
 # ══ Colors ══════════════════════════════════════════════════════════════════ #
 #    ------                                                                    #
@@ -37,6 +37,7 @@ MKD					= mkdir -p
 
 SRC_DIR				= ./src
 OBJ_DIR				= ./obj
+MAIN_DIR			= ./main
 
 # ══ Flags ═══════════════════════════════════════════════════════════════════ #
 #    -----                                                                     #
@@ -46,22 +47,33 @@ CXXFLAGS 			= -Wall -Werror -Wextra -std=c++98
 # ══ Sources ═════════════════════════════════════════════════════════════════ #
 #    -------                                                                   #
 
-SRC 				= ${SRC_DIR}/megaphone.cpp
+SRC 				= ${SRC_DIR}/PhoneBook.cpp \
+						${SRC_DIR}/Header_ASCII.cpp \
+						${SRC_DIR}/Generate_Table.cpp \
+						${SRC_DIR}/Contact_Setters.cpp \
+						${SRC_DIR}/Contact_Getters.cpp
+
+MAIN				= ${MAIN_DIR}/main.cpp
 
 OBJ_SRC				= $(patsubst ${SRC_DIR}/%.cpp, ${OBJ_DIR}/%.o, ${SRC})
+OBJ_MAIN			= ${OBJ_DIR}/main.o
 
 # ═══ Rules ══════════════════════════════════════════════════════════════════ #
 #     -----                                                                    #
 
 all: ${NAME}
 
-${NAME}: ${OBJ_SRC}
+${NAME}: ${OBJ_SRC} ${OBJ_MAIN}
 									 
 	@echo "$(BLUE)Compiling $(NAME) ...$(DEF_COLOR)"
-	@${CXX} ${CXXFLAGS} -o ${NAME} ${OBJ_SRC}
+	@${CXX} ${CXXFLAGS} -o ${NAME} ${OBJ_SRC} ${OBJ_MAIN}
 	@echo "$(GREEN) $(NAME) all created ✓$(DEF_COLOR)"
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.cpp
+	@${MKD} $(dir $@)
+	@$(CXX) ${CXXFLAGS} -c $< -o $@
+
+${OBJ_MAIN}: ${MAIN_DIR}/main.cpp
 	@${MKD} $(dir $@)
 	@$(CXX) ${CXXFLAGS} -c $< -o $@
 
@@ -77,4 +89,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY : all ftlibft ftprintf ftexamft clean fclean bonus re
+.PHONY : all clean fclean bonus re
