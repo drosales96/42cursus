@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:58:14 by drosales          #+#    #+#             */
-/*   Updated: 2025/02/18 13:22:27 by drosales         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:10:07 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 // Utils macros
 
-# define ERROR          "❌ ERROR ❌"
+# define ERROR          "ERROR: "
 # define HELLO          "Hi! This is your own personal Phonebook!"
 # define BYE            "See you soon!"
-# define WARNING        "Warning: You are going to overwrite a contact!"
+# define WARNING        "Warning, you are about to overwrite the following contact: "
 # define ENTER          "Introduce "
 # define NAME           "first name: "
 # define LNAME          "last name: "
@@ -29,7 +29,7 @@
 # define ADD_SUCCESS    "Contact has been succesfully added!"
 # define MENU           "📞 Enter a correct command ➡︎ ADD | SEARCH | EXIT "
 # define MENU_ERR       "Invalid command!"
-# define EMPTY_PB       "Phonebook is empty!"
+# define EMPTY_PB       "You still have empty space for more contacts"
 # define INDX_SELECC    "Select an index: "
 # define INDX_ERR       "Invalid index! "
 

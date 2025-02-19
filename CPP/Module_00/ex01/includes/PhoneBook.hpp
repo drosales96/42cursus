@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:28:09 by drosales          #+#    #+#             */
-/*   Updated: 2025/02/18 12:37:06 by drosales         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:16:56 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ class PhoneBook{
 // Display functions (including spaces and table sizing)
 
 std::string         ft_table_spaces(int nbr);
-std::string         ft_table_widht(std::string str, long unsigned w_max);
+std::string         ft_table_width(std::string str, long unsigned w_max);
 int                 ft_display_table(Contact list[8]);
 
 #endif

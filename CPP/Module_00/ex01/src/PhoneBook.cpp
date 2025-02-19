@@ -6,7 +6,7 @@
 /*   By: drosales <drosales@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:27:54 by drosales          #+#    #+#             */
-/*   Updated: 2025/02/18 13:34:22 by drosales         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:06:59 by drosales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 PhoneBook::PhoneBook(void) {
     this->_id = 0;
     ft_print_header();
+    std::cout << std::endl;
     std::cout << YELLOW HELLO RESET << std::endl;
     std::cout << std::endl;
 }
 
 PhoneBook::~PhoneBook(void) {
+    std::cout << std::endl;
     std::cout << YELLOW BYE RESET << std::endl;
     std::cout << std::endl;
 }
@@ -29,23 +31,17 @@ void    PhoneBook::ft_add_contact(void) {
 
     str = "";
     if (this->_id > 7) {
-        std::cout << RED WARNING RESET CYAN << \
+        std::cout << std::endl;
+        std::cout << RED WARNING RESET WHITE << \
         this->_list[this->_id % 8].ft_get_name() \
         << RESET << std::endl;
         std::cout << std::endl;
     }
     while (!std::cin.eof() && str == "") {
-        if (this->_id > 7)
-            std::cout << WHITE ENTER << \
-            this->_list[this->_id % 8].ft_get_name() \
-            << " " << NAME RESET;
-        else
-            std::cout << WHITE ENTER << \
-            this->_list[this->_id % 8].ft_get_name() \
-            << NAME RESET;
+        std::cout << WHITE << "Introduce first name: " << RESET;
         if (std::getline(std::cin, str) && str != "")
             this->_list[this->_id % 8].ft_set_name(str);
-    }
+    }    
     str = "";
     while (!std::cin.eof() && str == "") {
         std::cout << WHITE ENTER << \
@@ -89,8 +85,9 @@ void    PhoneBook::ft_add_contact(void) {
 void    PhoneBook::ft_search_contact(void) {
     std::string str;
 
-    if (ft_display_table(this->_list)) {
-        std::cout << std::endl << RED EMPTY_PB << std::endl;
+    if (!ft_display_table(this->_list)) {
+        std::cout << std::endl << GREEN EMPTY_PB << std::endl;
+        std::cout << std::endl;
         return ;
     }
     while (!std::cin.eof())
