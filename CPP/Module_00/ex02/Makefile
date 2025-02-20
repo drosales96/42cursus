@@ -1,6 +1,6 @@
 # ══ Names ═══════════════════════════════════════════════════════════════════ #
 #    -----                                                                     #
-NAME 				= phonebook
+NAME 				= account
 
 # ══ Colors ══════════════════════════════════════════════════════════════════ #
 #    ------                                                                    #
@@ -37,7 +37,6 @@ MKD					= mkdir -p
 
 SRC_DIR				= ./src
 OBJ_DIR				= ./obj
-MAIN_DIR			= ./main
 
 # ══ Flags ═══════════════════════════════════════════════════════════════════ #
 #    -----                                                                     #
@@ -47,16 +46,10 @@ CXXFLAGS 			= -Wall -Werror -Wextra -std=c++98
 # ══ Sources ═════════════════════════════════════════════════════════════════ #
 #    -------                                                                   #
 
-SRC 				= ${SRC_DIR}/PhoneBook.cpp \
-						${SRC_DIR}/Header_ASCII.cpp \
-						${SRC_DIR}/Generate_Table.cpp \
-						${SRC_DIR}/Contact_Setters.cpp \
-						${SRC_DIR}/Contact_Getters.cpp
-
-MAIN				= ${MAIN_DIR}/main.cpp
+SRC 				= ${SRC_DIR}/Account.cpp \
+						${SRC_DIR}/tests.cpp 
 
 OBJ_SRC				= $(patsubst ${SRC_DIR}/%.cpp, ${OBJ_DIR}/%.o, ${SRC})
-OBJ_MAIN			= ${OBJ_DIR}/main.o
 
 # ═══ Rules ══════════════════════════════════════════════════════════════════ #
 #     -----                                                                    #
@@ -70,10 +63,6 @@ ${NAME}: ${OBJ_SRC} ${OBJ_MAIN}
 	@echo "$(GREEN) $(NAME) all created ✓$(DEF_COLOR)"
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.cpp
-	@${MKD} $(dir $@)
-	@$(CXX) ${CXXFLAGS} -c $< -o $@
-
-${OBJ_MAIN}: ${MAIN_DIR}/main.cpp
 	@${MKD} $(dir $@)
 	@$(CXX) ${CXXFLAGS} -c $< -o $@
 

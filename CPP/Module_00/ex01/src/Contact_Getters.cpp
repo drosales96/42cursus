@@ -24,7 +24,7 @@ Contact::~Contact (void){
 
 }
 
-// Functions that returns the values from the array
+// Methods that returns the values from the array
 
 std::string Contact::ft_get_name(void) const {
     return (this->_name);

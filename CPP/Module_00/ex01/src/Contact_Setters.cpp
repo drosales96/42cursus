@@ -12,7 +12,7 @@
 
 #include "../includes/PhoneBook.hpp"
 
-// Functions that takes the string, that I use as argument.
+// Methods that takes the string, that I use as argument.
 
 void    Contact::ft_set_name(std::string str) {
     this->_name = str;
